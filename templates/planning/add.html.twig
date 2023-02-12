@@ -1,0 +1,88 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}EnergyBox | Planning{% endblock %}
+
+{% block body%}
+<!-- MAIN CONTENT-->
+    <div class="page-wrapper">
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- START WHITE BACKGROUND-->
+                                <div class="map-data m-b-40">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong>Ajouter</strong> Planning
+                                        </div>
+                                        <div class="card-body card-block">
+                                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="text-input" class=" form-control-label">Date</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="date" name="date" class="form-control">
+                                                        <small class="form-text text-muted">Veuillez saisir une date valide</small>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="select" class=" form-control-label">Select Courses</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <select name="select" id="select" class="form-control">
+                                                            <option value="0">Please select</option>
+                                                            <option value="1">Option #1</option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="text-input" class=" form-control-label">Description</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <textarea class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                            </form>
+                                        </div>
+                                        <div align="center" class="card-footer">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                Ajouter
+                                            </button>
+                                            <button type="reset" class="btn btn-danger btn-sm">
+                                                 Annuler
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END WHITE BACKGROUND-->
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+        </div>
+
+    </div>
+{% endblock %}
