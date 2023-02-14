@@ -1,0 +1,52 @@
+{{ form_start(form) }}
+
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="select" class=" form-control-label">{{ form_label(form.nomFournisseur)}} </label>
+    </div>
+    <div class="col-12 col-md-9">
+        {{ form_widget(form.nomFournisseur) }}
+        <small class="form-text text-muted">{{ form_errors(form.nomFournisseur) }}</small>
+
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="select" class=" form-control-label">{{ form_label(form.contactFournisseur)}} </label>
+    </div>
+    <div class="col-12 col-md-9">
+        {{ form_widget(form.contactFournisseur) }}
+        <small class="form-text text-muted">{{ form_errors(form.contactFournisseur) }}</small>
+
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col col-md-3">
+
+        <label for="text-input" class=" form-control-label">{{ form_label(form.emailFournisseur) }}</label>
+    </div>
+    <div class="col-12 col-md-9">
+        {{ form_widget(form.emailFournisseur) }}
+        <small class="form-text text-muted">{{ form_errors(form.emailFournisseur) }}</small>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col col-md-3">
+
+        <label for="text-input" class=" form-control-label">{{ form_label(form.adresseFournisseur) }}</label>
+    </div>
+    <div class="col-12 col-md-9">
+        {{ form_widget(form.adresseFournisseur) }}
+        <small class="form-text text-muted">{{ form_errors(form.adresseFournisseur) }}</small>
+    </div>
+</div>
+
+</div>
+<div align="center" class="card-footer">
+    <button  class="btn btn-primary btn-sm">
+        {{ button_label|default('Save') }}
+    </button>
+    <a type="reset" class="btn btn-danger btn-sm" href="{{ path('app_materiel_index') }}">back to list</a>
+
+</div>
+{{ form_end(form) }}

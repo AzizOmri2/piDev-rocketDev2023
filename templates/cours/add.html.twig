@@ -16,39 +16,28 @@
                                 <div class="map-data m-b-40">
                                     <div class="card">
                                         <div class="card-header">
-                                            <strong>Ajouter</strong> Planning
+                                            <strong>Ajouter</strong> Cours
                                         </div>
                                         <div class="card-body card-block">
                                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="text-input" class=" form-control-label">Date</label>
+                                                        <label for="text-input" class=" form-control-label">Nom</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
-                                                        <input type="date" name="date" class="form-control">
-                                                        <small class="form-text text-muted">Veuillez saisir une date valide</small>
+                                                        <input type="texte" name="nomCours" placeholder="Nom Cours" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
-                                                        <label for="select" class=" form-control-label">Select Courses</label>
+                                                        <label for="text-input" class=" form-control-label">Prix</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
-                                                        <select name="select" id="select" class="form-control">
-                                                            <option value="0">Please select</option>
-                                                            <option value="1">Option #1</option>
-                                                            
-                                                        </select>
+                                                        <input type="texte" name="prixCours" placeholder="Prix Cours" class="form-control">
+                                                        <small class="form-text text-muted">Veuillez saisir le prix en DT</small>
                                                     </div>
                                                 </div>
-                                                <div class="row form-group">
-                                                    <div class="col col-md-3">
-                                                        <label for="text-input" class=" form-control-label">Description</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-9">
-                                                        <textarea class="form-control"></textarea>
-                                                    </div>
-                                                </div>
+                                                
                                             </form>
                                         </div>
                                         <div align="center" class="card-footer">
@@ -62,27 +51,10 @@
                                     </div>
                                     <div class="card">
                                         <div class="card-header">
-                                            <strong>Affectation</strong> des Plannings & Cours
+                                            <strong>Affectation</strong> des Cours & Activités
                                         </div>
                                         <div class="card-body card-block">
                                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                                <div class="row form-group">
-                                                    <div class="col col-md-3">
-                                                        <label for="select" class=" form-control-label">Plannings</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-9">
-                                                        <select name="plannings" id="select" class="form-control">
-                                                            <option value="0">Select Planning</option>
-                                                            <option value="1">Lundi</option>
-                                                            <option value="2">Mardi</option>
-                                                            <option value="3">Mercredi</option>
-                                                            <option value="4">Jeudi</option>
-                                                            <option value="5">Vendredi</option>
-                                                            <option value="6">Samedi</option>
-                                                            <option value="7">Dimanche</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
                                                 <div class="row form-group">
                                                     <div class="col col-md-3">
                                                         <label for="select" class=" form-control-label">Cours</label>
@@ -93,6 +65,19 @@
                                                             <option value="1">Aerobique</option>
                                                             <option value="2">CrossFit</option>
                                                             <option value="3">Musculation</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="select" class=" form-control-label">Activités</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <select name="activites" id="select" class="form-control">
+                                                            <option value="0">Select Difficulté</option>
+                                                            <option value="1">Push Ups</option>
+                                                            <option value="2">Abs</option>
+                                                            <option value="3">Running</option>
                                                         </select>
                                                     </div>
                                                 </div>

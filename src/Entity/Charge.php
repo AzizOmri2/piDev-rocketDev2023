@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ChargeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ChargeRepository::class)]
 class Charge
@@ -15,6 +16,7 @@ class Charge
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
     private ?int $quantiteCharge = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -80,4 +82,5 @@ class Charge
 
         return $this;
     }
+
 }

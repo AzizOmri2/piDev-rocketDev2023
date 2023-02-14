@@ -1,0 +1,43 @@
+{{ form_start(form) }}
+
+    <div class="row form-group">
+        <div class="col col-md-3">
+            <label for="select" class=" form-control-label">{{ form_label(form.nomMateriel)}} </label>
+        </div>
+        <div class="col-12 col-md-9">
+            {{ form_widget(form.nomMateriel) }}
+            <small class="form-text text-muted">{{ form_errors(form.nomMateriel) }}</small>
+
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col col-md-3">
+            <label for="select" class=" form-control-label">{{ form_label(form.referenceMateriel)}} </label>
+        </div>
+        <div class="col-12 col-md-9">
+            {{ form_widget(form.referenceMateriel) }}
+            <small class="form-text text-muted">{{ form_errors(form.referenceMateriel) }}</small>
+
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col col-md-3">
+
+            <label for="text-input" class=" form-control-label">{{ form_label(form.dateMaintenanceMateriel) }}</label>
+        </div>
+        <div class="col-12 col-md-9">
+            <div style="display:flex;justify-content: center;align-items: center;"> {{ form_widget(form.dateMaintenanceMateriel.date) }}
+                {{ form_widget(form.dateMaintenanceMateriel.time) }} </div>
+            <small class="form-text text-muted">{{ form_errors(form.dateMaintenanceMateriel) }}</small>
+        </div>
+    </div>
+
+</div>
+<div align="center" class="card-footer">
+    <button  class="btn btn-primary btn-sm">
+        {{ button_label|default('Save') }}
+    </button>
+    <a type="reset" class="btn btn-danger btn-sm" href="{{ path('app_materiel_index') }}">back to list</a>
+
+</div>
+{{ form_end(form) }}

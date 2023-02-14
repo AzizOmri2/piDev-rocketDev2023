@@ -7,7 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+//importation de Validator class
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: MaterielRepository::class)]
 class Materiel
 {
@@ -17,15 +18,32 @@ class Materiel
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min:3,
+        max: 15,
+        minMessage: "Le nom du matériel doit contenir au moins {{ limit }} caractères",
+        maxMessage: "Le nom du matériel doit contenir au plus {{ limit }} caractères",
+
+    )]
+
     private ?string $nomMateriel = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        exactly:8,
+        exactMessage: "Le nom du matériel doit contenir exactement {{ limit }} caractères",
+
+    )]
     private ?string $referenceMateriel = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+//    #[Assert\DateTime]
     private ?\DateTimeInterface $dateMaintenanceMateriel = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Positive]
     private ?int $quantiteMateriel = null;
 
     #[ORM\OneToMany(mappedBy: 'materiel', targetEntity: Charge::class)]
@@ -117,5 +135,8 @@ class Materiel
         }
 
         return $this;
+    }
+    public function __toString(){
+        return $this->nomMateriel;
     }
 }

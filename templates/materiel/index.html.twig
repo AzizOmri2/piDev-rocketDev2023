@@ -1,0 +1,107 @@
+{%  extends 'baseBack.html.twig' %}
+
+
+{% block title %} Liste des Materiels {% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- START WHITE BACKGROUND-->
+                                <div class="map-data m-b-40">
+
+                                    <!-- USER DATA-->
+                                    <div class="user-data m-b-30">
+                                        <h3 class="title-3 m-b-30">
+                                            <i class="fas fa-table"></i>Gestion Materiel</h3>
+                                        <div class="filters m-b-45">
+                                            <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
+                                                <select class="js-select2" name="property">
+                                                    <option selected="selected">All Properties</option>
+                                                    <option value="">Products</option>
+                                                    <option value="">Services</option>
+                                                </select>
+                                                <div class="dropDownSelect2"></div>
+                                            </div>
+                                            <div class="rs-select2--dark rs-select2--sm rs-select2--border">
+                                                <select class="js-select2 au-select-dark" name="time">
+                                                    <option selected="selected">All Time</option>
+                                                    <option value="">By Month</option>
+                                                    <option value="">By Day</option>
+                                                </select>
+                                                <div class="dropDownSelect2"></div>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive table-data">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <td>Id</td>
+                                                    <td>NomMateriel</td>
+                                                    <td>ReferenceMateriel</td>
+                                                    <td>DateMaintenanceMateriel</td>
+                                                    <td>QuantiteMateriel</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for materiel in materiels %}
+                                                    <tr>
+                                                        <td style="text-align: center">{{ materiel.id }}</td>
+                                                        <td style="text-align: center">{{ materiel.nomMateriel }}</td>
+                                                        <td style="text-align: center">{{ materiel.referenceMateriel }}</td>
+                                                        <td style="text-align: center">{{ materiel.dateMaintenanceMateriel ? materiel.dateMaintenanceMateriel|date('Y-m-d') : '' }}</td>
+                                                        <td style="text-align: center">{% if materiel.quantiteMateriel == 0 %}0{% else %} {{ materiel.quantiteMateriel }} {% endif %}</td>
+
+                                                        <td style="text-align: center">
+                                                            <a class="btn btn-outline-secondary" href="{{ path('app_materiel_show', {'id': materiel.id}) }}">show</a>
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            <a class="btn btn-outline-secondary" href="{{ path('app_materiel_edit', {'id': materiel.id}) }}">edit</a>
+                                                        </td>
+                                                    </tr>
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="6">no records found</td>
+                                                    </tr>
+                                                {% endfor %}
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <!-- END USER DATA-->
+
+                                </div>
+                                <!-- END WHITE BACKGROUND-->
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+        </div>
+
+    </div>
+
+
+
+    <a href="{{ path('app_materiel_new') }}">Create new</a>
+{% endblock %}

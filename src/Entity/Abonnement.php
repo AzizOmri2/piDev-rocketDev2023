@@ -26,6 +26,10 @@ class Abonnement
     #[ORM\Column(length: 255)]
     private ?string $etatAbonnement = null;
 
+    #[ORM\ManyToOne(inversedBy: 'abonnements')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Pack $pack = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,4 +82,17 @@ class Abonnement
 
         return $this;
     }
+
+    public function getPack(): ?Pack
+    {
+        return $this->pack;
+    }
+
+    public function setPack(?Pack $pack): self
+    {
+        $this->pack = $pack;
+
+        return $this;
+    }
+
 }

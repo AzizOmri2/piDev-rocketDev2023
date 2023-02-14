@@ -1,0 +1,58 @@
+{#{{ form_start(form) }}#}
+{#    {{ form_widget(form) }}#}
+{#    <button class="btn">{{ button_label|default('Save') }}</button>#}
+{#{{ form_end(form) }}#}
+
+{{ form_start(form) }}
+
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="select" class=" form-control-label">{{ form_label(form.materiel)}} </label>
+    </div>
+    <div class="col-12 col-md-9">
+        {{ form_widget(form.materiel) }}
+        <small class="form-text text-muted">{{ form_errors(form.materiel) }}</small>
+
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="select" class=" form-control-label">{{ form_label(form.fournisseur)}} </label>
+    </div>
+    <div class="col-12 col-md-9">
+        {{ form_widget(form.fournisseur) }}
+        <small class="form-text text-muted">{{ form_errors(form.fournisseur) }}</small>
+
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col col-md-3">
+
+        <label for="text-input" class=" form-control-label">{{ form_label(form.dateArrivageCharge) }}</label>
+    </div>
+    <div class="col-12 col-md-9">
+        <div style="display:flex;justify-content: center;align-items: center;"> {{ form_widget(form.dateArrivageCharge.date) }}
+            {{ form_widget(form.dateArrivageCharge.time) }} </div>
+        <small class="form-text text-muted">{{ form_errors(form.dateArrivageCharge) }}</small>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col col-md-3">
+
+        <label for="text-input" class=" form-control-label">{{ form_label(form.quantiteCharge) }}</label>
+    </div>
+    <div class="col-12 col-md-9">
+        {{ form_widget(form.quantiteCharge) }}
+        <small class="form-text text-muted">{{ form_errors(form.quantiteCharge) }}</small>
+    </div>
+</div>
+
+</div>
+<div align="center" class="card-footer">
+    <button  class="btn btn-primary btn-sm">
+        {{ button_label|default('Save') }}
+    </button>
+    <a type="reset" class="btn btn-danger btn-sm" href="{{ path('app_materiel_index') }}">back to list</a>
+
+</div>
+{{ form_end(form) }}

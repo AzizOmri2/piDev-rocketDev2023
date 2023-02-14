@@ -7,19 +7,19 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
          {#    {{ encore_entry_link_tags('app') }}#}
-            <link rel="stylesheet" href="./frontOffice/css/bootstrap.min.css">
-            <link rel="stylesheet" href="./frontOffice/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="./frontOffice/css/slicknav.css">
-            <link rel="stylesheet" href="./frontOffice/css/flaticon.css">
-            <link rel="stylesheet" href="./frontOffice/css/gijgo.css">
-            <link rel="stylesheet" href="./frontOffice/css/animate.min.css">
-            <link rel="stylesheet" href="./frontOffice/css/animated-headline.css">
-            <link rel="stylesheet" href="./frontOffice/css/magnific-popup.css">
-            <link rel="stylesheet" href="./frontOffice/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="./frontOffice/css/themify-icons.css">
-            <link rel="stylesheet" href="./frontOffice/css/slick.css">
-            <link rel="stylesheet" href="./frontOffice/css/nice-select.css">
-            <link rel="stylesheet" href="./frontOffice/css/style.css">
+            <link rel="stylesheet" href={{asset('./frontOffice/css/bootstrap.min.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/owl.carousel.min.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/slicknav.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/flaticon.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/gijgo.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/animate.min.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/animated-headline.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/magnific-popup.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/fontawesome-all.min.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/themify-icons.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/slick.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/nice-select.css')}}>
+            <link rel="stylesheet" href={{asset('./frontOffice/css/style.css')}}>
         {% endblock %}
 
 
@@ -35,7 +35,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                    <a href="index.html"><img src="./frontOffice/img/logo/LogoGymWhite.png" alt="" style="height: 160px; width: 190px; margin-bottom: -10px;"></a>
+                                    <a href="#"><img src={{asset('./frontOffice/img/logo/LogoGymWhite.png')}} alt="" style="height: 180px; width: 190px; margin-bottom: -10px;"></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-10">
@@ -134,7 +134,7 @@
                             <div class="single-footer-caption mb-50" style="margin-top: -90px;">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                  <a>  <img src="./frontOffice/img/logo/LogoGymWhite.png"  alt="..." style="width:250px; height:270px;"></a>
+                                  <a>  <img src="{{asset('./frontOffice/img/logo/LogoGymWhite.png')}}"  alt="..." style="width:250px; height:300px;"></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
@@ -173,44 +173,44 @@
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
     {% block javascripts %}
-        <script src="./frontOffice/js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="{{asset('./frontOffice/js/vendor/modernizr-3.5.0.min.js')}}"></script>
         <!-- Jquery, Popper, Bootstrap -->
-        <script src="./frontOffice/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="./frontOffice/js/popper.min.js"></script>
-        <script src="./frontOffice/js/bootstrap.min.js"></script>
+        <script src="{{asset('./frontOffice/js/vendor/jquery-1.12.4.min.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/popper.min.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/bootstrap.min.js')}}"></script>
         <!-- Jquery Mobile Menu -->
-        <script src="./frontOffice/js/jquery.slicknav.min.js"></script>
+        <script src="{{asset('./frontOffice/js/jquery.slicknav.min.js')}}"></script>
 
         <!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="./frontOffice/js/owl.carousel.min.js"></script>
-        <script src="./frontOffice/js/slick.min.js"></script>
+        <script src="{{asset('./frontOffice/js/owl.carousel.min.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/slick.min.js')}}"></script>
         <!-- One Page, Animated-HeadLin -->
-        <script src="./frontOffice/js/wow.min.js"></script>
-        <script src="./frontOffice/js/animated.headline.js"></script>
-        <script src="./frontOffice/js/jquery.magnific-popup.js"></script>
+        <script src="{{asset('./frontOffice/js/wow.min.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/animated.headline.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/jquery.magnific-popup.js')}}"></script>
 
         <!-- Date Picker -->
-        <script src="./frontOffice/js/gijgo.min.js"></script>
+        <script src="{{asset('./frontOffice/js/gijgo.min.js')}}"></script>
         <!-- Nice-select, sticky -->
-        <script src="./frontOffice/js/jquery.nice-select.min.js"></script>
-        <script src="./frontOffice/js/jquery.sticky.js"></script>
+        <script src="{{asset('./frontOffice/js/jquery.nice-select.min.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/jquery.sticky.js')}}"></script>
 
         <!-- counter , waypoint,Hover Direction -->
-        <script src="./frontOffice/js/jquery.counterup.min.js"></script>
-        <script src="./frontOffice/js/waypoints.min.js"></script>
-        <script src="./frontOffice/js/jquery.countdown.min.js"></script>
-        <script src="./frontOffice/js/hover-direction-snake.min.js"></script>
+        <script src="{{asset('./frontOffice/js/jquery.counterup.min.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/waypoints.min.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/jquery.countdown.min.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/hover-direction-snake.min.js')}}"></script>
 
         <!-- contact js -->
-        <script src="./frontOffice/js/contact.js"></script>
-        <script src="./frontOffice/js/jquery.form.js"></script>
-        <script src="./frontOffice/js/jquery.validate.min.js"></script>
-        <script src="./frontOffice/js/mail-script.js"></script>
-        <script src="./frontOffice/js/jquery.ajaxchimp.min.js"></script>
+        <script src="{{asset('./frontOffice/js/contact.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/jquery.form.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/jquery.validate.min.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/mail-script.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/jquery.ajaxchimp.min.js')}}"></script>
 
         <!-- Jquery Plugins, main Jquery -->
-        <script src="./frontOffice/js/plugins.js"></script>
-        <script src="./frontOffice/js/main.js"></script>
+        <script src="{{asset('./frontOffice/js/plugins.js')}}"></script>
+        <script src="{{asset('./frontOffice/js/main.js')}}"></script>
 
         {#   {{ encore_entry_script_tags('app') }}#}
     {% endblock %}
