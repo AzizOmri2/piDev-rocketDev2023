@@ -16,6 +16,7 @@ class Charge
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     #[Assert\Positive]
     private ?int $quantiteCharge = null;
 
@@ -24,10 +25,12 @@ class Charge
 
     #[ORM\ManyToOne(inversedBy: 'charges')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
     private ?Fournisseur $fournisseur = null;
 
     #[ORM\ManyToOne(inversedBy: 'charges')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
     private ?Materiel $materiel = null;
 
     public function getId(): ?int

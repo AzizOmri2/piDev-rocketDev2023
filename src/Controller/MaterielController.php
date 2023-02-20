@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Materiel;
 use App\Form\MaterielType;
 use App\Repository\MaterielRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,6 +31,8 @@ class MaterielController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $materiel->setDateMaintenanceMateriel((new \DateTime('now'))->modify('+ 12 months'));
+            
             $materiel->setQuantiteMateriel(0);
             $materielRepository->save($materiel, true);
 
@@ -76,4 +80,27 @@ class MaterielController extends AbstractController
 
         return $this->redirectToRoute('app_materiel_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/search', name: 'app_materiel_search', methods: ['GET'])]
+    public function search(MaterielRepository $materielRepository): Response
+    {
+        return $this->render('materiel/search.html.twig', [
+            'materielss' => $materielRepository->findAll(),
+        ]);
+    }
+    public function getStudentOrdredByName(EntityManagerInterface $em){
+        $qb = $em->createQueryBuilder('x')->orderBy('x.nomMateriel', 'ASC'); // x : aliace , reference direct 3al table student
+        return $qb->getQuery()->getResult();
+    }
+
+    // #[Route('/ByName', name: 'app_ByName')]
+    // public function afficherSOrdredNom(MaterielRepository $repo): Response
+    // {
+    //     print_r('hh');
+    //     $student = $repo->getStudentOrdredByName();
+    //     return $this->render('materiel/index.html.twig', [
+    //         'materiels' => $student,
+    //     ]);
+    // }
+    
 }

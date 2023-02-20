@@ -3,7 +3,7 @@
 {#    <button class="btn">{{ button_label|default('Save') }}</button>#}
 {#{{ form_end(form) }}#}
 
-{{ form_start(form) }}
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
 
 <div class="row form-group">
     <div class="col col-md-3">
@@ -12,7 +12,7 @@
     <div class="col-12 col-md-9">
         {{ form_widget(form.materiel) }}
         <small class="form-text text-muted">{{ form_errors(form.materiel) }}</small>
-
+<small>{{ form_help(form.materiel) }}</small>
     </div>
 </div>
 <div class="row form-group">
@@ -52,7 +52,7 @@
     <button  class="btn btn-primary btn-sm">
         {{ button_label|default('Save') }}
     </button>
-    <a type="reset" class="btn btn-danger btn-sm" href="{{ path('app_materiel_index') }}">back to list</a>
+    <a type="reset" class="btn btn-danger btn-sm" href="{{ path('app_charge_index') }}">back to list</a>
 
 </div>
 {{ form_end(form) }}

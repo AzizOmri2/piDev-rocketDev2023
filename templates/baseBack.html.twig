@@ -7,6 +7,7 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
+<script src="https://kit.fontawesome.com/b8d08bf906.js" crossorigin="anonymous"></script>
 
     <!-- Title Page-->
     <title>{% block title %}EnergyBox | Dashboard{% endblock %}</title>
@@ -81,22 +82,22 @@
                                 <i class="fas fa-table"></i>Planning</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="{{path('addPlanning')}}">Ajouter Planning</a>
+                                    <a href="#">Ajouter Planning</a>
                                 </li>
                                 <li>
-                                    <a href="{{path('viewPlanning')}}">Afficher Plannings</a>
+                                    <a href="#">Afficher Plannings</a>
                                 </li>
                                 <li>
-                                    <a href="{{path('addCours')}}">Ajouter Cours</a>
+                                    <a href="#">Ajouter Cours</a>
                                 </li>
                                 <li>
-                                    <a href="{{path('viewCours')}}">Afficher Cours</a>
+                                    <a href="#">Afficher Cours</a>
                                 </li>
                                 <li>
-                                    <a href="{{path('addActivite')}}">Ajouter Activité</a>
+                                    <a href="#">Ajouter Activité</a>
                                 </li>
                                 <li>
-                                    <a href="{{path('viewActivite')}}">Afficher Activités</a>
+                                    <a href="#">Afficher Activités</a>
                                 </li>
                             </ul>
                         </li>
@@ -120,7 +121,7 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>Materiaux</a>
+                                <i class="fa-regular fa-dumbbell"></i>Materiaux</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
                                     <a href="{{path('app_materiel_new')}}">Ajouter Materiel</a>
@@ -216,22 +217,22 @@
                                 <i class="fas fa-table"></i>Planning</a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="{{path('addPlanning')}}">Ajouter Planning</a>
+                                        <a href="#">Ajouter Planning</a>
                                     </li>
                                     <li>
-                                        <a href="{{path('viewPlanning')}}">Afficher Planning</a>
+                                        <a href="#">Afficher Planning</a>
                                     </li>
                                     <li>
-                                        <a href="{{path('addCours')}}">Ajouter Cours</a>
+                                        <a href="#">Ajouter Cours</a>
                                     </li>
                                     <li>
-                                        <a href="{{path('viewCours')}}">Afficher Cours</a>
+                                        <a href="#">Afficher Cours</a>
                                     </li>
                                     <li>
-                                        <a href="{{path('addActivite')}}">Ajouter Activité</a>
+                                        <a href="#">Ajouter Activité</a>
                                     </li>
                                     <li>
-                                        <a href="{{path('viewActivite')}}">Afficher Activités</a>
+                                        <a href="#">Afficher Activités</a>
                                     </li>
                                 </ul>
                         </li>
@@ -255,7 +256,7 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>Materiaux</a>
+                                <i class="fa-solid fa-dumbbell"></i></i>Materiaux</a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
                                         <a href="{{path('app_materiel_new')}}">Ajouter Materiel</a>
@@ -273,7 +274,7 @@
                                         <a href="{{path('app_fournisseur_new')}}">Ajouter Fournisseur</a>
                                     </li>
                                     <li>
-                                        <a href="{{path('app_charge_index')}}">Afficher Fournisseurs</a>
+                                        <a href="{{path('app_fournisseur_index')}}">Afficher Fournisseurs</a>
                                     </li>
                                 </ul>
                         </li>
@@ -343,7 +344,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="{{ asset('./BackOffice/images/icon/avatar-06.jpg') }} alt="Michelle Moreno" />
+                                                    <img src="{{ asset('./BackOffice/images/icon/avatar-06.jpg') }} alt="Michelle Moreno"/>
 
                                                 </div>
                                                 <div class="content">
@@ -498,7 +499,39 @@
             </header>
         </div>
     </div>
-    {% block body %}{% endblock %}
+    <!-- MAIN CONTENT-->
+    <div class="page-wrapper">
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- START WHITE BACKGROUND-->
+                                <div class="map-data m-b-40">
+ {% block body %}{% endblock %}
+
+                                </div>
+                                <!-- END WHITE BACKGROUND-->
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+        </div>
+
+    </div>
 </body>
 {% block javascripts %}
     <!-- Jquery JS-->

@@ -31,6 +31,11 @@ class ChargeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $datearr =$charge->getDateArrivageCharge();
+            $now = new \DateTime('now');
+            if($datearr < $now){
+            $charge->setDateArrivageCharge(new \DateTime('now'));
+            }
             $chargeRepository->save($charge, true);
             $materiel = $charge->getMateriel();
             $materiel->setQuantiteMateriel($materiel->getQuantiteMateriel()+$charge->getQuantiteCharge());
@@ -57,8 +62,15 @@ class ChargeController extends AbstractController
     #[Route('/{id}/edit', name: 'app_charge_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Charge $charge, EntityManagerInterface $em,ChargeRepository $chargeRepository): Response
     {
+        $qttmateriel=$charge->getMateriel()->getQuantiteMateriel();
+        $qttcharge=$charge->getQuantiteCharge();
+        $oldmat=$charge->getMateriel();
+        $newqtt=$qttmateriel-$qttcharge;
+       
+
         $form = $this->createForm(ChargeType::class, $charge);
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $chargeRepository->save($charge, true);
             //get materiel de this charge
@@ -71,8 +83,10 @@ class ChargeController extends AbstractController
                 // parcourir la liste des charges pour ce materiel en ajoutant leurs valeur de qtt et les stocker dans la variable qtt
                 $qtt+= $charge->getQuantiteCharge();
             }
+            $oldmat->setQuantiteMateriel($newqtt);
             //affecter la noyuvelle valeur du qtt
             $materiel->setQuantiteMateriel($qtt);
+            $em->persist($oldmat);
             //stocké le infos dans le EntityManager
             $em->persist($materiel);
             //abaath le DB

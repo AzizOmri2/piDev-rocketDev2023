@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form; 
 
 use App\Entity\Materiel;
 use Symfony\Component\Form\AbstractType;
@@ -17,7 +17,7 @@ class MaterielType extends AbstractType
         $builder
             ->add('nomMateriel',TextType::class,array('label'=>"Nom du Materiel",'attr'=>array('placeholder'=>'Taper Nom du Materiel','class'=>'form-control')))
             ->add('referenceMateriel',TextType::class,array('label'=>"Reference du Materiel",'attr'=>array('placeholder'=>'Taper Description du Materiel','class'=>'form-control')))
-            ->add('dateMaintenanceMateriel',DateTimeType::class,array('attr'=>array('class' => 'form-control')))
+            //->add('dateMaintenanceMateriel',DateTimeType::class,array('attr'=>array('class' => 'form-control')))
 
         ;
     }

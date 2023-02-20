@@ -1,0 +1,124 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}EnergyBox | Blog{% endblock %}
+{% block page %}Details about {{ post.title }}{% endblock %}
+{% block tache %}
+    <section class="blog_area single-post-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 posts-list">
+                    <div class="single-post">
+                        <div class="feature-img">
+                            {% set img = post.image %}
+                            <img class="img-fluid" src="{{ asset(img) }}" alt="">
+
+                        </div>
+                        <div class="blog_details">
+
+                            <ul class="blog-info-link mt-3 mb-4">
+
+                                <li>{{ post.datePost ? post.datePost|date('d-m-Y') : '' }}</li>
+                            </ul>
+                            <h2 style="color: #2d2d2d;">{{ post.title }}
+                            </h2>
+                            <p>
+                                {{ post.details }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comments-area">
+
+                        <aside class="single_sidebar_widget search_widget">
+                            <form >
+                                <a class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" style="width:250px" type="submit" href="{{ path('app_comment_new', {'id': post.id})  }}"><strong>Comment Post</strong></a>
+                            </form>
+                        </aside>
+                            <br>
+                            <br>
+                            <br>
+                            <h4><strong>Comments</strong></h4>
+                        <div class="comment-list">
+                            {% for comment in post.comments %}
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                        <img src="{{ asset('frontOffice/img/comment/comment_3.png') }}" alt="">
+                                    </div>
+                                    <div class="desc">
+                                        <h5>
+                                        <a href="#">Author name</a>
+                                        </h5>
+                                            <p class="comment">
+                                                {{ comment.description }}
+                                        </p>
+                                        <div class="d-flex justify-content-between">
+
+                                            <div class="flex-center-start align-items-center" style="float: left;">
+                                                <h5 class="single_sidebar_widget flex-center-start" style="float: left;">
+                                                    <p>{{ comment.dateCom ? comment.dateCom|date('d M Y') : '' }}</p>
+
+                                                    <ul class="blog-info-link " style="position:absolute; right:5%;">
+                                                        <li><a href="{{ path('app_comment_edit', {'id': comment.id}) }}">Edit</a></li>
+                                                        <li>{{ include('comment/_delete_form.html.twig') }}</li>
+                                                    </ul>
+                                                </h5>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <br>
+                                <br>
+                                {% else %}
+                                <h4 style="position:absolute; right:40%;color: #ff3b00 "><strong>No comments found !</strong></h4>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-5">
+                    <div class="blog_right_sidebar">
+
+                        <aside class="single_sidebar_widget search_widget" style="background-color: transparent">
+                            <div class="blog-author" style="background-color: transparent">
+                                <div class="media align-items-center" >
+                                    <img src="{{ asset('frontOffice/img/blog/author.png') }}" alt="">
+                                    <div class="media-body">
+                                        <a href="#">
+                                            <h4><strong>Author: </strong>Harvard milan</h4>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                        <aside class=" search_widget" style="background-color:transparent;">
+                            <form >
+                                <a class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit" href="{{ path('app_post_edit', {'id': post.id}) }}"><strong>Edit Your Post</strong></a>
+                            </form>
+                        </aside>
+                        <br><br>
+                        <aside class=" search_widget" style="background-color:transparent;">
+
+
+                            {{ include('post/_delete_form.html.twig') }}
+                        </aside>
+                        <br><br><aside class=" search_widget" style="background-color:transparent;">
+                            <form >
+                                <a class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit" href="{{ path('app_post_index') }}"><strong>Back To Blog</strong></a>
+                            </form>
+                        </aside>
+                        <br><br><aside class=" search_widget" style="background-color:transparent;">
+                            <form >
+                                <a class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit" href="{{path('app_photo',{'id':post.id})}}"><strong>Edit Image</strong></a>
+                            </form>
+                        </aside>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

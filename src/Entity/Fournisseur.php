@@ -18,9 +18,10 @@ class Fournisseur
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Assert\NotNull]
     #[Assert\Length(
         min :3,
-        max: 15 ,
+        max: 30 ,
         minMessage: "Le nom du fournisseur doit contenir au moins {{ limit }} caractères",
         maxMessage: "Le nom du fournisseur doit contenir au plus {{ limit }} caractères",
 
@@ -29,10 +30,10 @@ class Fournisseur
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Assert\NotNullValidator]
     #[Assert\Length(
         exactly:8,
         exactMessage: "Le numero doit etre {{ limit }} nombres",
-
     )]
     #[Assert\Regex(
         pattern: '/^[0-9]+$/i',
@@ -40,12 +41,17 @@ class Fournisseur
     private ?int $contactFournisseur = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     #[Assert\Email(
         message: 'The email {{ value }} is not a valid email.',
     )]
     private ?string $emailFournisseur = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
+
     private ?string $adresseFournisseur = null;
 
     #[ORM\OneToMany(mappedBy: 'fournisseur', targetEntity: Charge::class)]
