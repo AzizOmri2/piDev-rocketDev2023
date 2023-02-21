@@ -1,0 +1,68 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}EnergyBox | Activité | {{ activite.nomActivite }}{% endblock %}
+
+{% block tache %}
+    <main>
+        <!--? Hero Start -->
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 pt-70 text-center">
+                                <h2>Activité | {{ activite.nomActivite }}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+        <!--? Blog Area Start-->
+        <section class="blog_area section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mb-5 mb-lg-0">
+                        <div class="blog_left_sidebar">
+                            <article class="blog_item">
+                                <div class="blog_item_img">
+                                    <img class="card-img rounded-0" src="{{asset('./frontOffice/img/activite/' ~ activite.imageActivite )}}" alt="Image Introuvable">
+                                    
+                                </div>
+                                <div class="blog_details">
+                                    <a class="d-inline-block">
+                                        <h1 class="blog-head" style="color: #2d2d2d;">{{ activite.nomActivite }}</h1>
+                                        <br>
+                                    </a>
+                                    <br>
+                                    <br>
+                                    <a class="d-inline-block">
+                                        <h3>Difficulté</h3>
+                                        <p>{{ activite.difficulteActivite }}</p>
+                                    </a>
+                                    <br>
+                                    <a class="d-inline-block">
+                                        <h3>Recommandation du tenue</h3>
+                                        <p>{{ activite.tenueActivite }}</p>
+                                    </a>
+                                    <br>
+                                    <a class="d-inline-block">
+                                        <h3>Durée</h3>
+                                        <p>{{ activite.dureeActivite }}</p>
+                                    </a>
+                                    <br>
+                                    <a class="d-inline-block">
+                                        <h3>Plus de detail</h3>
+                                        <p>{{ activite.descriptionActivite }}.</p>
+                                    </a>
+                                </div>
+                            </article>
+                    
+                        </div>     
+                    </div>
+                </div>                
+            </div>
+        </section>
+    </main>
+{% endblock %}

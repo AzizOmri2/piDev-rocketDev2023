@@ -1,0 +1,47 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}EnergyBox | Activité{% endblock %}
+
+{% block body %}
+<div class="map-data m-b-40">                   
+    <h3 class="title-3 m-b-30">
+        <i class="fas fa-table"></i>Gestion Activités</h3>
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <td><strong>Nom</strong></td>
+                    <td><strong>Durée</strong></td>
+                    <td><strong>Tenue</strong></td>
+                    <td><strong>Difficulté</strong></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for activite in activites %}
+                <tr>
+                    <td>{{ activite.nomActivite }}</td>
+                    <td>{{ activite.dureeActivite }}</td>
+                    <td>{{ activite.difficulteActivite }}</td>
+                    <td>{{ activite.tenueActivite|striptags|slice(0, 25) }}</td>
+                    <td>
+                        <button class="btn btn-outline-secondary"><a href="{{ path('app_activite_crud_show', {'id': activite.id}) }}">Afficher</a></button>
+                        <button class="btn btn-outline-secondary"><a href="{{ path('app_activite_crud_edit', {'id': activite.id}) }}">Modifier</a></button>
+                        {{ include('activite_crud/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="8">Pas d'activité.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div align="center" class="card-footer">
+            <br>
+            <button class="btn btn-outline-secondary"><a href="{{ path('app_activite_crud_new') }}">Ajouter Activité</a></button>
+        </div>
+    
+</div>
+
+{% endblock %}

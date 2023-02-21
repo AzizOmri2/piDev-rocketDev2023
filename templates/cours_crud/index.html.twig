@@ -1,0 +1,50 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}EnergyBox | Cours {% endblock %}
+
+{% block body%}
+
+<div class="map-data m-b-40">                                    
+    <h3 class="title-3 m-b-30">
+        <i class="fas fa-table"></i>Gestion Cours</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td><strong>Nom</strong></td>
+                    <td><strong>Résponsable</strong></td>
+                    <td><strong>Age Minimale</strong></td>
+                    <td><strong>Prix</strong></td>
+                    
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cour in cours %}
+                <tr>
+                    <td>{{ cour.nomCours }}</td>
+                    <td>{{ cour.nomCoach }}</td>
+                    <td>{{ cour.ageMinCours }}</td>
+                    <td>{{ cour.prixCours }}</td>
+                    
+                    <td>
+                        <button class="btn btn-outline-secondary"><a href="{{ path('app_cours_crud_show', {'id': cour.id}) }}">Afficher</a></button>
+                        <button class="btn btn-outline-secondary"><a href="{{ path('app_cours_crud_edit', {'id': cour.id}) }}">Modifier</a></button>
+                        {{ include('cours_crud/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4">Pas de Cours.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div align="center" class="card-footer">
+            <br>
+            <button class="btn btn-outline-secondary"><a href="{{ path('app_cours_crud_new') }}">Ajouter Cours</a></button>
+        </div>
+    
+</div>
+                                
+{% endblock %}
+    
