@@ -93,7 +93,7 @@ class __TwigTemplate_81cfa2fdb3890e886632295f8baffa3c extends Template
                     <div class=\"row\">
                         <div class=\"col-xl-12\">
                             <div class=\"hero-cap hero-cap2 pt-70 text-center\">
-                                <h2>Compétitions</h2>
+                                <h2>Votre Compétition</h2>
                             </div>
                         </div>
                     </div>
@@ -103,71 +103,113 @@ class __TwigTemplate_81cfa2fdb3890e886632295f8baffa3c extends Template
         <!-- Hero End -->
         <!--? Blog Area Start-->
              <section class=\"services-area pt-100 pb-150\">
+                  <section class=\"services-area pt-100 pb-150 section-bg\" data-background=\"";
+        // line 25
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontOffice/img/gallery/section_bg01.png"), "html", null, true);
+        echo "\" style=\"background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);\">
             <!--? Want To work -->
             <section class=\"wantToWork-area w-padding\">
                 <div class=\"container\">
                     <div class=\"row align-items-end justify-content-between\">
                         <div class=\"col-lg-6 col-md-10 col-sm-10\">
                             <div class=\"section-tittle\">
-                                <span>OUR sERVICES FOR YOU</span>
-                                <h2>PUSH YOUR LIMITS FORWARD We Offer to you</h2>
+                                <span>NOS CERVICES POUR VOUS</span>
+                                <h2>Repoussez vos limites avec nous - chaque entraînement compte!</h2>
                             </div>
+                            
                         </div>
                         <div class=\"col-xl-2 col-lg-2 col-md-3\">
-                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Retour à la liste des compétition</a>
-                        </div>
+                            ";
+        // line 39
+        echo "                        </div>
                     </div>
                 </div>
             </section>
-      <div class=\"container\">
-                <div class=\"row\">
-                    <div class=\"col-lg-4 col-md-4 col-sm-6\">
-                        <div class=\"single-cat single-cat2 text-center mb-50\">
-                            <div class=\"cat-icon\">
-                                <i class=\"flaticon-fitness\"></i>
-                            </div>
-                            <div class=\"cat-cap\">
-                                <h1>Competition ";
-        // line 49
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 49, $this->source); })()), "nomCompetition", [], "any", false, false, false, 49), "html", null, true);
+
+        <section class=\"about-area section-padding30\">
+            <div class=\"container\">
+                <div class=\"row align-items-center\">
+                    <div class=\"col-lg-6 col-md-12\">
+                        <!-- about-img -->
+                        <div class=\"about-img \">
+                            <img src=\"assets/img/gallery/about.png\" alt=\"\">
+                        </div>
+                    </div>
+                    <div class=\"col-lg-6 col-md-12\">
+                        <div class=\"about-caption\">
+                            <!-- Section Tittle -->
+                            <section class=\"services-area pt-100 pb-150 section-bg\" data-background=\"";
+        // line 56
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontOffice/img/gallery/section_bg01.png"), "html", null, true);
+        echo "\" style=\"background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);\">
+                            <div class=\"section-tittle section-tittle3 mb-35\">
+                                <span>Détail de la competition</span>
+                                <p class=\"mb-65 pera-bottom\">
+                                    <h1>Competition ";
+        // line 60
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 60, $this->source); })()), "nomCompetition", [], "any", false, false, false, 60), "html", null, true);
         echo "</h1>
-                                <tbody>
-                                    <tr>
-                                        <th>NomCompetition</th>
-                                        <td>";
-        // line 53
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 53, $this->source); })()), "nomCompetition", [], "any", false, false, false, 53), "html", null, true);
+                                    
+                                        <div > <b>Nom Competition: </b>
+                                            <td>";
+        // line 63
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 63, $this->source); })()), "nomCompetition", [], "any", false, false, false, 63), "html", null, true);
         echo "</td>
-                                    </tr>
-                                    <tr>
-                                        <th>FraisCompetition</th>
+                                        </div>           
+                                        <div><b>Les Frais De Competition en Dinar: </b>
                                         <td>";
-        // line 57
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 57, $this->source); })()), "fraisCompetition", [], "any", false, false, false, 57), "html", null, true);
+        // line 66
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 66, $this->source); })()), "fraisCompetition", [], "any", false, false, false, 66), "html", null, true);
         echo "</td>
-                                    </tr>
-                                    <tr>
-                                        <th>DateCompetition</th>
+                                        </div>
+                                        <div>      
+                                        <b>Date De La Competition: </b>
                                         <td>";
-        // line 61
-        ((twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 61, $this->source); })()), "dateCompetition", [], "any", false, false, false, 61)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 61, $this->source); })()), "dateCompetition", [], "any", false, false, false, 61), "Y-m-d"), "html", null, true))) : (print ("")));
+        // line 70
+        ((twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 70, $this->source); })()), "dateCompetition", [], "any", false, false, false, 70)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 70, $this->source); })()), "dateCompetition", [], "any", false, false, false, 70), "Y-m-d"), "html", null, true))) : (print ("")));
         echo "</td>
-                                    </tr>
-                                    <tr>
-                                        <th>NbrMaxInscrit</th>
+                                        </div>
+                                        <div>
+                                        <b>Le Nombre Maximum D'inscrit: </b>
                                         <td>";
-        // line 65
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 65, $this->source); })()), "nbrMaxInscrit", [], "any", false, false, false, 65), "html", null, true);
+        // line 74
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 74, $this->source); })()), "nbrMaxInscrit", [], "any", false, false, false, 74), "html", null, true);
         echo "</td>
-                                    </tr>
-                                    <tr>
-                                        <th>EtatCompetition</th>
+                                        </div>
+                                        <div>
+                                        <b>Le Nombre D'inscrit: </b>
                                         <td>";
-        // line 69
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 69, $this->source); })()), "etatCompetition", [], "any", false, false, false, 69), "html", null, true);
+        // line 78
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 78, $this->source); })()), "nbrParticipant", [], "any", false, false, false, 78), "html", null, true);
         echo "</td>
-                                    </tr>
-                                </tbody>
+                                        </div>
+                                        <div>
+                                        <b>Etat De La Competition: </b>
+                                        <td>";
+        // line 82
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 82, $this->source); })()), "etatCompetition", [], "any", false, false, false, 82), "html", null, true);
+        echo "</td>
+                                        </div>  
+                                </p>
+                               
+                            </div>
+                              <a href=\"";
+        // line 87
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_showFront");
+        echo "\" class=\"btn\">Retour à la liste des competitions</a>
+                              <a href=\"";
+        // line 88
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_Front", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 88, $this->source); })()), "id", [], "any", false, false, false, 88)]), "html", null, true);
+        echo "\" class=\"btn\"> Obtenir Ma Ticket </a>
+                            ";
+        // line 90
+        echo "                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </section>
+
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -189,7 +231,7 @@ class __TwigTemplate_81cfa2fdb3890e886632295f8baffa3c extends Template
 
     public function getDebugInfo()
     {
-        return array (  167 => 69,  160 => 65,  153 => 61,  146 => 57,  139 => 53,  132 => 49,  88 => 7,  78 => 6,  59 => 4,  36 => 2,);
+        return array (  206 => 90,  202 => 88,  198 => 87,  190 => 82,  183 => 78,  176 => 74,  169 => 70,  162 => 66,  156 => 63,  150 => 60,  143 => 56,  124 => 39,  108 => 25,  88 => 7,  78 => 6,  59 => 4,  36 => 2,);
     }
 
     public function getSourceContext()
@@ -208,7 +250,7 @@ class __TwigTemplate_81cfa2fdb3890e886632295f8baffa3c extends Template
                     <div class=\"row\">
                         <div class=\"col-xl-12\">
                             <div class=\"hero-cap hero-cap2 pt-70 text-center\">
-                                <h2>Compétitions</h2>
+                                <h2>Votre Compétition</h2>
                             </div>
                         </div>
                     </div>
@@ -218,53 +260,80 @@ class __TwigTemplate_81cfa2fdb3890e886632295f8baffa3c extends Template
         <!-- Hero End -->
         <!--? Blog Area Start-->
              <section class=\"services-area pt-100 pb-150\">
+                  <section class=\"services-area pt-100 pb-150 section-bg\" data-background=\"{{ asset('frontOffice/img/gallery/section_bg01.png')}}\" style=\"background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);\">
             <!--? Want To work -->
             <section class=\"wantToWork-area w-padding\">
                 <div class=\"container\">
                     <div class=\"row align-items-end justify-content-between\">
                         <div class=\"col-lg-6 col-md-10 col-sm-10\">
                             <div class=\"section-tittle\">
-                                <span>OUR sERVICES FOR YOU</span>
-                                <h2>PUSH YOUR LIMITS FORWARD We Offer to you</h2>
+                                <span>NOS CERVICES POUR VOUS</span>
+                                <h2>Repoussez vos limites avec nous - chaque entraînement compte!</h2>
                             </div>
+                            
                         </div>
                         <div class=\"col-xl-2 col-lg-2 col-md-3\">
-                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Retour à la liste des compétition</a>
+                            {# <a href=\"#\" class=\"btn wantToWork-btn f-right\">Retour à la liste des compétitions</a> #}
                         </div>
                     </div>
                 </div>
             </section>
-      <div class=\"container\">
-                <div class=\"row\">
-                    <div class=\"col-lg-4 col-md-4 col-sm-6\">
-                        <div class=\"single-cat single-cat2 text-center mb-50\">
-                            <div class=\"cat-icon\">
-                                <i class=\"flaticon-fitness\"></i>
-                            </div>
-                            <div class=\"cat-cap\">
-                                <h1>Competition {{ competition.nomCompetition }}</h1>
-                                <tbody>
-                                    <tr>
-                                        <th>NomCompetition</th>
-                                        <td>{{ competition.nomCompetition }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>FraisCompetition</th>
+
+        <section class=\"about-area section-padding30\">
+            <div class=\"container\">
+                <div class=\"row align-items-center\">
+                    <div class=\"col-lg-6 col-md-12\">
+                        <!-- about-img -->
+                        <div class=\"about-img \">
+                            <img src=\"assets/img/gallery/about.png\" alt=\"\">
+                        </div>
+                    </div>
+                    <div class=\"col-lg-6 col-md-12\">
+                        <div class=\"about-caption\">
+                            <!-- Section Tittle -->
+                            <section class=\"services-area pt-100 pb-150 section-bg\" data-background=\"{{ asset('frontOffice/img/gallery/section_bg01.png')}}\" style=\"background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);\">
+                            <div class=\"section-tittle section-tittle3 mb-35\">
+                                <span>Détail de la competition</span>
+                                <p class=\"mb-65 pera-bottom\">
+                                    <h1>Competition {{ competition.nomCompetition }}</h1>
+                                    
+                                        <div > <b>Nom Competition: </b>
+                                            <td>{{ competition.nomCompetition }}</td>
+                                        </div>           
+                                        <div><b>Les Frais De Competition en Dinar: </b>
                                         <td>{{ competition.fraisCompetition }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>DateCompetition</th>
+                                        </div>
+                                        <div>      
+                                        <b>Date De La Competition: </b>
                                         <td>{{ competition.dateCompetition ? competition.dateCompetition|date('Y-m-d') : '' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>NbrMaxInscrit</th>
+                                        </div>
+                                        <div>
+                                        <b>Le Nombre Maximum D'inscrit: </b>
                                         <td>{{ competition.nbrMaxInscrit }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>EtatCompetition</th>
+                                        </div>
+                                        <div>
+                                        <b>Le Nombre D'inscrit: </b>
+                                        <td>{{ competition.nbrParticipant }}</td>
+                                        </div>
+                                        <div>
+                                        <b>Etat De La Competition: </b>
                                         <td>{{ competition.etatCompetition }}</td>
-                                    </tr>
-                                </tbody>
-{% endblock %}", "competition/showFront.html.twig", "C:\\Users\\Salima\\Desktop\\energyBox\\templates\\competition\\showFront.html.twig");
+                                        </div>  
+                                </p>
+                               
+                            </div>
+                              <a href=\"{{path('app_competition_showFront') }}\" class=\"btn\">Retour à la liste des competitions</a>
+                              <a href=\"{{ path('app_ticket_Front', {'id': competition.id}) }}\" class=\"btn\"> Obtenir Ma Ticket </a>
+                            {# <a href=\"app_ticket_Front\" class=\"btn\">Obtenir Ma Ticket</a> #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </section>
+
+{% endblock %}
+
+", "competition/showFront.html.twig", "C:\\Users\\Salima\\Desktop\\energyBox\\templates\\competition\\showFront.html.twig");
     }
 }

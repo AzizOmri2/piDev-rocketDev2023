@@ -107,9 +107,6 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                             </ul>
                                         </nav>
                                     </div>
-                                    <div class=\"header-right-btn f-right d-none d-lg-block ml-30\">
-                                        <a href=\"from.html\" class=\"btn header-btn\">became a member</a>
-                                    </div>
                                 </div>
                             </div>
                             <!-- Mobile Menu -->
@@ -124,9 +121,9 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
         </header>
 
         ";
-        // line 80
+        // line 77
         $this->displayBlock('tache', $context, $blocks);
-        // line 83
+        // line 80
         echo "
     </body>
 
@@ -151,6 +148,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                 </div>
                             </div>
                         </div>
+                        
                         <div class=\"col-xl-3 col-lg-3 col-md-4 col-sm-6\">
                             <div class=\"single-footer-caption mb-50\">
                                 <div class=\"footer-tittle\">
@@ -184,7 +182,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                   <a>  <img src=\"";
-        // line 139
+        // line 137
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/img/logo/LogoGymWhite.png"), "html", null, true);
         echo "\"  alt=\"...\" style=\"width:250px; height:300px;\"></a>
                                 </div>
@@ -225,10 +223,23 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
         <a title=\"Go to Top\" href=\"#\"> <i class=\"fas fa-level-up-alt\"></i></a>
     </div>
     ";
-        // line 177
+        // line 175
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 219
+        // line 217
         echo "</html>
+    <div id=\"back-top\" >
+        <a title=\"Go to Top\" href=\"#\"> <i class=\"fas fa-level-up-alt\"></i></a>
+    </div>
+
+     <!-- One Page, Animated-HeadLin -->
+    <script src=\"./assets/js/wow.min.js\"></script>
+    <script src=\"./assets/js/animated.headline.js\"></script>
+    <script src=\"./assets/js/jquery.magnific-popup.js\"></script>
+
+
+    <!-- Nice-select, sticky -->
+    <script src=\"./assets/js/jquery.nice-select.min.js\"></script>
+    <script src=\"./assets/js/jquery.sticky.js\"></script>
 ";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -330,7 +341,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
 
     }
 
-    // line 80
+    // line 77
     public function block_tache($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -340,7 +351,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "tache"));
 
-        // line 81
+        // line 78
         echo "        
         ";
         
@@ -351,7 +362,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
 
     }
 
-    // line 177
+    // line 175
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -361,119 +372,119 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 178
+        // line 176
         echo "        <script src=\"";
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/vendor/modernizr-3.5.0.min.js"), "html", null, true);
         echo "\"></script>
         <!-- Jquery, Popper, Bootstrap -->
         <script src=\"";
-        // line 180
+        // line 178
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/vendor/jquery-1.12.4.min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 181
+        // line 179
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/popper.min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 182
+        // line 180
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
         <!-- Jquery Mobile Menu -->
         <script src=\"";
-        // line 184
+        // line 182
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/jquery.slicknav.min.js"), "html", null, true);
         echo "\"></script>
 
         <!-- Jquery Slick , Owl-Carousel Plugins -->
         <script src=\"";
-        // line 187
+        // line 185
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/owl.carousel.min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 188
+        // line 186
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/slick.min.js"), "html", null, true);
         echo "\"></script>
         <!-- One Page, Animated-HeadLin -->
         <script src=\"";
-        // line 190
+        // line 188
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/wow.min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 191
+        // line 189
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/animated.headline.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 192
+        // line 190
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/jquery.magnific-popup.js"), "html", null, true);
         echo "\"></script>
 
         <!-- Date Picker -->
         <script src=\"";
-        // line 195
+        // line 193
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/gijgo.min.js"), "html", null, true);
         echo "\"></script>
         <!-- Nice-select, sticky -->
         <script src=\"";
-        // line 197
+        // line 195
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/jquery.nice-select.min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 198
+        // line 196
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/jquery.sticky.js"), "html", null, true);
         echo "\"></script>
 
         <!-- counter , waypoint,Hover Direction -->
         <script src=\"";
-        // line 201
+        // line 199
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/jquery.counterup.min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 202
+        // line 200
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/waypoints.min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 203
+        // line 201
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/jquery.countdown.min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 204
+        // line 202
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/hover-direction-snake.min.js"), "html", null, true);
         echo "\"></script>
 
         <!-- contact js -->
         <script src=\"";
-        // line 207
+        // line 205
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/contact.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 208
+        // line 206
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/jquery.form.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 209
+        // line 207
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/jquery.validate.min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 210
+        // line 208
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/mail-script.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 211
+        // line 209
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/jquery.ajaxchimp.min.js"), "html", null, true);
         echo "\"></script>
 
         <!-- Jquery Plugins, main Jquery -->
         <script src=\"";
-        // line 214
+        // line 212
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/plugins.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 215
+        // line 213
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/js/main.js"), "html", null, true);
         echo "\"></script>
 
         ";
-        // line 218
+        // line 216
         echo "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -495,7 +506,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
 
     public function getDebugInfo()
     {
-        return array (  477 => 218,  472 => 215,  468 => 214,  462 => 211,  458 => 210,  454 => 209,  450 => 208,  446 => 207,  440 => 204,  436 => 203,  432 => 202,  428 => 201,  422 => 198,  418 => 197,  413 => 195,  407 => 192,  403 => 191,  399 => 190,  394 => 188,  390 => 187,  384 => 184,  379 => 182,  375 => 181,  371 => 180,  365 => 178,  355 => 177,  344 => 81,  334 => 80,  322 => 22,  318 => 21,  314 => 20,  310 => 19,  306 => 18,  302 => 17,  298 => 16,  294 => 15,  290 => 14,  286 => 13,  282 => 12,  278 => 11,  273 => 10,  271 => 9,  261 => 8,  242 => 5,  231 => 219,  229 => 177,  188 => 139,  130 => 83,  128 => 80,  94 => 49,  89 => 47,  77 => 38,  61 => 24,  58 => 8,  53 => 5,  47 => 1,);
+        return array (  488 => 216,  483 => 213,  479 => 212,  473 => 209,  469 => 208,  465 => 207,  461 => 206,  457 => 205,  451 => 202,  447 => 201,  443 => 200,  439 => 199,  433 => 196,  429 => 195,  424 => 193,  418 => 190,  414 => 189,  410 => 188,  405 => 186,  401 => 185,  395 => 182,  390 => 180,  386 => 179,  382 => 178,  376 => 176,  366 => 175,  355 => 78,  345 => 77,  333 => 22,  329 => 21,  325 => 20,  321 => 19,  317 => 18,  313 => 17,  309 => 16,  305 => 15,  301 => 14,  297 => 13,  293 => 12,  289 => 11,  284 => 10,  282 => 9,  272 => 8,  253 => 5,  229 => 217,  227 => 175,  186 => 137,  127 => 80,  125 => 77,  94 => 49,  89 => 47,  77 => 38,  61 => 24,  58 => 8,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -563,9 +574,6 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                             </ul>
                                         </nav>
                                     </div>
-                                    <div class=\"header-right-btn f-right d-none d-lg-block ml-30\">
-                                        <a href=\"from.html\" class=\"btn header-btn\">became a member</a>
-                                    </div>
                                 </div>
                             </div>
                             <!-- Mobile Menu -->
@@ -606,6 +614,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                 </div>
                             </div>
                         </div>
+                        
                         <div class=\"col-xl-3 col-lg-3 col-md-4 col-sm-6\">
                             <div class=\"single-footer-caption mb-50\">
                                 <div class=\"footer-tittle\">
@@ -719,6 +728,19 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
         {#   {{ encore_entry_script_tags('app') }}#}
     {% endblock %}
 </html>
+    <div id=\"back-top\" >
+        <a title=\"Go to Top\" href=\"#\"> <i class=\"fas fa-level-up-alt\"></i></a>
+    </div>
+
+     <!-- One Page, Animated-HeadLin -->
+    <script src=\"./assets/js/wow.min.js\"></script>
+    <script src=\"./assets/js/animated.headline.js\"></script>
+    <script src=\"./assets/js/jquery.magnific-popup.js\"></script>
+
+
+    <!-- Nice-select, sticky -->
+    <script src=\"./assets/js/jquery.nice-select.min.js\"></script>
+    <script src=\"./assets/js/jquery.sticky.js\"></script>
 ", "baseFront.html.twig", "C:\\Users\\Salima\\Desktop\\energyBox\\templates\\baseFront.html.twig");
     }
 }

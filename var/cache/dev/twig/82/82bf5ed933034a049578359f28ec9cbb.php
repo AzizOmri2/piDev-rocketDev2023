@@ -109,25 +109,29 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
                     <div class=\"row align-items-end justify-content-between\">
                         <div class=\"col-lg-6 col-md-10 col-sm-10\">
                             <div class=\"section-tittle\">
-                                <span>oUR sERVICES FOR YOU</span>
-                                <h2>PUSH YOUR LIMITS FORWARD We Offer to you</h2>
+                                <span>À vos côtés pour repousser vos limites - notre service pour votre réussite</span> 
+                                <h2>Repoussez vos limites avec nous - chaque entraînement compte!</h2>
                             </div>
                         </div>
                         <div class=\"col-xl-2 col-lg-2 col-md-3\">
-                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">More Services</a>
+                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Voir Les abonnement</a>
                         </div>
                     </div>
                 </div>
             </section>
         <!-- Want To work End -->
+        <section class=\"services-area pt-100 pb-150 section-bg\" data-background=\"";
+        // line 41
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontOffice/img/gallery/section_bg01.png"), "html", null, true);
+        echo "\" style=\"background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);\">
        <div class=\"container\">
                 <div class=\"row\">
                 ";
-        // line 43
+        // line 44
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["competitions"]) || array_key_exists("competitions", $context) ? $context["competitions"] : (function () { throw new RuntimeError('Variable "competitions" does not exist.', 43, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["competitions"]) || array_key_exists("competitions", $context) ? $context["competitions"] : (function () { throw new RuntimeError('Variable "competitions" does not exist.', 44, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["competition"]) {
-            // line 44
+            // line 45
             echo "                    <div class=\"col-lg-4 col-md-4 col-sm-6\">
                         <div class=\"single-cat single-cat2 text-center mb-50\">
                             <div class=\"cat-icon\">
@@ -135,49 +139,53 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
                             </div>
                             <div class=\"cat-cap\">
 ";
-            // line 51
+            // line 52
             echo "                            <tr>
                               <tr>
                                <h5><a href=\"";
-            // line 53
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_Front", ["id" => twig_get_attribute($this->env, $this->source, $context["competition"], "id", [], "any", false, false, false, 53)]), "html", null, true);
+            // line 54
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_Front", ["id" => twig_get_attribute($this->env, $this->source, $context["competition"], "id", [], "any", false, false, false, 54)]), "html", null, true);
             echo "\"><td>";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "nomCompetition", [], "any", false, false, false, 53), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "nomCompetition", [], "any", false, false, false, 54), "html", null, true);
             echo "</td></a></h5>
                                <b>FraisCompetition En Dinar: </b><p>";
-            // line 54
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "fraisCompetition", [], "any", false, false, false, 54), "html", null, true);
+            // line 55
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "fraisCompetition", [], "any", false, false, false, 55), "html", null, true);
             echo "</p>
                                <b>DateCompetition: </b><p>";
-            // line 55
-            ((twig_get_attribute($this->env, $this->source, $context["competition"], "dateCompetition", [], "any", false, false, false, 55)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "dateCompetition", [], "any", false, false, false, 55), "Y-m-d"), "html", null, true))) : (print ("")));
+            // line 56
+            ((twig_get_attribute($this->env, $this->source, $context["competition"], "dateCompetition", [], "any", false, false, false, 56)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "dateCompetition", [], "any", false, false, false, 56), "Y-m-d"), "html", null, true))) : (print ("")));
             echo "</p>
                                <b>EtatCompetition: </b><p>";
-            // line 56
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "etatCompetition", [], "any", false, false, false, 56), "html", null, true);
+            // line 57
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "etatCompetition", [], "any", false, false, false, 57), "html", null, true);
             echo "</p>
                                <b>NbrMaxInscrit: </b><p>";
-            // line 57
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "nbrMaxInscrit", [], "any", false, false, false, 57), "html", null, true);
+            // line 58
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "nbrMaxInscrit", [], "any", false, false, false, 58), "html", null, true);
             echo "</p> </tr>
                                 
                                 
                             </div>
                             <div class=\"img-cap\">
                                 <a href=\"";
-            // line 62
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_Front", ["id" => twig_get_attribute($this->env, $this->source, $context["competition"], "id", [], "any", false, false, false, 62)]), "html", null, true);
+            // line 63
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_reserver", ["id" => twig_get_attribute($this->env, $this->source, $context["competition"], "id", [], "any", false, false, false, 63)]), "html", null, true);
             echo "\" class=\"\"> Réserver <i class=\"ti-arrow-right\"></i></a>
                             </div>
                             </tr>
                </div>
               </div>
+            
         
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['competition'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 71
+        echo "        
+";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -198,7 +206,7 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
 
     public function getDebugInfo()
     {
-        return array (  169 => 62,  161 => 57,  157 => 56,  153 => 55,  149 => 54,  143 => 53,  139 => 51,  131 => 44,  127 => 43,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  187 => 71,  173 => 63,  165 => 58,  161 => 57,  157 => 56,  153 => 55,  147 => 54,  143 => 52,  135 => 45,  131 => 44,  125 => 41,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -232,17 +240,18 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
                     <div class=\"row align-items-end justify-content-between\">
                         <div class=\"col-lg-6 col-md-10 col-sm-10\">
                             <div class=\"section-tittle\">
-                                <span>oUR sERVICES FOR YOU</span>
-                                <h2>PUSH YOUR LIMITS FORWARD We Offer to you</h2>
+                                <span>À vos côtés pour repousser vos limites - notre service pour votre réussite</span> 
+                                <h2>Repoussez vos limites avec nous - chaque entraînement compte!</h2>
                             </div>
                         </div>
                         <div class=\"col-xl-2 col-lg-2 col-md-3\">
-                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">More Services</a>
+                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Voir Les abonnement</a>
                         </div>
                     </div>
                 </div>
             </section>
         <!-- Want To work End -->
+        <section class=\"services-area pt-100 pb-150 section-bg\" data-background=\"{{ asset('frontOffice/img/gallery/section_bg01.png')}}\" style=\"background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);\">
        <div class=\"container\">
                 <div class=\"row\">
                 {% for competition in competitions %}
@@ -264,13 +273,15 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
                                 
                             </div>
                             <div class=\"img-cap\">
-                                <a href=\"{{ path('app_ticket_Front', {'id': competition.id}) }}\" class=\"\"> Réserver <i class=\"ti-arrow-right\"></i></a>
+                                <a href=\"{{ path('app_competition_reserver', {'id': competition.id}) }}\" class=\"\"> Réserver <i class=\"ti-arrow-right\"></i></a>
                             </div>
                             </tr>
                </div>
               </div>
+            
         
         {% endfor %}
+        
 {% endblock %}", "competition/viewFront.html.twig", "C:\\Users\\Salima\\Desktop\\energyBox\\templates\\competition\\viewFront.html.twig");
     }
 }

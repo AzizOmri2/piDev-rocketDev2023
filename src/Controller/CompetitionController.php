@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/competition')]
 class CompetitionController extends AbstractController
@@ -41,6 +42,7 @@ class CompetitionController extends AbstractController
 
     // End route Front
     
+
     #[Route('/new', name: 'app_competition_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CompetitionRepository $competitionRepository): Response
     {
@@ -59,6 +61,29 @@ class CompetitionController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/{id}/reserver', name: 'app_competition_reserver', methods: ['POST','GET'])]
+    public function reserver(request $request,CompetitionRepository $competitionRepository, EntityManagerInterface $entityManager ,Competition $competition): Response
+    {   
+        if($competition->getNbrMaxInscrit() > 0)
+        {
+            $competition->setEtatCompetition("disponible");
+            $competition->setNbrMaxInscrit($competition->getNbrMaxInscrit()-1);
+            $competition->setNbrParticipant($competition->getNbrParticipant()+1);
+        }
+        else
+        {
+            $competition->setEtatCompetition("non disponible");
+        }
+       
+        $entityManager->persist($competition);
+        $entityManager->flush();
+        
+        return $this->render('competition/showFront.html.twig', [
+            'competition' => $competition,
+        ]);
+    }
+
 
     #[Route('/{id}', name: 'app_competition_show', methods: ['GET'])]
     public function show(Competition $competition): Response

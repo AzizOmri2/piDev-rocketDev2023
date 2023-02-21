@@ -48,6 +48,9 @@ class Competition
     #[ORM\OneToMany(mappedBy: 'competition', targetEntity: Ticket::class)]
     private Collection $tickets;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $nbrParticipant = null;
+
  
 
     public function __construct()
@@ -151,6 +154,18 @@ class Competition
                 $ticket->setCompetition(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNbrParticipant(): ?int
+    {
+        return $this->nbrParticipant;
+    }
+
+    public function setNbrParticipant(?int $nbrParticipant): self
+    {
+        $this->nbrParticipant = $nbrParticipant;
 
         return $this;
     }

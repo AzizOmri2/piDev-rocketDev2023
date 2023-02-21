@@ -103,27 +103,53 @@ class __TwigTemplate_821b7cd3317b11a3bfa5b3831ee1e024 extends Template
         <!-- Hero End -->
         <!--? Blog Area Start-->
              <section class=\"services-area pt-100 pb-150\">
-            <!--? Want To work -->
             <section class=\"wantToWork-area w-padding\">
                 <div class=\"container\">
                     <div class=\"row align-items-end justify-content-between\">
                         <div class=\"col-lg-6 col-md-10 col-sm-10\">
                             <div class=\"section-tittle\">
-                                <h2>Description De La Ticket</h2>
-                                <span>>";
-        // line 31
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 31, $this->source); })()), "descriptionTicket", [], "any", false, false, false, 31), "html", null, true);
-        echo "</span>
+                                <span>À vos côtés pour repousser vos limites - notre service pour votre réussite</span> 
+                                <h2>Repoussez vos limites avec nous - chaque entraînement compte!</h2>
                             </div>
                         </div>
                         <div class=\"col-xl-2 col-lg-2 col-md-3\">
-                            <a href=\"/competition/viewFront\" class=\"btn wantToWork-btn f-right\">Retour à la liste des compétition</a>
+                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Voir Les abonnement</a>
                         </div>
                     </div>
                 </div>
             </section>
-
-        </div>
+        <!-- Want To work End -->
+            <section class=\"services-area pt-100 pb-150 section-bg\" data-background=\"";
+        // line 40
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontOffice/img/gallery/section_bg01.png"), "html", null, true);
+        echo "\" style=\"background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);\">            
+                <div class=\"container\">
+                    <div class=\"row\">
+                        <div class=\"cat-cap\">
+                            <div class=\"about-caption\">
+                                <center>
+                                <div class=\"section-tittle section-tittle3 mb-35\">
+                                    <h1><span>Détail de votre ticket</span></h1>
+                                    <div class=\"mb-65 pera-bottom\">
+                                        <b>Ticket de Competition:</b> <p>";
+        // line 49
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 49, $this->source); })()), "competition", [], "any", false, false, false, 49), "nomCompetition", [], "any", false, false, false, 49), "html", null, true);
+        echo "</p>
+                                        <b>Description de la ticket:</b> <p>";
+        // line 50
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 50, $this->source); })()), "descriptionTicket", [], "any", false, false, false, 50), "html", null, true);
+        echo "</p>
+                                    </div>
+                                <div class=\"img-cap\">
+                                <a href=\"#\" class=\"btn\">Télécharger</a>
+                                <a href=\"#\" class=\"btn\">Obtenir Le code QR de la ticket</a>
+                            </div>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+        </section>             
         <!-- Hero End -->
         <!--? Blog Area Start-->
 ";
@@ -147,7 +173,7 @@ class __TwigTemplate_821b7cd3317b11a3bfa5b3831ee1e024 extends Template
 
     public function getDebugInfo()
     {
-        return array (  115 => 31,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  140 => 50,  136 => 49,  124 => 40,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -175,24 +201,44 @@ class __TwigTemplate_821b7cd3317b11a3bfa5b3831ee1e024 extends Template
         <!-- Hero End -->
         <!--? Blog Area Start-->
              <section class=\"services-area pt-100 pb-150\">
-            <!--? Want To work -->
             <section class=\"wantToWork-area w-padding\">
                 <div class=\"container\">
                     <div class=\"row align-items-end justify-content-between\">
                         <div class=\"col-lg-6 col-md-10 col-sm-10\">
                             <div class=\"section-tittle\">
-                                <h2>Description De La Ticket</h2>
-                                <span>>{{ ticket.descriptionTicket }}</span>
+                                <span>À vos côtés pour repousser vos limites - notre service pour votre réussite</span> 
+                                <h2>Repoussez vos limites avec nous - chaque entraînement compte!</h2>
                             </div>
                         </div>
                         <div class=\"col-xl-2 col-lg-2 col-md-3\">
-                            <a href=\"/competition/viewFront\" class=\"btn wantToWork-btn f-right\">Retour à la liste des compétition</a>
+                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Voir Les abonnement</a>
                         </div>
                     </div>
                 </div>
             </section>
-
-        </div>
+        <!-- Want To work End -->
+            <section class=\"services-area pt-100 pb-150 section-bg\" data-background=\"{{ asset('frontOffice/img/gallery/section_bg01.png')}}\" style=\"background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);\">            
+                <div class=\"container\">
+                    <div class=\"row\">
+                        <div class=\"cat-cap\">
+                            <div class=\"about-caption\">
+                                <center>
+                                <div class=\"section-tittle section-tittle3 mb-35\">
+                                    <h1><span>Détail de votre ticket</span></h1>
+                                    <div class=\"mb-65 pera-bottom\">
+                                        <b>Ticket de Competition:</b> <p>{{ ticket.competition.nomCompetition }}</p>
+                                        <b>Description de la ticket:</b> <p>{{ ticket.descriptionTicket }}</p>
+                                    </div>
+                                <div class=\"img-cap\">
+                                <a href=\"#\" class=\"btn\">Télécharger</a>
+                                <a href=\"#\" class=\"btn\">Obtenir Le code QR de la ticket</a>
+                            </div>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+        </section>             
         <!-- Hero End -->
         <!--? Blog Area Start-->
 {% endblock %}

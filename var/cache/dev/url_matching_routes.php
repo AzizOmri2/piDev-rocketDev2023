@@ -32,51 +32,56 @@ return [
                 .'|/competition/(?'
                     .'|viewFront/([^/]++)(*:41)'
                     .'|([^/]++)(?'
-                        .'|(*:59)'
-                        .'|/edit(*:71)'
-                        .'|(*:78)'
+                        .'|/(?'
+                            .'|reserver(*:71)'
+                            .'|edit(*:82)'
+                        .')'
+                        .'|(*:90)'
                     .')'
                 .')'
                 .'|/ticket/([^/]++)(?'
-                    .'|(*:106)'
-                    .'|/edit(*:119)'
-                    .'|(*:127)'
+                    .'|(*:118)'
+                    .'|/edit(*:131)'
+                    .'|(*:139)'
                 .')'
                 .'|/_(?'
-                    .'|error/(\\d+)(?:\\.([^/]++))?(*:167)'
-                    .'|wdt/([^/]++)(*:187)'
+                    .'|error/(\\d+)(?:\\.([^/]++))?(*:179)'
+                    .'|wdt/([^/]++)(*:199)'
                     .'|profiler/([^/]++)(?'
                         .'|/(?'
-                            .'|search/results(*:233)'
-                            .'|router(*:247)'
+                            .'|search/results(*:245)'
+                            .'|router(*:259)'
                             .'|exception(?'
-                                .'|(*:267)'
-                                .'|\\.css(*:280)'
+                                .'|(*:279)'
+                                .'|\\.css(*:292)'
                             .')'
                         .')'
-                        .'|(*:290)'
+                        .'|(*:302)'
                     .')'
                 .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
         41 => [[['_route' => 'app_competition_Front', '_controller' => 'App\\Controller\\CompetitionController::showFront'], ['id'], ['GET' => 0], null, false, true, null]],
-        59 => [[['_route' => 'app_competition_show', '_controller' => 'App\\Controller\\CompetitionController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        71 => [[['_route' => 'app_competition_edit', '_controller' => 'App\\Controller\\CompetitionController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        78 => [[['_route' => 'app_competition_delete', '_controller' => 'App\\Controller\\CompetitionController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        106 => [
+        71 => [[['_route' => 'app_competition_reserver', '_controller' => 'App\\Controller\\CompetitionController::reserver'], ['id'], ['POST' => 0, 'GET' => 1], null, false, false, null]],
+        82 => [[['_route' => 'app_competition_edit', '_controller' => 'App\\Controller\\CompetitionController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        90 => [
+            [['_route' => 'app_competition_show', '_controller' => 'App\\Controller\\CompetitionController::show'], ['id'], ['GET' => 0], null, false, true, null],
+            [['_route' => 'app_competition_delete', '_controller' => 'App\\Controller\\CompetitionController::delete'], ['id'], ['POST' => 0], null, false, true, null],
+        ],
+        118 => [
             [['_route' => 'app_ticket_Front', '_controller' => 'App\\Controller\\TicketController::showFront'], ['id'], ['GET' => 0], null, false, true, null],
             [['_route' => 'app_ticket_show', '_controller' => 'App\\Controller\\TicketController::show'], ['id'], ['GET' => 0], null, false, true, null],
         ],
-        119 => [[['_route' => 'app_ticket_edit', '_controller' => 'App\\Controller\\TicketController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        127 => [[['_route' => 'app_ticket_delete', '_controller' => 'App\\Controller\\TicketController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        167 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-        187 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-        233 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-        247 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-        267 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
-        280 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        290 => [
+        131 => [[['_route' => 'app_ticket_edit', '_controller' => 'App\\Controller\\TicketController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        139 => [[['_route' => 'app_ticket_delete', '_controller' => 'App\\Controller\\TicketController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        179 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+        199 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+        245 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+        259 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+        279 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
+        292 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
+        302 => [
             [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

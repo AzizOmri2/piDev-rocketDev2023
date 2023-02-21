@@ -27,17 +27,18 @@
                     <div class="row align-items-end justify-content-between">
                         <div class="col-lg-6 col-md-10 col-sm-10">
                             <div class="section-tittle">
-                                <span>oUR sERVICES FOR YOU</span>
-                                <h2>PUSH YOUR LIMITS FORWARD We Offer to you</h2>
+                                <span>À vos côtés pour repousser vos limites - notre service pour votre réussite</span> 
+                                <h2>Repoussez vos limites avec nous - chaque entraînement compte!</h2>
                             </div>
                         </div>
                         <div class="col-xl-2 col-lg-2 col-md-3">
-                            <a href="#" class="btn wantToWork-btn f-right">More Services</a>
+                            <a href="#" class="btn wantToWork-btn f-right">Voir Les abonnement</a>
                         </div>
                     </div>
                 </div>
             </section>
         <!-- Want To work End -->
+        <section class="services-area pt-100 pb-150 section-bg" data-background="{{ asset('frontOffice/img/gallery/section_bg01.png')}}" style="background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);">
        <div class="container">
                 <div class="row">
                 {% for competition in competitions %}
@@ -59,11 +60,13 @@
                                 
                             </div>
                             <div class="img-cap">
-                                <a href="{{ path('app_ticket_Front', {'id': competition.id}) }}" class=""> Réserver <i class="ti-arrow-right"></i></a>
+                                <a href="{{ path('app_competition_reserver', {'id': competition.id}) }}" class=""> Réserver <i class="ti-arrow-right"></i></a>
                             </div>
                             </tr>
                </div>
               </div>
+            
         
         {% endfor %}
+        
 {% endblock %}

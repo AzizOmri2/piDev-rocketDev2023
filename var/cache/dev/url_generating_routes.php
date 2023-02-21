@@ -9,6 +9,7 @@ return [
     'app_competition_showFront' => [[], ['_controller' => 'App\\Controller\\CompetitionController::FrontView'], [], [['text', '/competition/viewFront']], [], [], []],
     'app_competition_Front' => [['id'], ['_controller' => 'App\\Controller\\CompetitionController::showFront'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/competition/viewFront']], [], [], []],
     'app_competition_new' => [[], ['_controller' => 'App\\Controller\\CompetitionController::new'], [], [['text', '/competition/new']], [], [], []],
+    'app_competition_reserver' => [['id'], ['_controller' => 'App\\Controller\\CompetitionController::reserver'], [], [['text', '/reserver'], ['variable', '/', '[^/]++', 'id', true], ['text', '/competition']], [], [], []],
     'app_competition_show' => [['id'], ['_controller' => 'App\\Controller\\CompetitionController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/competition']], [], [], []],
     'app_competition_edit' => [['id'], ['_controller' => 'App\\Controller\\CompetitionController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/competition']], [], [], []],
     'app_competition_delete' => [['id'], ['_controller' => 'App\\Controller\\CompetitionController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/competition']], [], [], []],

@@ -67,10 +67,10 @@ class Competition extends \App\Entity\Competition implements \Doctrine\ORM\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'nomCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'fraisCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'dateCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'nbrMaxInscrit', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'etatCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'tickets'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'nomCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'fraisCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'dateCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'nbrMaxInscrit', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'etatCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'tickets', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'nbrParticipant'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'nomCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'fraisCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'dateCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'nbrMaxInscrit', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'etatCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'tickets'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'nomCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'fraisCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'dateCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'nbrMaxInscrit', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'etatCompetition', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'tickets', '' . "\0" . 'App\\Entity\\Competition' . "\0" . 'nbrParticipant'];
     }
 
     /**
@@ -344,6 +344,28 @@ class Competition extends \App\Entity\Competition implements \Doctrine\ORM\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeTicket', [$ticket]);
 
         return parent::removeTicket($ticket);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNbrParticipant(): ?int
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNbrParticipant', []);
+
+        return parent::getNbrParticipant();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNbrParticipant(?int $nbrParticipant): \App\Entity\Competition
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNbrParticipant', [$nbrParticipant]);
+
+        return parent::setNbrParticipant($nbrParticipant);
     }
 
 }
