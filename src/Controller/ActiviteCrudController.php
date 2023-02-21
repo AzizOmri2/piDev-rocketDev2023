@@ -86,6 +86,7 @@ class ActiviteCrudController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $activiteRepository->save($activite, true);
 
+            
             $uploadedFile = $form->get('imageActivite')->getData();
             $formData =  $uploadedFile->getPathname();
             $sourcePath = strval($formData);
