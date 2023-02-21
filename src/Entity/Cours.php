@@ -21,9 +21,17 @@ class Cours
     #[ORM\Column]
     private ?float $prixCours = null;
 
+    #[ORM\ManyToMany(targetEntity: Activite::class, inversedBy: 'cours')]
+    private Collection $activites;
+
+    #[ORM\ManyToMany(targetEntity: Planning::class, mappedBy: 'Cours')]
+    private Collection $plannings;
+
+
     public function __construct()
     {
-        
+        $this->activites = new ArrayCollection();
+        $this->plannings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,7 +63,55 @@ class Cours
         return $this;
     }
 
-    
+    /**
+     * @return Collection<int, Activite>
+     */
+    public function getActivites(): Collection
+    {
+        return $this->activites;
+    }
 
+    public function addActivite(Activite $activite): self
+    {
+        if (!$this->activites->contains($activite)) {
+            $this->activites->add($activite);
+        }
+
+        return $this;
+    }
+
+    public function removeActivite(Activite $activite): self
+    {
+        $this->activites->removeElement($activite);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Planning>
+     */
+    public function getPlannings(): Collection
+    {
+        return $this->plannings;
+    }
+
+    public function addPlanning(Planning $planning): self
+    {
+        if (!$this->plannings->contains($planning)) {
+            $this->plannings->add($planning);
+            $planning->addCour($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanning(Planning $planning): self
+    {
+        if ($this->plannings->removeElement($planning)) {
+            $planning->removeCour($this);
+        }
+
+        return $this;
+    }  
     
 }

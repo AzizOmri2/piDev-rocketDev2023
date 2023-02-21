@@ -49,16 +49,59 @@
                                                         <textarea class="form-control"></textarea>
                                                     </div>
                                                 </div>
-                                                
-                                                
-                                                
-                                                
-                                                
                                             </form>
                                         </div>
                                         <div align="center" class="card-footer">
                                             <button type="submit" class="btn btn-primary btn-sm">
                                                 Ajouter
+                                            </button>
+                                            <button type="reset" class="btn btn-danger btn-sm">
+                                                 Annuler
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong>Affectation</strong> des Plannings & Cours
+                                        </div>
+                                        <div class="card-body card-block">
+                                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="select" class=" form-control-label">Plannings</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <select name="plannings" id="select" class="form-control">
+                                                            <option value="0">Select Planning</option>
+                                                            <option value="1">Lundi</option>
+                                                            <option value="2">Mardi</option>
+                                                            <option value="3">Mercredi</option>
+                                                            <option value="4">Jeudi</option>
+                                                            <option value="5">Vendredi</option>
+                                                            <option value="6">Samedi</option>
+                                                            <option value="7">Dimanche</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="select" class=" form-control-label">Cours</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <select name="cours" id="select" class="form-control">
+                                                            <option value="0">Select Cours</option>
+                                                            <option value="1">Aerobique</option>
+                                                            <option value="2">CrossFit</option>
+                                                            <option value="3">Musculation</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                        <div align="center" class="card-footer">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                Affecter
                                             </button>
                                             <button type="reset" class="btn btn-danger btn-sm">
                                                  Annuler

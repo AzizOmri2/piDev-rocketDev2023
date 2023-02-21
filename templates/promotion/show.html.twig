@@ -1,0 +1,73 @@
+{% extends 'baseBack.html.twig' %} 
+
+{% block title %}EnergyBox | Promotion{% endblock %}
+
+{% block body %}
+<div class="page-wrapper">
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- START WHITE BACKGROUND-->
+                                <div class="map-data m-b-40">
+    <h1>Promotion</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ promotion.id }}</td>
+            </tr>
+            <tr>
+                <th>CodePromotion</th>
+                <td>{{ promotion.codePromotion }}</td>
+            </tr>
+            <tr>
+                <th>ReductionPromotion</th>
+                <td>{{ promotion.reductionPromotion }}</td>
+            </tr>
+            <tr>
+                <th>DateExpiration</th>
+                <td>{{ promotion.DateExpiration ? promotion.DateExpiration|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+                              <br>
+<button type="button" class="btn btn-danger">
+    <a href="{{ path('app_promotion_index') }}" style="color:white;">liste des promotions</a> </button>
+ <button type="button" class="btn btn-secondary">
+
+    <a href="{{ path('app_promotion_edit', {'id': promotion.id}) }}" style="color:white;">modifier</a> </button>
+
+    {{ include('promotion/_delete_form.html.twig') }}
+</div>
+            
+ </div>
+                                <!-- END WHITE BACKGROUND-->
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+        </div>
+
+    </div>
+   
+   
+{% endblock %}
+
+
+

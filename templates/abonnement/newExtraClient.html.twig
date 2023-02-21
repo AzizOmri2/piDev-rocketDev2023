@@ -1,0 +1,49 @@
+
+
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}EnergyBox | Planning{% endblock %}
+
+{% block tache %}
+    <main>
+        <!--? Hero Start -->
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 pt-70 text-center">
+
+            <h2>Réserver un abonnement</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+        <!--? Blog Area Start-->
+        <section class="blog_area section-padding">
+        <div class="container">
+                <!-- Section Tittle -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div class="section-tittle text-center mb-100">
+                            <span>RÉSERVATION</span>
+                            <h2>SÉLECTIONNEZ LE TEMPS PARFAIT DONT VOUS AVEZ BESOIN MAINTENANT</h2>
+                        </div>
+                    </div>
+                </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mb-5 mb-lg-0">
+                        
+                             {{ include('abonnement/formExtra.html.twig') }}
+                             
+                            
+                    </div>
+                </div>                
+            </div>
+        </section>
+    </main>
+{% endblock %}

@@ -31,6 +31,10 @@ class Plat
     #[ORM\Column(length: 255)]
     private ?string $etatPlat = null;
 
+    #[ORM\ManyToOne(inversedBy: 'plats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Menu $menu = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,4 +111,17 @@ class Plat
 
         return $this;
     }
+
+    public function getMenu(): ?Menu
+    {
+        return $this->menu;
+    }
+
+    public function setMenu(?Menu $menu): self
+    {
+        $this->menu = $menu;
+
+        return $this;
+    }
+
 }

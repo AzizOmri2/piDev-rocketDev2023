@@ -4,107 +4,115 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $emailUser = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $passwordUser = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $roleUser = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $username = null;
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $email = null;
 
     #[ORM\Column]
-    private ?int $numTel = null;
+    private array $roles = [];
 
-    #[ORM\Column(length: 255)]
-    private ?string $imageUser = null;
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmailUser(): ?string
+    public function getEmail(): ?string
     {
-        return $this->emailUser;
+        return $this->email;
     }
 
-    public function setEmailUser(string $emailUser): self
+    public function setEmail(string $email): self
     {
-        $this->emailUser = $emailUser;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getPasswordUser(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->passwordUser;
+        return (string) $this->email;
     }
 
-    public function setPasswordUser(string $passwordUser): self
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
     {
-        $this->passwordUser = $passwordUser;
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getRoleUser(): ?string
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->roleUser;
+        return $this->password;
     }
 
-    public function setRoleUser(string $roleUser): self
+    public function setPassword(string $password): self
     {
-        $this->roleUser = $roleUser;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getUsername(): ?string
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
     {
-        return $this->username;
+        return null;
     }
 
-    public function setUsername(string $username): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    public function getNumTel(): ?int
-    {
-        return $this->numTel;
-    }
-
-    public function setNumTel(int $numTel): self
-    {
-        $this->numTel = $numTel;
-
-        return $this;
-    }
-
-    public function getImageUser(): ?string
-    {
-        return $this->imageUser;
-    }
-
-    public function setImageUser(string $imageUser): self
-    {
-        $this->imageUser = $imageUser;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

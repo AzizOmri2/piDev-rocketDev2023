@@ -80,4 +80,5 @@ class Charge
 
         return $this;
     }
+
 }

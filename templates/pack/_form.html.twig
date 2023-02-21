@@ -1,0 +1,49 @@
+
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+<div class="col-lg-6 col-md-6">
+     <div class="form-box user-icon mb-30">
+     <h5 class="mb-30">
+    {{ form_label(form.TypePack,"Type pack")}}
+     {{ form_widget(form.TypePack,{'attr':{'class':'form-control'}})}}
+     {{form_errors(form.TypePack)}}
+    </div>
+    </div>
+   <div class="col-lg-6 col-md-6">
+     <div class="form-box user-icon mb-30">
+     <h5 class="mb-30">
+    {{ form_label(form.montantPack,"Montant pack")}}
+     {{ form_widget(form.montantPack,{'attr':{'class':'form-control'}})}}
+     {{form_errors(form.montantPack)}}
+    </div>
+    </div>
+   <div class="col-lg-6 col-md-6">
+     <div class="form-box user-icon mb-30">
+     <h5 class="mb-30">
+    {{ form_label(form.DureePack,"Durée")}}
+     {{ form_widget(form.DureePack,{'attr':{'class':'form-control'}})}}
+     {{form_errors(form.DureePack)}}
+    </div>
+    </div>
+  <div class="col-lg-6 col-md-6">
+     <div class="form-box user-icon mb-30">
+     <h5 class="mb-30">
+    {{ form_label(form.disponibilitePack,"Disponibilité")}}
+     {{ form_widget(form.disponibilitePack,{'attr':{'class':'form-control'}})}}
+     {{form_errors(form.disponibilitePack)}}
+    </div>
+    </div>
+   <div class="col-lg-6 col-md-6">
+     <div class="form-box user-icon mb-30">
+     <h5 class="mb-30">
+    {{ form_label(form.descriptionPack,"Description")}}
+     {{ form_widget(form.descriptionPack,{'attr':{'class':'form-control'}})}}
+     {{form_errors(form.descriptionPack)}}
+    </div>
+    </div>
+  <div class="col-xl-2 col-lg-2 col-md-3">
+  <br>
+     <button type="button" class="btn btn-secondary">{{ button_label|default('Valider') }}</button>
+     </div>
+    
+{{ form_end(form) }}

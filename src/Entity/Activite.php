@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActiviteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ActiviteRepository::class)]
@@ -30,6 +32,15 @@ class Activite
 
     #[ORM\Column(length: 255)]
     private ?string $descriptionActivite = null;
+
+    #[ORM\ManyToMany(targetEntity: Cours::class, mappedBy: 'activites')]
+    private Collection $cours;
+
+    
+    public function __construct()
+    {
+        $this->cours = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -107,5 +118,32 @@ class Activite
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Cours>
+     */
+    public function getCours(): Collection
+    {
+        return $this->cours;
+    }
+
+    public function addCour(Cours $cour): self
+    {
+        if (!$this->cours->contains($cour)) {
+            $this->cours->add($cour);
+            $cour->addActivite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCour(Cours $cour): self
+    {
+        if ($this->cours->removeElement($cour)) {
+            $cour->removeActivite($this);
+        }
+
+        return $this;
+    }    
 
 }

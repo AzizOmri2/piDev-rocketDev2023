@@ -16,6 +16,10 @@ class Ticket
     #[ORM\Column(length: 255)]
     private ?string $descriptionTicket = null;
 
+    #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Competition $competition = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -32,4 +36,17 @@ class Ticket
 
         return $this;
     }
+
+    public function getCompetition(): ?Competition
+    {
+        return $this->competition;
+    }
+
+    public function setCompetition(?Competition $competition): self
+    {
+        $this->competition = $competition;
+
+        return $this;
+    }
+
 }

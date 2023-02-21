@@ -19,9 +19,12 @@ class Planning
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $datePlanning = null;
 
+    #[ORM\ManyToMany(targetEntity: Cours::class, inversedBy: 'plannings')]
+    private Collection $Cours;
+
     public function __construct()
     {
-        
+        $this->Cours = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -37,6 +40,30 @@ class Planning
     public function setDatePlanning(\DateTimeInterface $datePlanning): self
     {
         $this->datePlanning = $datePlanning;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cours>
+     */
+    public function getCours(): Collection
+    {
+        return $this->Cours;
+    }
+
+    public function addCour(Cours $cour): self
+    {
+        if (!$this->Cours->contains($cour)) {
+            $this->Cours->add($cour);
+        }
+
+        return $this;
+    }
+
+    public function removeCour(Cours $cour): self
+    {
+        $this->Cours->removeElement($cour);
 
         return $this;
     }

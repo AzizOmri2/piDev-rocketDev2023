@@ -1,0 +1,90 @@
+{% extends 'baseBack.html.twig' %} 
+
+{% block title %}EnergyBox | Pack{% endblock %}
+
+{% block body %}
+<div class="page-wrapper">
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- START WHITE BACKGROUND-->
+                                <div class="map-data m-b-40">
+    <h1>Liste Des Packs</h1>
+<br>
+   <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-data3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Durée </th>
+                <th>Type</th>
+                <th>Montant </th>
+                <th>Disponibilité </th>
+                <th>Places réservées</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pack in packs %}
+            <tr>
+                <td>{{ pack.id }}</td>
+                <td>{{ pack.dureePack }}</td>
+                <td>{{ pack.typePack }}</td>
+                <td>{{ pack.montantPack }}</td>
+                 <td>{{ pack.disponibilitePack}}</td>
+                <td>{{ pack.placesPack}}</td>
+                <td>
+  <a href="{{ path('app_pack_edit', {'id': pack.id}) }}">
+                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                         
+                                                        </button> </a>
+                   <br>
+                    <a href="{{ path('app_pack_show', {'id': pack.id}) }}">
+                 <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="afficher">
+                                                            <i class="zmdi zmdi-more"></i>
+                                                         
+                                                        </button>   </a>
+                     {{ include('pack/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+ <button class="au-btn au-btn-load" >
+                                
+                                  <a href="{{ path('app_pack_new') }}" style="color: white;">Ajouter un Pack</a>
+                                </button>
+ 
+ </div>
+                                <!-- END WHITE BACKGROUND-->
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+        </div>
+
+    </div>
+   
+   
+{% endblock %}

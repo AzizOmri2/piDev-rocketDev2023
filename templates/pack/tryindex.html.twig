@@ -1,0 +1,138 @@
+
+
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}EnergyBox | Pack{% endblock %}
+
+{% block tache %}
+
+<style>
+'animation': {
+  'type': 'spinToStop',
+  'duration': 5,
+  'spins': 8
+}
+</style>
+    <main>
+        <!--? Hero Start -->
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 pt-70 text-center">
+
+            <h2>Pack Et Abonnement</h2>
+             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+        <!--? Blog Area Start-->
+       
+            <!--? Want To work -->
+            <section class="wantToWork-area w-padding">
+                <div class="container">
+                    <div class="row align-items-end justify-content-between">
+                        <div class="col-lg-6 col-md-10 col-sm-10">
+                            <div class="section-tittle">
+                                <span>NOS SERVICES POUR VOUS</span>
+                                <h2>REPOUSSEZ VOS LIMITES Nous vous offrons</h2>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-3">
+                            <a href="{{ path('app_abonnement_newClient') }}" class="btn wantToWork-btn f-right">Réserver un abonnement</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Want To work End -->
+         
+                
+
+
+ <!--Houny yabda  --> 
+  <section class="services-area pt-100 pb-150 section-bg" data-background="{{ asset('frontOffice/img/gallery/section_bg01.png')}}" style="background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);">
+            <!--? Want To work -->
+            {% for promotion in promotions %}
+            <section class="wantToWork-area w-padding">
+                <div class="container">
+                    <div class="row align-items-end justify-content-between">
+                        <div class="col-lg-6 col-md-10 col-sm-10">
+                            <div class="section-tittle">
+                              
+                               
+                                  <h2 style="color:white;"> Code promo : {{ promotion.codePromotion}} </h2>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-3">
+                            <a href="{{ path('app_abonnement_newClient') }}" class="btn wantToWork-btn f-right">Profiter du Code Promo</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div>
+             <!--? Want To 
+             <h1>Tirage au sort</h1>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+             <script>
+        // Initialiser la roue de tirage au sort avec les participants
+        var canvas = document.getElementById("myCanvas");
+        var myWheel = new Winwheel({
+          'canvasId': 'myCanvas',
+          'numSegments': {{ participants|length }},
+          'segments': [
+            {% for participant in participants %}
+              {'fillStyle': 'white', 'text': '{{ participant }}'},
+            {% endfor %}
+          ],
+          'animation': {
+            'type': 'spinToStop',
+            'duration': 5,
+            'spins': 8
+          }
+        });
+    </script>
+    <a href="{{path('spin')}}"><button class="btn">Tourner la roue</button></a> work -->
+                            
+                          </div>
+            </div>
+            <!-- Want To work End -->
+                 <div class="container"> 
+        <div class="row">
+        {% for pack in packs %}
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="single-cat single-cat2 text-center mb-50" >
+                            <div class="cat-icon">
+                                <i class="flaticon-healthcare-and-medical"></i>
+                            </div>
+                            <div class="cat-cap">
+                                <h5><a href="services.html">{{ pack.typePack  }}</a></h5>
+                                <p>{{ pack.montantPack }} DT.</p>
+                                <p>{{ pack.dureePack }} Mois.</p>
+                            </div>
+                            <div class="img-cap">
+                               {# <a href="{{ path('app_abonnement_newClient', {'id': pack.id}) }}" class=""> Réserver ce pack <i class="ti-arrow-right"></i></a>#}
+                 <div style="display:flex;width:100%;align-items: center;justify-content: center ">
+                           <a href="{{path('app_abonnement_ajouter',{'id':pack.id})}}"><button class="btn">Réserver Maintenant</button></a>
+                            
+                          </div>
+                            </div>
+               </div>
+         </div>
+             
+        
+        {% endfor %}
+            </div>
+            </div>   
+            
+        </section>
+  <!--Houny youfa  -->
+
+      <div></div>
+    </main>
+{% endblock %}

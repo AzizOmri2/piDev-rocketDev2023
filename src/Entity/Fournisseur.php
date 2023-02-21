@@ -117,4 +117,5 @@ class Fournisseur
 
         return $this;
     }
+
 }
