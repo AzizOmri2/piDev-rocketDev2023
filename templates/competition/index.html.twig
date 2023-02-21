@@ -1,0 +1,99 @@
+{% extends 'baseBack.html.twig' %}
+{% block content %}
+<title>Liste de Competitions </title>
+
+
+{% block body %}
+<!-- MAIN CONTENT-->
+    <div class="page-wrapper">
+        <!-- PAGE CONTAINER-->
+       
+        <div class="page-container">
+            
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- START WHITE BACKGROUND-->
+                                <div class="map-data m-b-40">
+
+
+<title>Liste Des Competition</title>
+
+
+    <h1>Competitions:</h1>
+
+    <table class="table table-responsive" style="width: 80%;">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomCompetition</th>
+                <th>FraisCompetition</th>
+                <th>DateCompetition</th>
+                <th>NbrMaxInscrit</th>
+                <th>EtatCompetition</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for competition in competitions %}
+            <tr>
+                <td>{{ competition.id }}</td>
+                <td>{{ competition.nomCompetition }}</td>
+                <td>{{ competition.fraisCompetition }}</td>
+                <td>{{ competition.dateCompetition ? competition.dateCompetition|date('Y-m-d') : '' }}</td>
+                <td>{{ competition.nbrMaxInscrit }}</td>
+                <td>{{ competition.etatCompetition }}</td>
+                <td>
+                    <div align="center" class="card-footer">
+                        <button class="btn btn-outline-secondary">
+                            <a href="{{ path('app_competition_show', {'id': competition.id}) }}">show</a>
+                        </button>
+                        {# <button class="btn btn-outline-secondary"> #}
+                        <a href="{{ path('app_competition_edit', {'id': competition.id}) }}">edit</a>
+                        {# </button> #}
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button class="btn btn-outline-secondary">
+        <a href="{{ path('app_competition_new') }}">Create new</a>
+    </button>
+{% endblock %}
+
+
+
+
+                                </div>
+
+                                
+                                <!-- END WHITE BACKGROUND-->
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved. Template by <a href="https://EnergyBox.com">EnergyBox</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+        </div>
+
+    </div>
+
+    {% endblock %}
+  
+

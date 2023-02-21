@@ -1,0 +1,75 @@
+
+<div class="card-body card-block">
+        {{ form_start(form,{'attr':{'novalidate':'novalidate'}},{'attr':{'class':'form-horizontal'}}) }}
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    {{ form_label(form.nomCompetition,"Nom:") }}
+                </div>
+                <div class="col-12 col-md-9">
+                    {{ form_widget(form.nomCompetition,{'attr':{'class':'form-control'}})}}
+                    {% if form_errors(form.nomCompetition) is not empty %}
+                        <small>
+                        <div class="alert alert-danger">{{ form_errors(form.nomCompetition) }}</div>
+                        </small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    {{ form_label(form.fraisCompetition,"Frais :") }}
+                </div>
+                <div class="col-12 col-md-9">
+                    {{ form_widget(form.fraisCompetition,{'attr':{'class':'form-control'}})}}
+                    {% if form_errors(form.fraisCompetition) is not empty %}
+                        <small>
+                        <div class="alert alert-danger">{{ form_errors(form.fraisCompetition) }}</div>
+                        </small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    {{ form_label(form.dateCompetition,"Date:") }}
+                </div>
+                <div class="col-12 col-md-9">
+                    {{ form_widget(form.dateCompetition,{'attr':{'class':'form-control'}})}}
+                    {% if form_errors(form.dateCompetition) is not empty %}
+                        <small>
+                        <div class="alert alert-danger">{{ form_errors(form.dateCompetition) }}</div>
+                        </small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    {{ form_label(form.nbrMaxInscrit,"Maximum des Participants:") }}
+                </div>
+                <div class="col-12 col-md-9">
+                    {{ form_widget(form.nbrMaxInscrit,{'attr':{'class':'form-control'}})}}
+                    {% if form_errors(form.nbrMaxInscrit) is not empty %}
+                        <small>
+                        <div class="alert alert-danger">{{ form_errors(form.nbrMaxInscrit) }}</div>
+                        </small>
+                    {% endif %}
+                </div>
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    {{ form_label(form.etatCompetition,"Son Etat:") }}
+                </div>
+                <div class="col-12 col-md-9">
+                    {{ form_widget(form.etatCompetition,{'attr':{'class':'form-control'}})}}
+                    {% if form_errors(form.etatCompetition) is not empty %}
+                        <small>
+                        <div class="alert alert-danger">{{ form_errors(form.etatCompetition) }}</div>
+                        </small>
+                    {% endif %}
+                </div>
+            <div class="float-right">
+                <div align="center" class="card-footer">
+                
+                    <button class="btn btn-outline-secondary">{{ button_label|default('Save') }}</button>
+                    <button class="btn btn-outline-secondary"><a href="{{ path('app_competition_index') }}">Go To List</a></button>
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </div>

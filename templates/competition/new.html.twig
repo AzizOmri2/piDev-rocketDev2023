@@ -1,0 +1,48 @@
+{% extends 'baseBack.html.twig' %}
+{% block content %}
+
+
+{% block body %}
+
+<!-- MAIN CONTENT-->
+    <div class="page-wrapper">
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- START WHITE BACKGROUND-->
+                                <div class="map-data m-b-40">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong>Create </strong>NEW Competition
+                                        </div>
+                                    {{ include('competition/_form.html.twig') }}
+                                    </div>
+                                </div>
+                                <!-- END WHITE BACKGROUND-->
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+        </div>
+
+    </div>
+
+
+   
+{% endblock %}
+{% endblock %}

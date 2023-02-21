@@ -1,0 +1,83 @@
+{% extends 'baseBack.html.twig' %}
+{% block content %}
+{% block body %}
+
+<!-- MAIN CONTENT-->
+    <div class="page-wrapper">
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- START WHITE BACKGROUND-->
+                                <div class="map-data m-b-40">
+
+<title>Competition</title>
+
+
+    <h1>Competition</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ competition.id }}</td>
+            </tr>
+            <tr>
+                <th>NomCompetition</th>
+                <td>{{ competition.nomCompetition }}</td>
+            </tr>
+            <tr>
+                <th>FraisCompetition</th>
+                <td>{{ competition.fraisCompetition }}</td>
+            </tr>
+            <tr>
+                <th>DateCompetition</th>
+                <td>{{ competition.dateCompetition ? competition.dateCompetition|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>NbrMaxInscrit</th>
+                <td>{{ competition.nbrMaxInscrit }}</td>
+            </tr>
+            <tr>
+                <th>EtatCompetition</th>
+                <td>{{ competition.etatCompetition }}</td>
+            </tr>
+        </tbody>
+    </table>
+               
+    <div align="center" class="card-footer">               
+        
+        {{ include('competition/_delete_form.html.twig') }}
+        {# <button class="btn btn-outline-secondary"><a href="{{ path('app_competition_delete',{'id': competition.id}) }}">Supprimer</a></button> #}
+        <button class="btn btn-outline-secondary"><a href="{{ path('app_competition_edit', {'id': competition.id}) }}">Modifier</a></button>
+        <button class="btn btn-outline-secondary"><a href="{{ path('app_competition_index') }}">Retour à La Liste</a></button>
+        
+    </div>
+
+{% endblock %}
+
+
+                                </div>
+                                <!-- END WHITE BACKGROUND-->
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved. Template by <a href="https://EnergyBox.com">EnergyBox</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+        </div>
+
+    </div>
+{% endblock %}

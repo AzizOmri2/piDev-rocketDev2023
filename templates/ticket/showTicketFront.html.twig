@@ -1,0 +1,44 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}EnergyBox |Competition{% endblock %}
+
+{% block tache %}
+    <main>
+        <!--? Hero Start -->
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 pt-70 text-center">
+                                <h2>Votre Ticket</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+        <!--? Blog Area Start-->
+             <section class="services-area pt-100 pb-150">
+            <!--? Want To work -->
+            <section class="wantToWork-area w-padding">
+                <div class="container">
+                    <div class="row align-items-end justify-content-between">
+                        <div class="col-lg-6 col-md-10 col-sm-10">
+                            <div class="section-tittle">
+                                <h2>Description De La Ticket</h2>
+                                <span>>{{ ticket.descriptionTicket }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-3">
+                            <a href="/competition/viewFront" class="btn wantToWork-btn f-right">Retour à la liste des compétition</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <!-- Hero End -->
+        <!--? Blog Area Start-->
+{% endblock %}
