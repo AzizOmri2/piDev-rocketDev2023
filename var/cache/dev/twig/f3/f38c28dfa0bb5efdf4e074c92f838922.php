@@ -103,7 +103,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                                         <li><a href=\"elements.html\">Element</a></li>
                                                     </ul>
                                                 </li>-->
-                                                <li><a href=\"contact.html\">Contact</a></li>
+                                                <li><a href=\"\">Contact</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -130,7 +130,10 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
     <!-- Footer Start -->
     <footer>
         <!--? Footer Start-->
-        <div class=\"footer-area section-bg\" style=\"background-image:url('./frontOffice/img/gallery/section_bg03.png'); \" >
+        <div class=\"footer-area section-bg\" style=\"background-image:url('";
+        // line 86
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/img/gallery/section_bg03.png"), "html", null, true);
+        echo "') \" >
             <div class=\"container\" >
                 <div class=\"footer-top footer-padding\">
                     <!-- Footer Menu -->
@@ -140,24 +143,23 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                 <div class=\"footer-tittle\">
                                     <h4>ENERGYBOX | CrossFit Center</h4>
                                     <ul>
-                                        <li><a href=\"#\">About Us</a></li>
+                                        <li><a href=\"\">About Us</a></li>
                                         <li><a href=\"\">Competitions</a></li>
-                                        <li><a href=\"#\"> Press & Blog</a></li>
-                                        <li><a href=\"#\"> Privacy Policy</a></li>
+                                        <li><a href=\"\"> Press & Blog</a></li>
+                                        <li><a href=\"\"> Privacy Policy</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        
                         <div class=\"col-xl-3 col-lg-3 col-md-4 col-sm-6\">
                             <div class=\"single-footer-caption mb-50\">
                                 <div class=\"footer-tittle\">
                                     <h4>Open hour</h4>
                                     <ul><!--AZIZ bch ybaddalhom selon le planning elli bch yekhdmou-->
-                                        <li><a href=\"#\">Monday 11am-7pm</a></li>
-                                        <li><a href=\"#\"> Tuesday-Friday 11am-8pm</a></li>
-                                        <li><a href=\"#\"> Saturday 10am-6pm</a></li>
-                                        <li><a href=\"#\"> Sunday 11am-6pm</a></li>
+                                        <li><a href=\"\">Monday 11am-7pm</a></li>
+                                        <li><a href=\"\"> Tuesday-Friday 11am-8pm</a></li>
+                                        <li><a href=\"\"> Saturday 10am-6pm</a></li>
+                                        <li><a href=\"\"> Sunday 11am-6pm</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -167,12 +169,11 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                 <div class=\"footer-tittle\">
                                     <h4>RESOURCES</h4>
                                     <ul>
-                                        <li><a href=\"#\">Planning</a></li>
+                                        <li><a href=\"/reclamation/new\">Réclamation</a></li>
+                                        <li><a href=\"/planning/crud/viewPlanning\">Planning</a></li>
                                         <li><a href=\"#\">Abonnements</a></li>
-                                        <li><a href=\"\">Competition</a></li>
                                         <li><a href=\"#\">Restaurants</a></li>
                                         <li><a href=\"#\">Materiaux</a></li>
-                                       <!-- <li><a href=\"#\"> Heal Insurance</a></li>-->
                                     </ul>
                                 </div>
                             </div>
@@ -181,10 +182,12 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                             <div class=\"single-footer-caption mb-50\" style=\"margin-top: -90px;\">
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
-                                  <a>  <img src=\"";
-        // line 137
+                                  <a href=\"/front\">  
+                                    <img src=\"";
+        // line 136
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./frontOffice/img/logo/LogoGymWhite.png"), "html", null, true);
-        echo "\"  alt=\"...\" style=\"width:250px; height:300px;\"></a>
+        echo "\"  alt=\"...\" style=\"width:300px; height:300px; margin-left:-50px;\">
+                                  </a>
                                 </div>
                                 <div class=\"footer-tittle\">
                                     <div class=\"footer-pera\">
@@ -195,10 +198,10 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                 </div>
                                 <!-- Footer Social -->
                                 <div class=\"footer-social \">
-                                    <a href=\"https://www.facebook.com/sai4ull\"><i class=\"fab fa-facebook-f\"></i></a>
+                                    <a href=\"\"><i class=\"fab fa-facebook-f\"></i></a>
                                     <a href=\"\"><i class=\"fab fa-twitter\"></i></a>
-                                    <a href=\"#\"><i class=\"fas fa-globe\"></i></a>
-                                    <a href=\"#\"><i class=\"fab fa-instagram\"></i></a>
+                                    <a href=\"\"><i class=\"fas fa-globe\"></i></a>
+                                    <a href=\"\"><i class=\"fab fa-instagram\"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -226,21 +229,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
         // line 175
         $this->displayBlock('javascripts', $context, $blocks);
         // line 217
-        echo "</html>
-    <div id=\"back-top\" >
-        <a title=\"Go to Top\" href=\"#\"> <i class=\"fas fa-level-up-alt\"></i></a>
-    </div>
-
-     <!-- One Page, Animated-HeadLin -->
-    <script src=\"./assets/js/wow.min.js\"></script>
-    <script src=\"./assets/js/animated.headline.js\"></script>
-    <script src=\"./assets/js/jquery.magnific-popup.js\"></script>
-
-
-    <!-- Nice-select, sticky -->
-    <script src=\"./assets/js/jquery.nice-select.min.js\"></script>
-    <script src=\"./assets/js/jquery.sticky.js\"></script>
-";
+        echo "</html>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
@@ -506,7 +495,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
 
     public function getDebugInfo()
     {
-        return array (  488 => 216,  483 => 213,  479 => 212,  473 => 209,  469 => 208,  465 => 207,  461 => 206,  457 => 205,  451 => 202,  447 => 201,  443 => 200,  439 => 199,  433 => 196,  429 => 195,  424 => 193,  418 => 190,  414 => 189,  410 => 188,  405 => 186,  401 => 185,  395 => 182,  390 => 180,  386 => 179,  382 => 178,  376 => 176,  366 => 175,  355 => 78,  345 => 77,  333 => 22,  329 => 21,  325 => 20,  321 => 19,  317 => 18,  313 => 17,  309 => 16,  305 => 15,  301 => 14,  297 => 13,  293 => 12,  289 => 11,  284 => 10,  282 => 9,  272 => 8,  253 => 5,  229 => 217,  227 => 175,  186 => 137,  127 => 80,  125 => 77,  94 => 49,  89 => 47,  77 => 38,  61 => 24,  58 => 8,  53 => 5,  47 => 1,);
+        return array (  477 => 216,  472 => 213,  468 => 212,  462 => 209,  458 => 208,  454 => 207,  450 => 206,  446 => 205,  440 => 202,  436 => 201,  432 => 200,  428 => 199,  422 => 196,  418 => 195,  413 => 193,  407 => 190,  403 => 189,  399 => 188,  394 => 186,  390 => 185,  384 => 182,  379 => 180,  375 => 179,  371 => 178,  365 => 176,  355 => 175,  344 => 78,  334 => 77,  322 => 22,  318 => 21,  314 => 20,  310 => 19,  306 => 18,  302 => 17,  298 => 16,  294 => 15,  290 => 14,  286 => 13,  282 => 12,  278 => 11,  273 => 10,  271 => 9,  261 => 8,  242 => 5,  232 => 217,  230 => 175,  188 => 136,  135 => 86,  127 => 80,  125 => 77,  94 => 49,  89 => 47,  77 => 38,  61 => 24,  58 => 8,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -570,7 +559,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                                         <li><a href=\"elements.html\">Element</a></li>
                                                     </ul>
                                                 </li>-->
-                                                <li><a href=\"contact.html\">Contact</a></li>
+                                                <li><a href=\"\">Contact</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -596,7 +585,7 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
     <!-- Footer Start -->
     <footer>
         <!--? Footer Start-->
-        <div class=\"footer-area section-bg\" style=\"background-image:url('./frontOffice/img/gallery/section_bg03.png'); \" >
+        <div class=\"footer-area section-bg\" style=\"background-image:url('{{asset('./frontOffice/img/gallery/section_bg03.png')}}') \" >
             <div class=\"container\" >
                 <div class=\"footer-top footer-padding\">
                     <!-- Footer Menu -->
@@ -606,24 +595,23 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                 <div class=\"footer-tittle\">
                                     <h4>ENERGYBOX | CrossFit Center</h4>
                                     <ul>
-                                        <li><a href=\"#\">About Us</a></li>
+                                        <li><a href=\"\">About Us</a></li>
                                         <li><a href=\"\">Competitions</a></li>
-                                        <li><a href=\"#\"> Press & Blog</a></li>
-                                        <li><a href=\"#\"> Privacy Policy</a></li>
+                                        <li><a href=\"\"> Press & Blog</a></li>
+                                        <li><a href=\"\"> Privacy Policy</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        
                         <div class=\"col-xl-3 col-lg-3 col-md-4 col-sm-6\">
                             <div class=\"single-footer-caption mb-50\">
                                 <div class=\"footer-tittle\">
                                     <h4>Open hour</h4>
                                     <ul><!--AZIZ bch ybaddalhom selon le planning elli bch yekhdmou-->
-                                        <li><a href=\"#\">Monday 11am-7pm</a></li>
-                                        <li><a href=\"#\"> Tuesday-Friday 11am-8pm</a></li>
-                                        <li><a href=\"#\"> Saturday 10am-6pm</a></li>
-                                        <li><a href=\"#\"> Sunday 11am-6pm</a></li>
+                                        <li><a href=\"\">Monday 11am-7pm</a></li>
+                                        <li><a href=\"\"> Tuesday-Friday 11am-8pm</a></li>
+                                        <li><a href=\"\"> Saturday 10am-6pm</a></li>
+                                        <li><a href=\"\"> Sunday 11am-6pm</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -633,12 +621,11 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                 <div class=\"footer-tittle\">
                                     <h4>RESOURCES</h4>
                                     <ul>
-                                        <li><a href=\"#\">Planning</a></li>
+                                        <li><a href=\"/reclamation/new\">Réclamation</a></li>
+                                        <li><a href=\"/planning/crud/viewPlanning\">Planning</a></li>
                                         <li><a href=\"#\">Abonnements</a></li>
-                                        <li><a href=\"\">Competition</a></li>
                                         <li><a href=\"#\">Restaurants</a></li>
                                         <li><a href=\"#\">Materiaux</a></li>
-                                       <!-- <li><a href=\"#\"> Heal Insurance</a></li>-->
                                     </ul>
                                 </div>
                             </div>
@@ -647,7 +634,9 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                             <div class=\"single-footer-caption mb-50\" style=\"margin-top: -90px;\">
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
-                                  <a>  <img src=\"{{asset('./frontOffice/img/logo/LogoGymWhite.png')}}\"  alt=\"...\" style=\"width:250px; height:300px;\"></a>
+                                  <a href=\"/front\">  
+                                    <img src=\"{{asset('./frontOffice/img/logo/LogoGymWhite.png')}}\"  alt=\"...\" style=\"width:300px; height:300px; margin-left:-50px;\">
+                                  </a>
                                 </div>
                                 <div class=\"footer-tittle\">
                                     <div class=\"footer-pera\">
@@ -658,10 +647,10 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
                                 </div>
                                 <!-- Footer Social -->
                                 <div class=\"footer-social \">
-                                    <a href=\"https://www.facebook.com/sai4ull\"><i class=\"fab fa-facebook-f\"></i></a>
+                                    <a href=\"\"><i class=\"fab fa-facebook-f\"></i></a>
                                     <a href=\"\"><i class=\"fab fa-twitter\"></i></a>
-                                    <a href=\"#\"><i class=\"fas fa-globe\"></i></a>
-                                    <a href=\"#\"><i class=\"fab fa-instagram\"></i></a>
+                                    <a href=\"\"><i class=\"fas fa-globe\"></i></a>
+                                    <a href=\"\"><i class=\"fab fa-instagram\"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -727,20 +716,6 @@ class __TwigTemplate_c4bdf692c6f9556c4f01c7d94bec2afd extends Template
 
         {#   {{ encore_entry_script_tags('app') }}#}
     {% endblock %}
-</html>
-    <div id=\"back-top\" >
-        <a title=\"Go to Top\" href=\"#\"> <i class=\"fas fa-level-up-alt\"></i></a>
-    </div>
-
-     <!-- One Page, Animated-HeadLin -->
-    <script src=\"./assets/js/wow.min.js\"></script>
-    <script src=\"./assets/js/animated.headline.js\"></script>
-    <script src=\"./assets/js/jquery.magnific-popup.js\"></script>
-
-
-    <!-- Nice-select, sticky -->
-    <script src=\"./assets/js/jquery.nice-select.min.js\"></script>
-    <script src=\"./assets/js/jquery.sticky.js\"></script>
-", "baseFront.html.twig", "C:\\Users\\Salima\\Desktop\\energyBox\\templates\\baseFront.html.twig");
+</html>", "baseFront.html.twig", "C:\\Users\\Salima\\Desktop\\energyBox\\templates\\baseFront.html.twig");
     }
 }

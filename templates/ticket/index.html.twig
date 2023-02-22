@@ -21,6 +21,7 @@
             <tr>
                 <th>Id</th>
                 <th>DescriptionTicket</th>
+                <th>ticket pour Competition</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@
             <tr>
                 <td>{{ ticket.id }}</td>
                 <td>{{ ticket.descriptionTicket }}</td>
+                <td>{{ ticket.competition.nomCompetition }}</td>
                 <td>
                     <a href="{{ path('app_ticket_show', {'id': ticket.id}) }}">show</a>
                     <a href="{{ path('app_ticket_edit', {'id': ticket.id}) }}">edit</a>

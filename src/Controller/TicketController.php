@@ -39,14 +39,29 @@ class TicketController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_ticket_Front', methods: ['GET'])]
-    public function showFront(Ticket $ticket): Response
-    {
-        return $this->render('ticket/showTicketFront.html.twig', [
-            'ticket' => $ticket,
+    // #[Route('/{id}', name: 'app_ticket_Front', methods: ['GET'])]
+    // public function showFront(Ticket $ticket): Response
+    // {
+    //     return $this->render('ticket/showTicketFront.html.twig', [
+    //         'ticket' => $ticket,
+    //     ]);
+    // }
+
+    #[Route('/competition/{id}/ticket', name: 'app_ticket_Front', methods: ['GET'])]
+public function showFront(int $id, TicketRepository $ticketRepository): Response
+{
+    $ticket = $ticketRepository->findOneBy(['competition' => $id]);
+
+    if (!$ticket) {
+        return $this->render('ticket/notAvailableTicket.html.twig', [
+            'message' => 'Ticket non trouvé pour la compétition ID '.$id
         ]);
     }
 
+    return $this->render('ticket/showTicketFront.html.twig', [
+        'ticket' => $ticket,
+    ]);
+}
     #[Route('/{id}', name: 'app_ticket_show', methods: ['GET'])]
     public function show(Ticket $ticket): Response
     {

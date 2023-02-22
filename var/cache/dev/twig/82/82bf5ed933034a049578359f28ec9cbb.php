@@ -114,7 +114,7 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
                             </div>
                         </div>
                         <div class=\"col-xl-2 col-lg-2 col-md-3\">
-                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Voir Les abonnement</a>
+                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Les Competitions</a>
                         </div>
                     </div>
                 </div>
@@ -245,7 +245,7 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
                             </div>
                         </div>
                         <div class=\"col-xl-2 col-lg-2 col-md-3\">
-                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Voir Les abonnement</a>
+                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Les Competitions</a>
                         </div>
                     </div>
                 </div>

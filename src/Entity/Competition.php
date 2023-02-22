@@ -170,6 +170,5 @@ class Competition
         return $this;
     }
 
- 
 
 }

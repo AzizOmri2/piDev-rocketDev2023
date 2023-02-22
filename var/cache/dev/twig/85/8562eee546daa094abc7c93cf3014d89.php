@@ -67,7 +67,7 @@ class __TwigTemplate_5d4ac9376096290e711504811f54f636 extends Template
 
         // line 3
         $this->displayBlock('body', $context, $blocks);
-        // line 61
+        // line 62
         echo "
 
                                 </div>
@@ -124,70 +124,74 @@ class __TwigTemplate_5d4ac9376096290e711504811f54f636 extends Template
                                 <div class=\"map-data m-b-40\">
 
 <title>Competition</title>
-
-
     <h1>Competition</h1>
-
     <table class=\"table\">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>";
-        // line 26
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 26, $this->source); })()), "id", [], "any", false, false, false, 26), "html", null, true);
+        // line 23
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 23, $this->source); })()), "id", [], "any", false, false, false, 23), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>NomCompetition</th>
                 <td>";
-        // line 30
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 30, $this->source); })()), "nomCompetition", [], "any", false, false, false, 30), "html", null, true);
+        // line 27
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 27, $this->source); })()), "nomCompetition", [], "any", false, false, false, 27), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>FraisCompetition</th>
                 <td>";
-        // line 34
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 34, $this->source); })()), "fraisCompetition", [], "any", false, false, false, 34), "html", null, true);
+        // line 31
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 31, $this->source); })()), "fraisCompetition", [], "any", false, false, false, 31), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>DateCompetition</th>
                 <td>";
-        // line 38
-        ((twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 38, $this->source); })()), "dateCompetition", [], "any", false, false, false, 38)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 38, $this->source); })()), "dateCompetition", [], "any", false, false, false, 38), "Y-m-d"), "html", null, true))) : (print ("")));
+        // line 35
+        ((twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 35, $this->source); })()), "dateCompetition", [], "any", false, false, false, 35)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 35, $this->source); })()), "dateCompetition", [], "any", false, false, false, 35), "Y-m-d"), "html", null, true))) : (print ("")));
         echo "</td>
             </tr>
             <tr>
                 <th>NbrMaxInscrit</th>
                 <td>";
-        // line 42
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 42, $this->source); })()), "nbrMaxInscrit", [], "any", false, false, false, 42), "html", null, true);
+        // line 39
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 39, $this->source); })()), "nbrMaxInscrit", [], "any", false, false, false, 39), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>EtatCompetition</th>
                 <td>";
-        // line 46
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 46, $this->source); })()), "etatCompetition", [], "any", false, false, false, 46), "html", null, true);
+        // line 43
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 43, $this->source); })()), "etatCompetition", [], "any", false, false, false, 43), "html", null, true);
         echo "</td>
             </tr>
+
+            <tr>
+                <th>Nombre de participants</th>
+                <td>";
+        // line 48
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 48, $this->source); })()), "nbrParticipant", [], "any", false, false, false, 48), "html", null, true);
+        echo "</td>
         </tbody>
     </table>
                
     <div align=\"center\" class=\"card-footer\">               
         
         ";
-        // line 53
+        // line 54
         echo twig_include($this->env, $context, "competition/_delete_form.html.twig");
         echo "
         ";
-        // line 55
+        // line 56
         echo "        <button class=\"btn btn-outline-secondary\"><a href=\"";
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 55, $this->source); })()), "id", [], "any", false, false, false, 55)]), "html", null, true);
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 56, $this->source); })()), "id", [], "any", false, false, false, 56)]), "html", null, true);
         echo "\">Modifier</a></button>
         <button class=\"btn btn-outline-secondary\"><a href=\"";
-        // line 56
+        // line 57
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_index");
         echo "\">Retour à La Liste</a></button>
         
@@ -214,7 +218,7 @@ class __TwigTemplate_5d4ac9376096290e711504811f54f636 extends Template
 
     public function getDebugInfo()
     {
-        return array (  191 => 56,  186 => 55,  182 => 53,  172 => 46,  165 => 42,  158 => 38,  151 => 34,  144 => 30,  137 => 26,  113 => 4,  103 => 3,  71 => 61,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  195 => 57,  190 => 56,  186 => 54,  177 => 48,  169 => 43,  162 => 39,  155 => 35,  148 => 31,  141 => 27,  134 => 23,  113 => 4,  103 => 3,  71 => 62,  69 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -236,10 +240,7 @@ class __TwigTemplate_5d4ac9376096290e711504811f54f636 extends Template
                                 <div class=\"map-data m-b-40\">
 
 <title>Competition</title>
-
-
     <h1>Competition</h1>
-
     <table class=\"table\">
         <tbody>
             <tr>
@@ -266,6 +267,10 @@ class __TwigTemplate_5d4ac9376096290e711504811f54f636 extends Template
                 <th>EtatCompetition</th>
                 <td>{{ competition.etatCompetition }}</td>
             </tr>
+
+            <tr>
+                <th>Nombre de participants</th>
+                <td>{{ competition.nbrParticipant }}</td>
         </tbody>
     </table>
                

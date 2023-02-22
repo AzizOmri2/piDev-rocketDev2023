@@ -57,7 +57,7 @@
                                                         <li><a href="elements.html">Element</a></li>
                                                     </ul>
                                                 </li>-->
-                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="">Contact</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -83,7 +83,7 @@
     <!-- Footer Start -->
     <footer>
         <!--? Footer Start-->
-        <div class="footer-area section-bg" style="background-image:url('./frontOffice/img/gallery/section_bg03.png'); " >
+        <div class="footer-area section-bg" style="background-image:url('{{asset('./frontOffice/img/gallery/section_bg03.png')}}') " >
             <div class="container" >
                 <div class="footer-top footer-padding">
                     <!-- Footer Menu -->
@@ -93,24 +93,23 @@
                                 <div class="footer-tittle">
                                     <h4>ENERGYBOX | CrossFit Center</h4>
                                     <ul>
-                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="">About Us</a></li>
                                         <li><a href="">Competitions</a></li>
-                                        <li><a href="#"> Press & Blog</a></li>
-                                        <li><a href="#"> Privacy Policy</a></li>
+                                        <li><a href=""> Press & Blog</a></li>
+                                        <li><a href=""> Privacy Policy</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                             <div class="single-footer-caption mb-50">
                                 <div class="footer-tittle">
                                     <h4>Open hour</h4>
                                     <ul><!--AZIZ bch ybaddalhom selon le planning elli bch yekhdmou-->
-                                        <li><a href="#">Monday 11am-7pm</a></li>
-                                        <li><a href="#"> Tuesday-Friday 11am-8pm</a></li>
-                                        <li><a href="#"> Saturday 10am-6pm</a></li>
-                                        <li><a href="#"> Sunday 11am-6pm</a></li>
+                                        <li><a href="">Monday 11am-7pm</a></li>
+                                        <li><a href=""> Tuesday-Friday 11am-8pm</a></li>
+                                        <li><a href=""> Saturday 10am-6pm</a></li>
+                                        <li><a href=""> Sunday 11am-6pm</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -120,12 +119,11 @@
                                 <div class="footer-tittle">
                                     <h4>RESOURCES</h4>
                                     <ul>
-                                        <li><a href="#">Planning</a></li>
+                                        <li><a href="/reclamation/new">Réclamation</a></li>
+                                        <li><a href="/planning/crud/viewPlanning">Planning</a></li>
                                         <li><a href="#">Abonnements</a></li>
-                                        <li><a href="">Competition</a></li>
                                         <li><a href="#">Restaurants</a></li>
                                         <li><a href="#">Materiaux</a></li>
-                                       <!-- <li><a href="#"> Heal Insurance</a></li>-->
                                     </ul>
                                 </div>
                             </div>
@@ -134,7 +132,9 @@
                             <div class="single-footer-caption mb-50" style="margin-top: -90px;">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                  <a>  <img src="{{asset('./frontOffice/img/logo/LogoGymWhite.png')}}"  alt="..." style="width:250px; height:300px;"></a>
+                                  <a href="/front">  
+                                    <img src="{{asset('./frontOffice/img/logo/LogoGymWhite.png')}}"  alt="..." style="width:300px; height:300px; margin-left:-50px;">
+                                  </a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
@@ -145,10 +145,10 @@
                                 </div>
                                 <!-- Footer Social -->
                                 <div class="footer-social ">
-                                    <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
                                     <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fas fa-globe"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href=""><i class="fas fa-globe"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -215,16 +215,3 @@
         {#   {{ encore_entry_script_tags('app') }}#}
     {% endblock %}
 </html>
-    <div id="back-top" >
-        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
-    </div>
-
-     <!-- One Page, Animated-HeadLin -->
-    <script src="./assets/js/wow.min.js"></script>
-    <script src="./assets/js/animated.headline.js"></script>
-    <script src="./assets/js/jquery.magnific-popup.js"></script>
-
-
-    <!-- Nice-select, sticky -->
-    <script src="./assets/js/jquery.nice-select.min.js"></script>
-    <script src="./assets/js/jquery.sticky.js"></script>

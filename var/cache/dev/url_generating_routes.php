@@ -21,7 +21,7 @@ return [
     'app_front' => [[], ['_controller' => 'App\\Controller\\TestController::index'], [], [['text', '/front']], [], [], []],
     'app_ticket_index' => [[], ['_controller' => 'App\\Controller\\TicketController::index'], [], [['text', '/ticket/']], [], [], []],
     'app_ticket_new' => [[], ['_controller' => 'App\\Controller\\TicketController::new'], [], [['text', '/ticket/new']], [], [], []],
-    'app_ticket_Front' => [['id'], ['_controller' => 'App\\Controller\\TicketController::showFront'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], [], []],
+    'app_ticket_Front' => [['id'], ['_controller' => 'App\\Controller\\TicketController::showFront'], [], [['text', '/ticket'], ['variable', '/', '[^/]++', 'id', true], ['text', '/ticket/competition']], [], [], []],
     'app_ticket_show' => [['id'], ['_controller' => 'App\\Controller\\TicketController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], [], []],
     'app_ticket_edit' => [['id'], ['_controller' => 'App\\Controller\\TicketController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], [], []],
     'app_ticket_delete' => [['id'], ['_controller' => 'App\\Controller\\TicketController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], [], []],
