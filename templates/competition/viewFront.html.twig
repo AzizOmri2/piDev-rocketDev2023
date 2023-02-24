@@ -1,6 +1,6 @@
 {% extends 'baseFront.html.twig' %}
-
-{% block title %}EnergyBox |Competition{% endblock %}
+{# {% block icon %}<link rel="icon" type="image/png" href="./frontOffice/img/logo/LogoGymBlack.png">{% endblock %} #}
+{% block title %}EnergyBox |Competitions{% endblock %}
 
 {% block tache %}
     <main>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="col-xl-2 col-lg-2 col-md-3">
-                            <a href="#" class="btn wantToWork-btn f-right">Les Competitions</a>
+                            <a href="viewFront" class="btn wantToWork-btn f-right">Les Competitions</a>
                         </div>
                     </div>
                 </div>
@@ -67,6 +67,10 @@
               </div>
             
         
+
+
         {% endfor %}
-        
+        </div>
+            </div>
+     </section>   
 {% endblock %}

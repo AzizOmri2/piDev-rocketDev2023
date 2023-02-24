@@ -79,7 +79,7 @@ class __TwigTemplate_a6050c4b3d82576daf8270c7e13f80b8 extends Template
                         <div class=\"row\">
                             <div class=\"col-md-12\">
                                 <div class=\"copyright\">
-                                    <p>Copyright © 2023 EnergyBox. All rights reserved. Template by <a href=\"https://EnergyBox.com\">Colorlib</a>.</p>
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved</p>
                                 </div>
                             </div>
                         </div>
@@ -121,21 +121,17 @@ class __TwigTemplate_a6050c4b3d82576daf8270c7e13f80b8 extends Template
                             <div class=\"col-md-12\">
                                 <!-- START WHITE BACKGROUND-->
                                 <div class=\"map-data m-b-40\">
-<title>New Ticket</title>
+<title>Nouvelle Ticket</title>
 
 
-    <h1>Create new Ticket</h1>
+    <h1>Créer une nouvelle ticket</h1>
 
     ";
         // line 20
         echo twig_include($this->env, $context, "ticket/_form.html.twig");
         echo "
 
-    <a href=\"";
-        // line 22
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_index");
-        echo "\">back to list</a>
-";
+    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -156,7 +152,7 @@ class __TwigTemplate_a6050c4b3d82576daf8270c7e13f80b8 extends Template
 
     public function getDebugInfo()
     {
-        return array (  136 => 22,  131 => 20,  113 => 4,  103 => 3,  71 => 24,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  131 => 20,  113 => 4,  103 => 3,  71 => 24,  69 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -175,14 +171,14 @@ class __TwigTemplate_a6050c4b3d82576daf8270c7e13f80b8 extends Template
                             <div class=\"col-md-12\">
                                 <!-- START WHITE BACKGROUND-->
                                 <div class=\"map-data m-b-40\">
-<title>New Ticket</title>
+<title>Nouvelle Ticket</title>
 
 
-    <h1>Create new Ticket</h1>
+    <h1>Créer une nouvelle ticket</h1>
 
     {{ include('ticket/_form.html.twig') }}
 
-    <a href=\"{{ path('app_ticket_index') }}\">back to list</a>
+    {# <a href=\"{{ path('app_ticket_index') }}\">Retour A la Liste</a> #}
 {% endblock %}
 
 
@@ -195,7 +191,7 @@ class __TwigTemplate_a6050c4b3d82576daf8270c7e13f80b8 extends Template
                         <div class=\"row\">
                             <div class=\"col-md-12\">
                                 <div class=\"copyright\">
-                                    <p>Copyright © 2023 EnergyBox. All rights reserved. Template by <a href=\"https://EnergyBox.com\">Colorlib</a>.</p>
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved</p>
                                 </div>
                             </div>
                         </div>

@@ -142,13 +142,13 @@ class __TwigTemplate_81cfa2fdb3890e886632295f8baffa3c extends Template
         // line 56
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontOffice/img/gallery/section_bg01.png"), "html", null, true);
         echo "\" style=\"background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);\">
-                            <div class=\"section-tittle section-tittle3 mb-35\">
+                            <div class=\"section-tittle section-tittle3 mb-35\"
                                 <span>Détail de la competition</span>
                                 <p class=\"mb-65 pera-bottom\">
-                                    <h1>Competition ";
+                                    <h1>Competition  << ";
         // line 60
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["competition"]) || array_key_exists("competition", $context) ? $context["competition"] : (function () { throw new RuntimeError('Variable "competition" does not exist.', 60, $this->source); })()), "nomCompetition", [], "any", false, false, false, 60), "html", null, true);
-        echo "</h1>
+        echo " >> </h1>
                                     
                                         <div > <b>Nom Competition: </b>
                                             <td>";
@@ -204,11 +204,13 @@ class __TwigTemplate_81cfa2fdb3890e886632295f8baffa3c extends Template
                             ";
         // line 90
         echo "                        </div>
+
                     </div>
                 </div>
             </div>
-        </section>
-        </section>
+                        </section>
+                </section>
+        
 
 ";
         
@@ -292,10 +294,10 @@ class __TwigTemplate_81cfa2fdb3890e886632295f8baffa3c extends Template
                         <div class=\"about-caption\">
                             <!-- Section Tittle -->
                             <section class=\"services-area pt-100 pb-150 section-bg\" data-background=\"{{ asset('frontOffice/img/gallery/section_bg01.png')}}\" style=\"background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);\">
-                            <div class=\"section-tittle section-tittle3 mb-35\">
+                            <div class=\"section-tittle section-tittle3 mb-35\"
                                 <span>Détail de la competition</span>
                                 <p class=\"mb-65 pera-bottom\">
-                                    <h1>Competition {{ competition.nomCompetition }}</h1>
+                                    <h1>Competition  << {{ competition.nomCompetition }} >> </h1>
                                     
                                         <div > <b>Nom Competition: </b>
                                             <td>{{ competition.nomCompetition }}</td>
@@ -326,11 +328,13 @@ class __TwigTemplate_81cfa2fdb3890e886632295f8baffa3c extends Template
                               <a href=\"{{ path('app_ticket_Front', {'id': competition.id}) }}\" class=\"btn\"> Obtenir Ma Ticket </a>
                             {# <a href=\"app_ticket_Front\" class=\"btn\">Obtenir Ma Ticket</a> #}
                         </div>
+
                     </div>
                 </div>
             </div>
-        </section>
-        </section>
+                        </section>
+                </section>
+        
 
 {% endblock %}
 

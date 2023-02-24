@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <title>{% block title %}Welcome !{% endblock %}</title>
+        <link rel="icon" type="image/png" href="./frontOffice/img/logo/LogoGymBlack.png">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
          {#    {{ encore_entry_link_tags('app') }}#}
@@ -24,9 +24,21 @@
 
 
     </head>
-    <body>
+     <body>
+        <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{asset('./frontOffice/img/logo/LogoGymBlack.png')}}" alt=""  style="height: 110px; width: 120px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+   
         <header>
-
             <!--? Header Start -->
             <div class="header-area header-transparent">
                 <div class="main-header header-sticky">
@@ -35,7 +47,9 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                    <a href="#"><img src={{asset('./frontOffice/img/logo/LogoGymWhite.png')}} alt="" style="height: 180px; width: 190px; margin-bottom: -10px;"></a>
+                                    <a href="/front">
+                                        <img src="{{asset('./frontOffice/img/logo/LogoGymWhite.png')}}" alt="" style="height: 180px; width: 190px; margin-bottom: -10px;">
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-10">
@@ -45,22 +59,25 @@
                                         <nav>
                                             <ul id="navigation">
                                                 <li><a href="{{path('app_front')}}">Home</a></li>
-                                                <li><a href="#">About</a></li>
+                                                <li><a href="">About</a></li>
                                                 <li><a href="{{path('app_competition_showFront')}}">competitions</a></li> 
-                                                <li><a href="#">schedule</a></li>
-                                                <li><a href="#">Abonnements</a></li>
-                                                <li><a href="#">Restaurants</a></li>
-                                                <!--<li><a href="blog.html">Blog</a>
+                                           <li><a>Salle</a>
                                                     <ul class="submenu">
-                                                        <li><a href="blog.html">Blog</a></li>
-                                                        <li><a href="blog_details.html">Blog Details</a></li>
-                                                        <li><a href="elements.html">Element</a></li>
+                                                        <li><a href="/planning/crud/viewPlanning">Planning</a></li>
+                                                        <li><a href="/cours/crud/viewCours">Cours</a></li>
+                                                        <li><a href="/activite/crud/viewActivite">Activités</a></li>
                                                     </ul>
-                                                </li>-->
+                                                </li>
+                                                <li><a href="">Abonnements</a></li>
+                                                <li><a href="">Restaurants</a></li>
+                                                <li><a href="">Materiaux</a></li>
                                                 <li><a href="">Contact</a></li>
                                             </ul>
                                         </nav>
                                     </div>
+                                    {# <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                        <a href="" class="btn header-btn">Became A Member</a>
+                                    </div> #}
                                 </div>
                             </div>
                             <!-- Mobile Menu -->
@@ -94,7 +111,7 @@
                                     <h4>ENERGYBOX | CrossFit Center</h4>
                                     <ul>
                                         <li><a href="">About Us</a></li>
-                                        <li><a href="">Competitions</a></li>
+                                        <li><a href="{{path('app_competition_showFront')}}">Competitions</a></li>
                                         <li><a href=""> Press & Blog</a></li>
                                         <li><a href=""> Privacy Policy</a></li>
                                     </ul>

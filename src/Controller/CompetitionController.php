@@ -90,27 +90,17 @@ class CompetitionController extends AbstractController
             $competition->setEtatCompetition("disponible");
             $competition->setNbrMaxInscrit($competition->getNbrMaxInscrit()-1);
             $competition->setNbrParticipant($competition->getNbrParticipant()+1);
-            // $competition->setIdParticipant($competition->getIdCompetition()); => hetha attribut lazem nziidou: jointure houa w wel user => one to many (many: competition, one: user)
-            // + faza okhra: ken l $competition->getIdUser.getIdCompetition==IdCompetition lii tnezlit aliha fel reserver => tjih interface t9ollou rak déjà inscrit fel competetion heki mayssir chay fel base.
-            // fel ticket, nzid attribut clé etranger fih idUser yetestoka fih idUser w ta3mel kenou not null (fih idCompetetion)=> tlaweej ala ticket bl id taa l competition fiha id user null sinon tjiih l'alerte
+            $entityManager->persist($competition);
+            $entityManager->flush();
         }
-        else
-        {
+        else      
             $competition->setEtatCompetition("non disponible");
-        }
-
         if (($competition->getEtatCompetition() == 'non disponible')||($competition->getNbrMaxInscrit() == 0)||($competition->getDateCompetition()<$now)) 
         {
             return $this->render('competition/notAvailable.html.twig');
         }
         else
         return $this->redirectToRoute('app_competition_Front', ['id' => $competition->getId()]);
-        $entityManager->persist($competition);
-        $entityManager->flush();
-        // return $this->render('competition/showFront.html.twig', [
-        //     'competition' => $competition,
-        // ]);
-
     }
 
 

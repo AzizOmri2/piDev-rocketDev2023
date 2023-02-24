@@ -67,7 +67,7 @@ class __TwigTemplate_044716c565a4ae707e1887fb48f484c1 extends Template
 
         // line 3
         $this->displayBlock('body', $context, $blocks);
-        // line 49
+        // line 66
         echo "          </div>
                                 <!-- END WHITE BACKGROUND-->
                             </div>
@@ -77,7 +77,7 @@ class __TwigTemplate_044716c565a4ae707e1887fb48f484c1 extends Template
                         <div class=\"row\">
                             <div class=\"col-md-12\">
                                 <div class=\"copyright\">
-                                    <p>Copyright © 2023 EnergyBox. All rights reserved. Template by <a href=\"https://EnergyBox.com\">Colorlib</a>.</p>
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved.</p>
                                 </div>
                             </div>
                         </div>
@@ -126,65 +126,83 @@ class __TwigTemplate_044716c565a4ae707e1887fb48f484c1 extends Template
     <table class=\"table\">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>DescriptionTicket</th>
-                <th>ticket pour Competition</th>
-                <th>actions</th>
+                ";
+        // line 23
+        echo "                <th>Description De La Ticket</th>
+                <th>Ticket Pour Competition</th>
+                <th>Ticket Pour la date: </th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         ";
-        // line 29
+        // line 30
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["tickets"]) || array_key_exists("tickets", $context) ? $context["tickets"] : (function () { throw new RuntimeError('Variable "tickets" does not exist.', 29, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["tickets"]) || array_key_exists("tickets", $context) ? $context["tickets"] : (function () { throw new RuntimeError('Variable "tickets" does not exist.', 30, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["ticket"]) {
-            // line 30
-            echo "            <tr>
-                <td>";
             // line 31
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 31), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 32
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["ticket"], "descriptionTicket", [], "any", false, false, false, 32), "html", null, true);
-            echo "</td>
-                <td>";
+            echo "            <tr>
+                ";
             // line 33
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "competition", [], "any", false, false, false, 33), "nomCompetition", [], "any", false, false, false, 33), "html", null, true);
+            echo "                <td>";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["ticket"], "descriptionTicket", [], "any", false, false, false, 33), "html", null, true);
+            echo "</td>
+                <td>";
+            // line 34
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "competition", [], "any", false, false, false, 34), "nomCompetition", [], "any", false, false, false, 34), "html", null, true);
+            echo "</td>
+                <td>";
+            // line 35
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "competition", [], "any", false, false, false, 35), "dateCompetition", [], "any", false, false, false, 35), "Y-m-d"), "html", null, true);
             echo "</td>
                 <td>
+                 <a href=\"";
+            // line 37
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 37)]), "html", null, true);
+            echo "\">
+                <button class=\"item\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"Modifier\">
+                                                            <i class=\"zmdi zmdi-edit\"></i>
+                                                         
+                                                        </button> </a>
+                   <br>
                     <a href=\"";
-            // line 35
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_show", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 35)]), "html", null, true);
-            echo "\">show</a>
-                    <a href=\"";
-            // line 36
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 36)]), "html", null, true);
-            echo "\">edit</a>
-                </td>
+            // line 43
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_show", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 43)]), "html", null, true);
+            echo "\">
+                 <button class=\"item\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"afficher\">
+                                                            <i class=\"zmdi zmdi-more\"></i>
+                                                         
+                                                        </button>   </a>
+                    ";
+            // line 50
+            echo "                </td>
             </tr>
         ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 40
+            // line 53
             echo "            <tr>
-                <td colspan=\"3\">no records found</td>
+                <td colspan=\"3\">Pas de tickets crées</td>
             </tr>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['ticket'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 44
+        // line 57
         echo "        </tbody>
     </table>
-
+    <br>    
+    <tr>
+        <td colspan=\"3\">Vous voulez ajouter une ticket?</td>
+    </tr>
     <a href=\"";
-        // line 47
+        // line 63
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_new");
-        echo "\">Create new</a>
+        echo "\" class=\"btn btn-primary\" style=\"background-color: #750000; color: white;\">Créer une nouvelle ticket</a>
+    
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -206,7 +224,7 @@ class __TwigTemplate_044716c565a4ae707e1887fb48f484c1 extends Template
 
     public function getDebugInfo()
     {
-        return array (  186 => 47,  181 => 44,  172 => 40,  163 => 36,  159 => 35,  154 => 33,  150 => 32,  146 => 31,  143 => 30,  138 => 29,  111 => 4,  101 => 3,  71 => 49,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  203 => 63,  195 => 57,  186 => 53,  179 => 50,  171 => 43,  162 => 37,  157 => 35,  153 => 34,  148 => 33,  145 => 31,  140 => 30,  131 => 23,  111 => 4,  101 => 3,  71 => 66,  69 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -232,32 +250,49 @@ class __TwigTemplate_044716c565a4ae707e1887fb48f484c1 extends Template
     <table class=\"table\">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>DescriptionTicket</th>
-                <th>ticket pour Competition</th>
-                <th>actions</th>
+                {# <th>Id</th> #}
+                <th>Description De La Ticket</th>
+                <th>Ticket Pour Competition</th>
+                <th>Ticket Pour la date: </th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for ticket in tickets %}
             <tr>
-                <td>{{ ticket.id }}</td>
+                {# <td>{{ ticket.id }}</td> #}
                 <td>{{ ticket.descriptionTicket }}</td>
                 <td>{{ ticket.competition.nomCompetition }}</td>
+                <td>{{ ticket.competition.dateCompetition|date('Y-m-d') }}</td>
                 <td>
-                    <a href=\"{{ path('app_ticket_show', {'id': ticket.id}) }}\">show</a>
-                    <a href=\"{{ path('app_ticket_edit', {'id': ticket.id}) }}\">edit</a>
+                 <a href=\"{{ path('app_ticket_edit', {'id': ticket.id}) }}\">
+                <button class=\"item\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"Modifier\">
+                                                            <i class=\"zmdi zmdi-edit\"></i>
+                                                         
+                                                        </button> </a>
+                   <br>
+                    <a href=\"{{ path('app_ticket_show', {'id': ticket.id}) }}\">
+                 <button class=\"item\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"afficher\">
+                                                            <i class=\"zmdi zmdi-more\"></i>
+                                                         
+                                                        </button>   </a>
+                    {# <a href=\"{{ path('app_ticket_show', {'id': ticket.id}) }}\"><class=\"btn btn-primary\">Consulter</a>
+                    <a href=\"{{ path('app_ticket_edit', {'id': ticket.id}) }}\"><class=\"btn btn-primary\">Modifier</a> #}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan=\"3\">no records found</td>
+                <td colspan=\"3\">Pas de tickets crées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href=\"{{ path('app_ticket_new') }}\">Create new</a>
+    <br>    
+    <tr>
+        <td colspan=\"3\">Vous voulez ajouter une ticket?</td>
+    </tr>
+    <a href=\"{{ path('app_ticket_new') }}\" class=\"btn btn-primary\" style=\"background-color: #750000; color: white;\">Créer une nouvelle ticket</a>
+    
 {% endblock %}
           </div>
                                 <!-- END WHITE BACKGROUND-->
@@ -268,7 +303,7 @@ class __TwigTemplate_044716c565a4ae707e1887fb48f484c1 extends Template
                         <div class=\"row\">
                             <div class=\"col-md-12\">
                                 <div class=\"copyright\">
-                                    <p>Copyright © 2023 EnergyBox. All rights reserved. Template by <a href=\"https://EnergyBox.com\">Colorlib</a>.</p>
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved.</p>
                                 </div>
                             </div>
                         </div>

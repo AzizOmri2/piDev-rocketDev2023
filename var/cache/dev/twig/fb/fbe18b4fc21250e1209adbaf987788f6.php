@@ -104,12 +104,12 @@ class __TwigTemplate_4a1bc2c213c6ace924d42f3511514022 extends Template
             <div align=\"center\" class=\"card-footer\">
                 <button class=\"btn btn-outline-secondary\">";
         // line 32
-        echo twig_escape_filter($this->env, ((array_key_exists("button_label", $context)) ? (_twig_default_filter((isset($context["button_label"]) || array_key_exists("button_label", $context) ? $context["button_label"] : (function () { throw new RuntimeError('Variable "button_label" does not exist.', 32, $this->source); })()), "Save")) : ("Save")), "html", null, true);
+        echo twig_escape_filter($this->env, ((array_key_exists("button_label", $context)) ? (_twig_default_filter((isset($context["button_label"]) || array_key_exists("button_label", $context) ? $context["button_label"] : (function () { throw new RuntimeError('Variable "button_label" does not exist.', 32, $this->source); })()), "Enregistrer")) : ("Enregistrer")), "html", null, true);
         echo "</button>
                 <button class=\"btn btn-outline-secondary\"><a href=\"";
         // line 33
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_index");
-        echo "\">Go To List</a></button>
+        echo "\">Retour à la Liste</a></button>
             </div>
         ";
         // line 35
@@ -173,8 +173,8 @@ class __TwigTemplate_4a1bc2c213c6ace924d42f3511514022 extends Template
             </div>
         
             <div align=\"center\" class=\"card-footer\">
-                <button class=\"btn btn-outline-secondary\">{{ button_label|default('Save') }}</button>
-                <button class=\"btn btn-outline-secondary\"><a href=\"{{ path('app_ticket_index') }}\">Go To List</a></button>
+                <button class=\"btn btn-outline-secondary\">{{ button_label|default('Enregistrer') }}</button>
+                <button class=\"btn btn-outline-secondary\"><a href=\"{{ path('app_ticket_index') }}\">Retour à la Liste</a></button>
             </div>
         {{ form_end(form) }}
     </div>

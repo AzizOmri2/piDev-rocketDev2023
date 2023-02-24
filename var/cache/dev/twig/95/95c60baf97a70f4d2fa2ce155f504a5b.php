@@ -72,7 +72,7 @@ class __TwigTemplate_97c088bc819f748829a147748454285e extends Template
 ";
         // line 6
         $this->displayBlock('body', $context, $blocks);
-        // line 70
+        // line 76
         echo "
 
 
@@ -140,90 +140,93 @@ class __TwigTemplate_97c088bc819f748829a147748454285e extends Template
 
     <h1>Competitions:</h1>
 
-    <table class=\"table table-responsive\" style=\"width: 80%;\">
+     <div class=\"table-responsive m-b-40\">
+       <table class=\"table table-borderless table-data3\">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>NomCompetition</th>
-                <th>FraisCompetition</th>
-                <th>DateCompetition</th>
-                <th>NbrMaxInscrit</th>
-                <th>EtatCompetition</th>
-                <th>actions</th>
+                ";
+        // line 32
+        echo "                <th>Nom De La Competition</th>
+                <th>Frais De La Competition</th>
+                <th>Date De Competition</th>
+                <th>Nombre Maximum D'Inscrit</th>
+                <th>Etat De La Competition</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         ";
-        // line 40
+        // line 41
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["competitions"]) || array_key_exists("competitions", $context) ? $context["competitions"] : (function () { throw new RuntimeError('Variable "competitions" does not exist.', 40, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["competitions"]) || array_key_exists("competitions", $context) ? $context["competitions"] : (function () { throw new RuntimeError('Variable "competitions" does not exist.', 41, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["competition"]) {
-            // line 41
-            echo "            <tr>
-                <td>";
             // line 42
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "id", [], "any", false, false, false, 42), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 43
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "nomCompetition", [], "any", false, false, false, 43), "html", null, true);
-            echo "</td>
-                <td>";
+            echo "            <tr>
+                ";
             // line 44
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "fraisCompetition", [], "any", false, false, false, 44), "html", null, true);
+            echo "                <td>";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "nomCompetition", [], "any", false, false, false, 44), "html", null, true);
             echo "</td>
                 <td>";
             // line 45
-            ((twig_get_attribute($this->env, $this->source, $context["competition"], "dateCompetition", [], "any", false, false, false, 45)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "dateCompetition", [], "any", false, false, false, 45), "Y-m-d"), "html", null, true))) : (print ("")));
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "fraisCompetition", [], "any", false, false, false, 45), "html", null, true);
             echo "</td>
                 <td>";
             // line 46
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "nbrMaxInscrit", [], "any", false, false, false, 46), "html", null, true);
+            ((twig_get_attribute($this->env, $this->source, $context["competition"], "dateCompetition", [], "any", false, false, false, 46)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "dateCompetition", [], "any", false, false, false, 46), "Y-m-d"), "html", null, true))) : (print ("")));
             echo "</td>
                 <td>";
             // line 47
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "etatCompetition", [], "any", false, false, false, 47), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "nbrMaxInscrit", [], "any", false, false, false, 47), "html", null, true);
+            echo "</td>
+                <td>";
+            // line 48
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["competition"], "etatCompetition", [], "any", false, false, false, 48), "html", null, true);
             echo "</td>
                 <td>
                     <div align=\"center\" class=\"card-footer\">
-                        <button class=\"btn btn-outline-secondary\">
-                            <a href=\"";
+                         <a href=\"";
             // line 51
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_show", ["id" => twig_get_attribute($this->env, $this->source, $context["competition"], "id", [], "any", false, false, false, 51)]), "html", null, true);
-            echo "\">show</a>
-                        </button>
-                        ";
-            // line 54
-            echo "                        <a href=\"";
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["competition"], "id", [], "any", false, false, false, 54)]), "html", null, true);
-            echo "\">edit</a>
-                        ";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["competition"], "id", [], "any", false, false, false, 51)]), "html", null, true);
+            echo "\">
+                            <button class=\"item\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"Modifier\">
+                                <i class=\"zmdi zmdi-edit\"></i>                                
+                            </button> </a>
+                   <br>
+                        <a href=\"";
             // line 56
-            echo "                    </div>
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_show", ["id" => twig_get_attribute($this->env, $this->source, $context["competition"], "id", [], "any", false, false, false, 56)]), "html", null, true);
+            echo "\">
+                            <button class=\"item\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"Afficher\">
+                                <i class=\"zmdi zmdi-more\"></i>                                        
+                            </button></a>
+                    </div>
                 </td>
             </tr>
         ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 60
+            // line 64
             echo "            <tr>
-                <td colspan=\"7\">no records found</td>
+                <td colspan=\"7\">Y a pas de competitions pour le moment</td>
             </tr>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['competition'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 64
+        // line 68
         echo "        </tbody>
     </table>
+    <tr>
+        <td colspan=\"7\"> Vous souhaitez de créer une nouvelle competition ?</td>
     <button class=\"btn btn-outline-secondary\">
         <a href=\"";
-        // line 67
+        // line 73
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_new");
-        echo "\">Create new</a>
+        echo "\">Nouvelle compétition</a>
     </button>
 ";
         
@@ -246,7 +249,7 @@ class __TwigTemplate_97c088bc819f748829a147748454285e extends Template
 
     public function getDebugInfo()
     {
-        return array (  225 => 67,  220 => 64,  211 => 60,  203 => 56,  198 => 54,  193 => 51,  186 => 47,  182 => 46,  178 => 45,  174 => 44,  170 => 43,  166 => 42,  163 => 41,  158 => 40,  123 => 7,  113 => 6,  76 => 70,  74 => 6,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  228 => 73,  221 => 68,  212 => 64,  199 => 56,  191 => 51,  185 => 48,  181 => 47,  177 => 46,  173 => 45,  168 => 44,  165 => 42,  160 => 41,  149 => 32,  123 => 7,  113 => 6,  76 => 76,  74 => 6,  69 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -277,22 +280,23 @@ class __TwigTemplate_97c088bc819f748829a147748454285e extends Template
 
     <h1>Competitions:</h1>
 
-    <table class=\"table table-responsive\" style=\"width: 80%;\">
+     <div class=\"table-responsive m-b-40\">
+       <table class=\"table table-borderless table-data3\">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>NomCompetition</th>
-                <th>FraisCompetition</th>
-                <th>DateCompetition</th>
-                <th>NbrMaxInscrit</th>
-                <th>EtatCompetition</th>
-                <th>actions</th>
+                {# <th>Id</th> #}
+                <th>Nom De La Competition</th>
+                <th>Frais De La Competition</th>
+                <th>Date De Competition</th>
+                <th>Nombre Maximum D'Inscrit</th>
+                <th>Etat De La Competition</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for competition in competitions %}
             <tr>
-                <td>{{ competition.id }}</td>
+                {# <td>{{ competition.id }}</td> #}
                 <td>{{ competition.nomCompetition }}</td>
                 <td>{{ competition.fraisCompetition }}</td>
                 <td>{{ competition.dateCompetition ? competition.dateCompetition|date('Y-m-d') : '' }}</td>
@@ -300,24 +304,29 @@ class __TwigTemplate_97c088bc819f748829a147748454285e extends Template
                 <td>{{ competition.etatCompetition }}</td>
                 <td>
                     <div align=\"center\" class=\"card-footer\">
-                        <button class=\"btn btn-outline-secondary\">
-                            <a href=\"{{ path('app_competition_show', {'id': competition.id}) }}\">show</a>
-                        </button>
-                        {# <button class=\"btn btn-outline-secondary\"> #}
-                        <a href=\"{{ path('app_competition_edit', {'id': competition.id}) }}\">edit</a>
-                        {# </button> #}
+                         <a href=\"{{ path('app_competition_edit', {'id': competition.id}) }}\">
+                            <button class=\"item\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"Modifier\">
+                                <i class=\"zmdi zmdi-edit\"></i>                                
+                            </button> </a>
+                   <br>
+                        <a href=\"{{ path('app_competition_show', {'id': competition.id}) }}\">
+                            <button class=\"item\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"Afficher\">
+                                <i class=\"zmdi zmdi-more\"></i>                                        
+                            </button></a>
                     </div>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan=\"7\">no records found</td>
+                <td colspan=\"7\">Y a pas de competitions pour le moment</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <tr>
+        <td colspan=\"7\"> Vous souhaitez de créer une nouvelle competition ?</td>
     <button class=\"btn btn-outline-secondary\">
-        <a href=\"{{ path('app_competition_new') }}\">Create new</a>
+        <a href=\"{{ path('app_competition_new') }}\">Nouvelle compétition</a>
     </button>
 {% endblock %}
 

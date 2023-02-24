@@ -67,7 +67,7 @@ class __TwigTemplate_b5dfc07f94cb8d5c898c53257a0ab82c extends Template
 
         // line 3
         $this->displayBlock('body', $context, $blocks);
-        // line 40
+        // line 41
         echo "          </div>
                                 <!-- END WHITE BACKGROUND-->
                             </div>
@@ -77,7 +77,7 @@ class __TwigTemplate_b5dfc07f94cb8d5c898c53257a0ab82c extends Template
                         <div class=\"row\">
                             <div class=\"col-md-12\">
                                 <div class=\"copyright\">
-                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href=\"https://colorlib.com\">Colorlib</a>.</p>
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved. Template by <a href=\"https://EnergyBox.com\">EnergyBox</a>.</p>
                                 </div>
                             </div>
                         </div>
@@ -147,15 +147,16 @@ class __TwigTemplate_b5dfc07f94cb8d5c898c53257a0ab82c extends Template
     <a href=\"";
         // line 34
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_index");
-        echo "\">back to list</a>
-
+        echo "\"><class=\"btn btn-primary\">back to list</a>
     <a href=\"";
-        // line 36
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 36, $this->source); })()), "id", [], "any", false, false, false, 36)]), "html", null, true);
-        echo "\">edit</a>
-
+        // line 35
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 35, $this->source); })()), "id", [], "any", false, false, false, 35)]), "html", null, true);
+        echo "\">
+    <button class=\"item\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"Modifier\">
+            <i class=\"zmdi zmdi-edit\"></i>                                                       
+    </button> </a>
     ";
-        // line 38
+        // line 39
         echo twig_include($this->env, $context, "ticket/_delete_form.html.twig");
         echo "
 ";
@@ -179,7 +180,7 @@ class __TwigTemplate_b5dfc07f94cb8d5c898c53257a0ab82c extends Template
 
     public function getDebugInfo()
     {
-        return array (  159 => 38,  154 => 36,  149 => 34,  141 => 29,  134 => 25,  111 => 4,  101 => 3,  71 => 40,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  160 => 39,  153 => 35,  149 => 34,  141 => 29,  134 => 25,  111 => 4,  101 => 3,  71 => 41,  69 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -217,10 +218,11 @@ class __TwigTemplate_b5dfc07f94cb8d5c898c53257a0ab82c extends Template
         </tbody>
     </table>
 
-    <a href=\"{{ path('app_ticket_index') }}\">back to list</a>
-
-    <a href=\"{{ path('app_ticket_edit', {'id': ticket.id}) }}\">edit</a>
-
+    <a href=\"{{ path('app_ticket_index') }}\"><class=\"btn btn-primary\">back to list</a>
+    <a href=\"{{ path('app_ticket_edit', {'id': ticket.id}) }}\">
+    <button class=\"item\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"Modifier\">
+            <i class=\"zmdi zmdi-edit\"></i>                                                       
+    </button> </a>
     {{ include('ticket/_delete_form.html.twig') }}
 {% endblock %}
           </div>
@@ -232,7 +234,7 @@ class __TwigTemplate_b5dfc07f94cb8d5c898c53257a0ab82c extends Template
                         <div class=\"row\">
                             <div class=\"col-md-12\">
                                 <div class=\"copyright\">
-                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href=\"https://colorlib.com\">Colorlib</a>.</p>
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved. Template by <a href=\"https://EnergyBox.com\">EnergyBox</a>.</p>
                                 </div>
                             </div>
                         </div>

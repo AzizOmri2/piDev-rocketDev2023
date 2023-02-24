@@ -1,4 +1,5 @@
 {% extends 'baseBack.html.twig' %}
+{% block title %}Competition{% endblock %}
 {% block content %}
 {% block body %}
 
@@ -13,60 +14,43 @@
                             <div class="col-md-12">
                                 <!-- START WHITE BACKGROUND-->
                                 <div class="map-data m-b-40">
-
-<title>Competition</title>
-    <h1>Competition</h1>
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ competition.id }}</td>
-            </tr>
-            <tr>
-                <th>NomCompetition</th>
-                <td>{{ competition.nomCompetition }}</td>
-            </tr>
-            <tr>
-                <th>FraisCompetition</th>
-                <td>{{ competition.fraisCompetition }}</td>
-            </tr>
-            <tr>
-                <th>DateCompetition</th>
-                <td>{{ competition.dateCompetition ? competition.dateCompetition|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>NbrMaxInscrit</th>
-                <td>{{ competition.nbrMaxInscrit }}</td>
-            </tr>
-            <tr>
-                <th>EtatCompetition</th>
-                <td>{{ competition.etatCompetition }}</td>
-            </tr>
-
-            <tr>
-                <th>Nombre de participants</th>
-                <td>{{ competition.nbrParticipant }}</td>
-        </tbody>
-    </table>
-               
-    <div align="center" class="card-footer">               
-        
-        {{ include('competition/_delete_form.html.twig') }}
-        {# <button class="btn btn-outline-secondary"><a href="{{ path('app_competition_delete',{'id': competition.id}) }}">Supprimer</a></button> #}
-        <button class="btn btn-outline-secondary"><a href="{{ path('app_competition_edit', {'id': competition.id}) }}">Modifier</a></button>
-        <button class="btn btn-outline-secondary"><a href="{{ path('app_competition_index') }}">Retour à La Liste</a></button>
-        
-    </div>
-
-{% endblock %}
-
-
+                                    <title>Competition</title>
+                                    <h1>Competition</h1>
+                                    <div class="table-responsive m-b-40">
+                                            <table class="table table-borderless table-data3">
+                                                <thead>
+                                                    <tr>
+                                                        {# <th>Id</th> #}
+                                                        <th>Nom De La Competition</th>
+                                                        <th>Frais De La Competition</th>
+                                                        <th>Date De La Competition</th>
+                                                        <th>Nombre Maximum D'Inscrit</th>
+                                                        <th>Etat De La Competition</th>
+                                                        <th>Nombre De Participants</th>     
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {# <td>{{ competition.id }}</td> #}
+                                                    <td>{{ competition.nomCompetition }}</td>
+                                                    <td>{{ competition.fraisCompetition }}</td>
+                                                    <td>{{ competition.dateCompetition ? competition.dateCompetition|date('Y-m-d') : '' }}</td>
+                                                    <td>{{ competition.nbrMaxInscrit }}</td>
+                                                    <td>{{ competition.etatCompetition }}</td>
+                                                    <td>{{ competition.nbrParticipant }}</td>
+                                                </tbody>     
+                                            </table>
+                                            <div align="center" class="card-footer">                     
+                                                {{ include('competition/_delete_form.html.twig') }}
+                                                {# <button class="btn btn-outline-secondary"><a href="{{ path('app_competition_delete',{'id': competition.id}) }}">Supprimer</a></button> #}
+                                                <button class="btn btn-outline-secondary"><a href="{{ path('app_competition_edit', {'id': competition.id}) }}">Modifier</a></button>
+                                                <button class="btn btn-outline-secondary"><a href="{{ path('app_competition_index') }}">Retour à La Liste</a></button>     
+                                            </div>
+                                        </div>  
+                                    </div>
                                 </div>
-                                <!-- END WHITE BACKGROUND-->
-                            </div>
-                        </div>
-                        
-                        
+                    
+        <!-- END PAGE CONTAINER-->                       
+{% endblock %}                
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">

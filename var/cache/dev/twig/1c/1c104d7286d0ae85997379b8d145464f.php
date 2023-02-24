@@ -93,7 +93,7 @@ class __TwigTemplate_e53bf0568afc3c6f7b8d88bf1515e28e extends Template
                     <div class=\"row\">
                         <div class=\"col-xl-12\">
                             <div class=\"hero-cap hero-cap2 pt-70 text-center\">
-                                <h2>Cette Competition n'est pas disponible</h2>
+                                <h2>Cette Competition n'est pas disponible pour le moment</h2>
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,7 @@ class __TwigTemplate_e53bf0568afc3c6f7b8d88bf1515e28e extends Template
                     <div class=\"row\">
                         <div class=\"col-xl-12\">
                             <div class=\"hero-cap hero-cap2 pt-70 text-center\">
-                                <h2>Cette Competition n'est pas disponible</h2>
+                                <h2>Cette Competition n'est pas disponible pour le moment</h2>
                             </div>
                         </div>
                     </div>

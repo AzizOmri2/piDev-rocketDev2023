@@ -26,6 +26,7 @@ class __TwigTemplate_9d60aa9c30915534b5f96ba26c40b5d2 extends Template
 
         $this->blocks = [
             'body' => [$this, 'block_body'],
+            'tache' => [$this, 'block_tache'],
         ];
     }
 
@@ -65,6 +66,25 @@ class __TwigTemplate_9d60aa9c30915534b5f96ba26c40b5d2 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
+        $this->displayBlock('tache', $context, $blocks);
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+    }
+
+    public function block_tache($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "tache"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "tache"));
+
+        // line 5
         echo "    <body>
     <div class=\"slider-area position-relative\">
         <div class=\"slider-active\">
@@ -73,11 +93,11 @@ class __TwigTemplate_9d60aa9c30915534b5f96ba26c40b5d2 extends Template
                     <div class=\"row\">
                         <div class=\"col-xl-7 col-lg-9 col-md-8 col-sm-9\">
                             <div class=\"hero__caption\">
-                                <span data-animation=\"fadeInLeft\" data-delay=\"0.1s\">with EnergyBox</span>
-                                <h1 data-animation=\"fadeInLeft\" data-delay=\"0.4s\">BUILD PERFECT BODY<br>
-                                    SHAPE FOR GOOD AND<br>
-                                    HEALTHY LIFE ..</h1>
-                                <a href=\"from.html\" class=\"btn hero-btn\" data-animation=\"fadeInLeft\" data-delay=\"0.8s\">became a member</a>
+                                <span data-animation=\"fadeInLeft\" data-delay=\"0.1s\">Avec EnergyBox</span>
+                                <h1 data-animation=\"fadeInLeft\" data-delay=\"0.4s\">Vous allez voir la vie AUTREMENT<br>
+                                    vous allez découvrir Le Monde du<br>
+                                    CROSSFIT ..</h1>
+                                <a href=\"#\" class=\"btn hero-btn\" data-animation=\"fadeInLeft\" data-delay=\"0.8s\">Créer un compte</a>
                             </div>
                         </div>
                     </div>
@@ -85,14 +105,65 @@ class __TwigTemplate_9d60aa9c30915534b5f96ba26c40b5d2 extends Template
             </div>-->
             <!-- Single Slider-->
         </div>
-        <!-- Video icon -->
-        <div class=\"video-icon\">
-            <a class=\"popup-video btn-icon\" href=\"https://www.youtube.com/watch?v=up68UAfH0d0\"><i class=\"fas fa-play\"></i></a>
-        </div>
     </div>
-    <div ><h1>hi</h1></div>
-
+        <section class=\"about-area2 testimonial-area section-padding30 fix\">
+            <div class=\"container\">
+                <div class=\"row align-items-center\">
+                    <div class=\"col-lg-5 col-md-11 col-sm-11\">
+                        <!-- about-img -->
+                        <div class=\"about-img2\">
+                            <img src=\"assets/img/gallery/about2.png\" alt=\"\">
+                            <!-- Shape -->
+                            <div class=\"shape-qutaion d-none d-sm-block\">
+                                <img src=\"assets/img//gallery/qutaion.png\" alt=\"\">
+                            </div>
+                        </div>
+                    </div>
+                    <div class=\"col-lg-6 col-md-9 col-sm-9\">
+                        <div class=\"about-caption\">
+      
+                            <!-- Section Tittle -->
+                            <div class=\"section-tittle mb-55\">
+                                <span>Découvrez votre monde chez nous </span>
+                                <h2></h2>
+                            </div>
+                            <!-- Testimonial Start -->
+                            <div class=\"h1-testimonial-active\">
+                                <!-- Single Testimonial -->
+                                <div class=\"single-testimonial\">
+                                    <div class=\"testimonial-caption\">
+                                        <p>Si vous êtes passionné par un sport en particulier, réserver une compétition peut être une excellente façon de vous motiver à vous entraîner et à vous améliorer.</p>
+                                    </div>
+                                </div>
+                                <!-- Single Testimonial -->
+                                <div class=\"single-testimonial\">
+                                    <div class=\"testimonial-caption\">
+                                        <p>Participer à une compétition peut vous donner l'occasion de vous mettre au défi et de vous fixer des objectifs personnels. Cela peut être une source de motivation pour vous entraîner et vous préparer.</p>
+                                    </div>
+                                </div>
+                                <div class=\"single-testimonial\">
+                                <div class=\"testimonial-caption\">
+                                    <p>Si vous êtes compétitif de nature, participer à une compétition peut être une excellente façon de tester vos compétences et de mesurer votre niveau par rapport aux autres.</p>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- Testimonial End -->
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class=\"header-right-btn f-right d-none d-lg-block ml-30\">
+                    <a href=\"";
+        // line 74
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_competition_showFront");
+        echo "\" class=\"btn header-btn\">Consulter les competitions</a>
+                </div>
+            </div>
+        </section>
+          
     </body>
+    
 
 ";
         
@@ -115,7 +186,7 @@ class __TwigTemplate_9d60aa9c30915534b5f96ba26c40b5d2 extends Template
 
     public function getDebugInfo()
     {
-        return array (  68 => 4,  58 => 3,  35 => 1,);
+        return array (  159 => 74,  88 => 5,  69 => 4,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -123,6 +194,7 @@ class __TwigTemplate_9d60aa9c30915534b5f96ba26c40b5d2 extends Template
         return new Source("{% extends 'baseFront.html.twig' %}
 
 {% block body %}
+{% block tache %}
     <body>
     <div class=\"slider-area position-relative\">
         <div class=\"slider-active\">
@@ -131,11 +203,11 @@ class __TwigTemplate_9d60aa9c30915534b5f96ba26c40b5d2 extends Template
                     <div class=\"row\">
                         <div class=\"col-xl-7 col-lg-9 col-md-8 col-sm-9\">
                             <div class=\"hero__caption\">
-                                <span data-animation=\"fadeInLeft\" data-delay=\"0.1s\">with EnergyBox</span>
-                                <h1 data-animation=\"fadeInLeft\" data-delay=\"0.4s\">BUILD PERFECT BODY<br>
-                                    SHAPE FOR GOOD AND<br>
-                                    HEALTHY LIFE ..</h1>
-                                <a href=\"from.html\" class=\"btn hero-btn\" data-animation=\"fadeInLeft\" data-delay=\"0.8s\">became a member</a>
+                                <span data-animation=\"fadeInLeft\" data-delay=\"0.1s\">Avec EnergyBox</span>
+                                <h1 data-animation=\"fadeInLeft\" data-delay=\"0.4s\">Vous allez voir la vie AUTREMENT<br>
+                                    vous allez découvrir Le Monde du<br>
+                                    CROSSFIT ..</h1>
+                                <a href=\"#\" class=\"btn hero-btn\" data-animation=\"fadeInLeft\" data-delay=\"0.8s\">Créer un compte</a>
                             </div>
                         </div>
                     </div>
@@ -143,15 +215,64 @@ class __TwigTemplate_9d60aa9c30915534b5f96ba26c40b5d2 extends Template
             </div>-->
             <!-- Single Slider-->
         </div>
-        <!-- Video icon -->
-        <div class=\"video-icon\">
-            <a class=\"popup-video btn-icon\" href=\"https://www.youtube.com/watch?v=up68UAfH0d0\"><i class=\"fas fa-play\"></i></a>
-        </div>
     </div>
-    <div ><h1>hi</h1></div>
-
+        <section class=\"about-area2 testimonial-area section-padding30 fix\">
+            <div class=\"container\">
+                <div class=\"row align-items-center\">
+                    <div class=\"col-lg-5 col-md-11 col-sm-11\">
+                        <!-- about-img -->
+                        <div class=\"about-img2\">
+                            <img src=\"assets/img/gallery/about2.png\" alt=\"\">
+                            <!-- Shape -->
+                            <div class=\"shape-qutaion d-none d-sm-block\">
+                                <img src=\"assets/img//gallery/qutaion.png\" alt=\"\">
+                            </div>
+                        </div>
+                    </div>
+                    <div class=\"col-lg-6 col-md-9 col-sm-9\">
+                        <div class=\"about-caption\">
+      
+                            <!-- Section Tittle -->
+                            <div class=\"section-tittle mb-55\">
+                                <span>Découvrez votre monde chez nous </span>
+                                <h2></h2>
+                            </div>
+                            <!-- Testimonial Start -->
+                            <div class=\"h1-testimonial-active\">
+                                <!-- Single Testimonial -->
+                                <div class=\"single-testimonial\">
+                                    <div class=\"testimonial-caption\">
+                                        <p>Si vous êtes passionné par un sport en particulier, réserver une compétition peut être une excellente façon de vous motiver à vous entraîner et à vous améliorer.</p>
+                                    </div>
+                                </div>
+                                <!-- Single Testimonial -->
+                                <div class=\"single-testimonial\">
+                                    <div class=\"testimonial-caption\">
+                                        <p>Participer à une compétition peut vous donner l'occasion de vous mettre au défi et de vous fixer des objectifs personnels. Cela peut être une source de motivation pour vous entraîner et vous préparer.</p>
+                                    </div>
+                                </div>
+                                <div class=\"single-testimonial\">
+                                <div class=\"testimonial-caption\">
+                                    <p>Si vous êtes compétitif de nature, participer à une compétition peut être une excellente façon de tester vos compétences et de mesurer votre niveau par rapport aux autres.</p>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- Testimonial End -->
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class=\"header-right-btn f-right d-none d-lg-block ml-30\">
+                    <a href=\"{{path('app_competition_showFront')}}\" class=\"btn header-btn\">Consulter les competitions</a>
+                </div>
+            </div>
+        </section>
+          
     </body>
+    
 
+{% endblock %}
 {% endblock %}
 ", "test/index.html.twig", "C:\\Users\\Salima\\Desktop\\energyBox\\templates\\test\\index.html.twig");
     }

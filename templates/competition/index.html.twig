@@ -24,22 +24,23 @@
 
     <h1>Competitions:</h1>
 
-    <table class="table table-responsive" style="width: 80%;">
+     <div class="table-responsive m-b-40">
+       <table class="table table-borderless table-data3">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>NomCompetition</th>
-                <th>FraisCompetition</th>
-                <th>DateCompetition</th>
-                <th>NbrMaxInscrit</th>
-                <th>EtatCompetition</th>
-                <th>actions</th>
+                {# <th>Id</th> #}
+                <th>Nom De La Competition</th>
+                <th>Frais De La Competition</th>
+                <th>Date De Competition</th>
+                <th>Nombre Maximum D'Inscrit</th>
+                <th>Etat De La Competition</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for competition in competitions %}
             <tr>
-                <td>{{ competition.id }}</td>
+                {# <td>{{ competition.id }}</td> #}
                 <td>{{ competition.nomCompetition }}</td>
                 <td>{{ competition.fraisCompetition }}</td>
                 <td>{{ competition.dateCompetition ? competition.dateCompetition|date('Y-m-d') : '' }}</td>
@@ -47,24 +48,29 @@
                 <td>{{ competition.etatCompetition }}</td>
                 <td>
                     <div align="center" class="card-footer">
-                        <button class="btn btn-outline-secondary">
-                            <a href="{{ path('app_competition_show', {'id': competition.id}) }}">show</a>
-                        </button>
-                        {# <button class="btn btn-outline-secondary"> #}
-                        <a href="{{ path('app_competition_edit', {'id': competition.id}) }}">edit</a>
-                        {# </button> #}
+                         <a href="{{ path('app_competition_edit', {'id': competition.id}) }}">
+                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier">
+                                <i class="zmdi zmdi-edit"></i>                                
+                            </button> </a>
+                   <br>
+                        <a href="{{ path('app_competition_show', {'id': competition.id}) }}">
+                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Afficher">
+                                <i class="zmdi zmdi-more"></i>                                        
+                            </button></a>
                     </div>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Y a pas de competitions pour le moment</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <tr>
+        <td colspan="7"> Vous souhaitez de créer une nouvelle competition ?</td>
     <button class="btn btn-outline-secondary">
-        <a href="{{ path('app_competition_new') }}">Create new</a>
+        <a href="{{ path('app_competition_new') }}">Nouvelle compétition</a>
     </button>
 {% endblock %}
 

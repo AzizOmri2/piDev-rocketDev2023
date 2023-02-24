@@ -54,10 +54,10 @@
                         <div class="about-caption">
                             <!-- Section Tittle -->
                             <section class="services-area pt-100 pb-150 section-bg" data-background="{{ asset('frontOffice/img/gallery/section_bg01.png')}}" style="background-image: url(&quot;assets/img/gallery/section_bg01.png&quot;);">
-                            <div class="section-tittle section-tittle3 mb-35">
+                            <div class="section-tittle section-tittle3 mb-35"
                                 <span>Détail de la competition</span>
                                 <p class="mb-65 pera-bottom">
-                                    <h1>Competition {{ competition.nomCompetition }}</h1>
+                                    <h1>Competition  << {{ competition.nomCompetition }} >> </h1>
                                     
                                         <div > <b>Nom Competition: </b>
                                             <td>{{ competition.nomCompetition }}</td>
@@ -88,11 +88,13 @@
                               <a href="{{ path('app_ticket_Front', {'id': competition.id}) }}" class="btn"> Obtenir Ma Ticket </a>
                             {# <a href="app_ticket_Front" class="btn">Obtenir Ma Ticket</a> #}
                         </div>
+
                     </div>
                 </div>
             </div>
-        </section>
-        </section>
+                        </section>
+                </section>
+        
 
 {% endblock %}
 

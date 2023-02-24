@@ -67,7 +67,7 @@ class __TwigTemplate_3dbdf47e8aac37209278bad918296b4d extends Template
 
         // line 3
         $this->displayBlock('body', $context, $blocks);
-        // line 27
+        // line 26
         echo "
 
                                 </div>
@@ -79,7 +79,7 @@ class __TwigTemplate_3dbdf47e8aac37209278bad918296b4d extends Template
                         <div class=\"row\">
                             <div class=\"col-md-12\">
                                 <div class=\"copyright\">
-                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href=\"https://colorlib.com\">Colorlib</a>.</p>
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved. Template by <a href=\"https://EnergyBox.com\">EnergyBox</a>.</p>
                                 </div>
                             </div>
                         </div>
@@ -122,25 +122,21 @@ class __TwigTemplate_3dbdf47e8aac37209278bad918296b4d extends Template
                             <div class=\"col-md-12\">
                                 <!-- START WHITE BACKGROUND-->
                                 <div class=\"map-data m-b-40\">
-                            <title>Edit Ticket</title>
+                            <title>Modifier La Ticket</title>
 
 
-    <h1>Edit Ticket</h1>
+    <h1>Modifier La Ticket</h1>
 
     ";
         // line 21
-        echo twig_include($this->env, $context, "ticket/_form.html.twig", ["button_label" => "Update"]);
+        echo twig_include($this->env, $context, "ticket/_form.html.twig", ["button_label" => "Modifier"]);
         echo "
-
-    <a href=\"";
-        // line 23
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_index");
-        echo "\">back to list</a>
-
     ";
-        // line 25
-        echo twig_include($this->env, $context, "ticket/_delete_form.html.twig");
+        // line 23
+        echo "    ";
+        echo twig_include($this->env, $context, "ticket/_delete_form.html.twig", ["button_label" => "Supprimer"]);
         echo "
+
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -162,7 +158,7 @@ class __TwigTemplate_3dbdf47e8aac37209278bad918296b4d extends Template
 
     public function getDebugInfo()
     {
-        return array (  142 => 25,  137 => 23,  132 => 21,  113 => 4,  103 => 3,  71 => 27,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  136 => 23,  132 => 21,  113 => 4,  103 => 3,  71 => 26,  69 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -182,16 +178,15 @@ class __TwigTemplate_3dbdf47e8aac37209278bad918296b4d extends Template
                             <div class=\"col-md-12\">
                                 <!-- START WHITE BACKGROUND-->
                                 <div class=\"map-data m-b-40\">
-                            <title>Edit Ticket</title>
+                            <title>Modifier La Ticket</title>
 
 
-    <h1>Edit Ticket</h1>
+    <h1>Modifier La Ticket</h1>
 
-    {{ include('ticket/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ticket/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {# <a href=\"{{ path('app_ticket_index') }}\">back to list</a> #}
+    {{ include('ticket/_delete_form.html.twig', {'button_label': 'Supprimer'}) }}
 
-    <a href=\"{{ path('app_ticket_index') }}\">back to list</a>
-
-    {{ include('ticket/_delete_form.html.twig') }}
 {% endblock %}
 
 
@@ -204,7 +199,7 @@ class __TwigTemplate_3dbdf47e8aac37209278bad918296b4d extends Template
                         <div class=\"row\">
                             <div class=\"col-md-12\">
                                 <div class=\"copyright\">
-                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href=\"https://colorlib.com\">Colorlib</a>.</p>
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved. Template by <a href=\"https://EnergyBox.com\">EnergyBox</a>.</p>
                                 </div>
                             </div>
                         </div>

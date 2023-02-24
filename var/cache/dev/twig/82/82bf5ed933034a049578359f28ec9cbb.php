@@ -65,7 +65,7 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "EnergyBox |Competition";
+        echo "EnergyBox |Competitions";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -114,7 +114,7 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
                             </div>
                         </div>
                         <div class=\"col-xl-2 col-lg-2 col-md-3\">
-                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Les Competitions</a>
+                            <a href=\"viewFront\" class=\"btn wantToWork-btn f-right\">Les Competitions</a>
                         </div>
                     </div>
                 </div>
@@ -178,13 +178,17 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
               </div>
             
         
+
+
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['competition'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 71
-        echo "        
+        // line 73
+        echo "        </div>
+            </div>
+     </section>   
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -206,14 +210,14 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
 
     public function getDebugInfo()
     {
-        return array (  187 => 71,  173 => 63,  165 => 58,  161 => 57,  157 => 56,  153 => 55,  147 => 54,  143 => 52,  135 => 45,  131 => 44,  125 => 41,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  189 => 73,  173 => 63,  165 => 58,  161 => 57,  157 => 56,  153 => 55,  147 => 54,  143 => 52,  135 => 45,  131 => 44,  125 => 41,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'baseFront.html.twig' %}
-
-{% block title %}EnergyBox |Competition{% endblock %}
+{# {% block icon %}<link rel=\"icon\" type=\"image/png\" href=\"./frontOffice/img/logo/LogoGymBlack.png\">{% endblock %} #}
+{% block title %}EnergyBox |Competitions{% endblock %}
 
 {% block tache %}
     <main>
@@ -245,7 +249,7 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
                             </div>
                         </div>
                         <div class=\"col-xl-2 col-lg-2 col-md-3\">
-                            <a href=\"#\" class=\"btn wantToWork-btn f-right\">Les Competitions</a>
+                            <a href=\"viewFront\" class=\"btn wantToWork-btn f-right\">Les Competitions</a>
                         </div>
                     </div>
                 </div>
@@ -280,8 +284,12 @@ class __TwigTemplate_ecae5f1f64903b0745f45e492c4cdb63 extends Template
               </div>
             
         
+
+
         {% endfor %}
-        
+        </div>
+            </div>
+     </section>   
 {% endblock %}", "competition/viewFront.html.twig", "C:\\Users\\Salima\\Desktop\\energyBox\\templates\\competition\\viewFront.html.twig");
     }
 }
