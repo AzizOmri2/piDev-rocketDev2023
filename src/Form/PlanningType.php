@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use DateTime;
 
 
 class PlanningType extends AbstractType
@@ -17,7 +18,9 @@ class PlanningType extends AbstractType
     {
         $builder
             ->add('datePlanning', DateType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'html5'=>true,
+                'attr'=>['min'=>(new DateTime())->format('Y-m-d')],
             ])
             ->add('jourPlanning', ChoiceType::class, [
                 'choices' => [
