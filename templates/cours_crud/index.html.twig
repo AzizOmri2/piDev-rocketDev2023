@@ -2,7 +2,7 @@
 
 {% block title %}EnergyBox | Cours {% endblock %}
 
-{% block body%}
+{% block body %}
 
 <div class="map-data m-b-40">                                    
     <h3 class="title-3 m-b-30">
@@ -14,7 +14,6 @@
                     <td><strong>Résponsable</strong></td>
                     <td><strong>Age Minimale</strong></td>
                     <td><strong>Prix</strong></td>
-                    
                     <td></td>
                 </tr>
             </thead>
@@ -25,7 +24,6 @@
                     <td>{{ cour.nomCoach }}</td>
                     <td>{{ cour.ageMinCours }}</td>
                     <td>{{ cour.prixCours }}</td>
-                    
                     <td>
                         <button class="btn btn-outline-secondary"><a href="{{ path('app_cours_crud_show', {'id': cour.id}) }}">Afficher</a></button>
                         <button class="btn btn-outline-secondary"><a href="{{ path('app_cours_crud_edit', {'id': cour.id}) }}">Modifier</a></button>
@@ -43,7 +41,6 @@
             <br>
             <button class="btn btn-outline-secondary"><a href="{{ path('app_cours_crud_new') }}">Ajouter Cours</a></button>
         </div>
-    
 </div>
                                 
 {% endblock %}

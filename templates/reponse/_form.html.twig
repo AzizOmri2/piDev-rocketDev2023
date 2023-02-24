@@ -16,7 +16,7 @@
                     {{ form_label(form.pieceJointe,"Piéce Jointe :") }}
                 </div>
                 <div class="col-12 col-md-9">
-                    {{ form_widget(form.pieceJointe,{'attr':{'class':'form-control'}})}}
+                    {{ form_widget(form.pieceJointe,{'attr':{'class':'form-input'}})}}
                     {% if form_errors(form.pieceJointe) is not empty %}
                         <small class="form-text text-muted">{{ form_errors(form.pieceJointe) }}</small>
                     {% endif %}

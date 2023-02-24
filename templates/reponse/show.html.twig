@@ -4,6 +4,7 @@
 
 {% block body %}
 
+
     <table class="table">
         <tbody>
             <tr>
@@ -14,14 +15,22 @@
                 <td><strong>Objet</strong></td>
                 <td>{{ reponse.objetReponse }}</td>
             </tr>
-            <tr>
-                <td><strong>Date</strong></td>
-                <td>{{ reponse.dateReponse ? reponse.dateReponse|date('Y-m-d') : '' }}</td>
-            </tr>
+            {% if reponse.pieceJointe is not empty %}
             <tr>
                 <td><strong>Piéce Jointe</strong></td>
                 <td>{{ reponse.pieceJointe }}</td>
             </tr>
+            {% else %}
+            <tr>
+                <td><strong>Piéce Jointe</strong></td>
+                <td>Pas de Piece Jointe</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td><strong>Date</strong></td>
+                <td>{{ reponse.dateReponse ? reponse.dateReponse|date('Y-m-d') : '' }}</td>
+            </tr>
+            
         </tbody>
     </table>
     <br>

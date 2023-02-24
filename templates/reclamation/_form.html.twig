@@ -1,4 +1,4 @@
-<div class="col-lg-8 col-md-8">
+    <div class="col-lg-8 col-md-8">
     {{ form_start(form,{'attr':{'novalidate':'novalidate'}},{'abbr':{'class':'form-horizontal'}}) }}
         <div class="mt-10">
             <div class="input-group-icon mt-10">
@@ -26,9 +26,8 @@
                 {% endif %}
             </div>
         </div> 
-
-
-                                        
+    </div>
+    <div class="col-lg-8 col-md-8">                            
         <div class="mt-10">
             <div class="input-group-icon mt-10">
                 {{ form_widget(form.objetReclamation, {'attr':{'class':'single-input'}})}}
@@ -37,8 +36,8 @@
                 {% endif %}
             </div>
         </div>
-
-
+    </div>
+    <div class="col-lg-8 col-md-8"> 
         <div class="mt-10">
             <div class="input-group-icon mt-10">
                 {{ form_widget(form.texteReclamation, {'attr':{'class':'single-input'}})}}
@@ -47,10 +46,12 @@
                 {% endif %}
             </div>
         </div>
+    
 
         <div align="center">
             <br><br><br><br>
             <button class="btn">{{ button_label|default('Envoyer') }}</button>
         </div>
+    </div>
     {{ form_end(form) }}
 </div>

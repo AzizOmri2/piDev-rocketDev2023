@@ -32,7 +32,8 @@
                 <div class="single-cat single-cat2 text-center mb-50">
                     <div class="card-img">
                         <a href="{{ path('app_activite_crud_show_front', {'id': activite.id}) }}">
-                            <img class="card-img rounded-0" src="{{asset('./frontOffice/img/activite/' ~ activite.imageActivite )}}" alt="Image Introuvable">
+                            {% set img = activite.imageActivite %}
+                            <img class="card-img rounded-0" src="{{ asset(img) }}" alt="Erreur Import.">
                         </a>
                     </div>
                     <div class="cat-cap">

@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ReponseRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ReponseRepository::class)]
 class Reponse
@@ -14,15 +16,17 @@ class Reponse
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message:"Vous n'avez pas saisi l objet.")]
     #[ORM\Column(length: 255)]
     private ?string $objetReponse = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateReponse = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $pieceJointe = null;
 
+    #[Assert\NotBlank(message:"Vous n'avez pas saisi le contenu de la reponse.")]
     #[ORM\Column(length: 255)]
     private ?string $contenuReponse = null;
 

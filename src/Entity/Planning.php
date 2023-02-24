@@ -18,7 +18,6 @@ class Planning
     private ?int $id = null;
 
     #[Assert\NotBlank(message:"Vous n'avez pas saisi la date.")]
-    #[Assert\Date]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $datePlanning = null;
 

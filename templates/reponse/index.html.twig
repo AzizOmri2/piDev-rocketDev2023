@@ -13,7 +13,6 @@
                 <td><strong>Réc de MR</strong></td>
                 <td><strong>Objet</strong></td>
                 <td><strong>Date</strong></td>
-                <td><strong>Piéce Jointe</strong></td>
                 <td><strong>Contenu</strong></td>
                 <td></td>
             </tr>
@@ -24,7 +23,6 @@
                 <td>{{ reponse.reclamation.nomUserReclamation|upper}}</td>
                 <td>{{ reponse.objetReponse|striptags|slice(0, 15) }}</td>
                 <td>{{ reponse.dateReponse ? reponse.dateReponse|date('Y-m-d') : '' }}</td>
-                <td>{{ reponse.pieceJointe|striptags|slice(0, 15) }}</td>
                 <td>{{ reponse.contenuReponse|striptags|slice(0, 15) }}</td>
                 <td>
                     <button class="btn btn-outline-secondary"><a href="{{ path('app_reponse_show', {'id': reponse.id}) }}">Afficher</a></button>

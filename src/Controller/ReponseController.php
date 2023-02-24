@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Filesystem\Filesystem;
 use DateTime;
 
 #[Route('/reponse')]
@@ -27,10 +28,19 @@ class ReponseController extends AbstractController
     public function new(Request $request, ReponseRepository $reponseRepository,Reclamation $reclamation): Response
     {
         $reponse = new Reponse();
+        $filesystem = new Filesystem();
         $form = $this->createForm(ReponseType::class, $reponse);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $uploadedFile = $form->get('pieceJointe')->getData();
+            $formData =  $uploadedFile->getPathname();
+            $sourcePath = strval($formData);
+            $destinationPath = 'uploads/file'.$reponse->getObjetReponse().strval($reponse->getId()).'.txt';
+            $reponse->setPieceJointe($destinationPath);
+            $filesystem->copy($sourcePath, $destinationPath);
+
             $reponse->setDateReponse(new DateTime());
             $reponse->setReclamation($reclamation);
             $reponseRepository->save($reponse, true);
@@ -55,11 +65,23 @@ class ReponseController extends AbstractController
     #[Route('/{id}/edit', name: 'app_reponse_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reponse $reponse, ReponseRepository $reponseRepository): Response
     {
+        $filesystem = new Filesystem();
+        
         $form = $this->createForm(ReponseType::class, $reponse);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $uploadedFile = $form->get('pieceJointe')->getData();
+            $formData =  $uploadedFile->getPathname();
+            $sourcePath = strval($formData);
+            $destinationPath = 'uploads/file'.$reponse->getObjetReponse().strval($reponse->getId()).'.txt';
+            $reponse->setPieceJointe($destinationPath);
+            $filesystem->copy($sourcePath, $destinationPath);
+
+
             $reponseRepository->save($reponse, true);
+            
 
             return $this->redirectToRoute('app_reponse_index', [], Response::HTTP_SEE_OTHER);
         }
