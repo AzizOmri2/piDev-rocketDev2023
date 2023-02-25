@@ -7,13 +7,15 @@
 <div class="map-data m-b-40">                                    
     <h3 class="title-3 m-b-30">
         <i class="fas fa-table"></i>Gestion Cours</h3>
-        <table class="table">
+
+    <div class="table-responsive m-b-40">
+        <table class="table table-borderless table-data3">
             <thead>
                 <tr>
-                    <td><strong>Nom</strong></td>
-                    <td><strong>Résponsable</strong></td>
-                    <td><strong>Age Minimale</strong></td>
-                    <td><strong>Prix</strong></td>
+                    <td style="color: white;"><strong style="margin-left:30px">Nom</strong></td>
+                    <td style="color: white;"><strong style="margin-left:30px">Résponsable</strong></td>
+                    <td style="color: white;"><strong style="margin-left:30px">Age Minimale</strong></td>
+                    <td style="color: white;"><strong style="margin-left:30px">Prix</strong></td>
                     <td></td>
                 </tr>
             </thead>
@@ -21,18 +23,27 @@
                 {% for cour in cours %}
                 <tr>
                     <td>{{ cour.nomCours }}</td>
-                    <td>{{ cour.nomCoach }}</td>
-                    <td>{{ cour.ageMinCours }}</td>
-                    <td>{{ cour.prixCours }}</td>
+                    <td>Coach {{ cour.nomCoach }}</td>
+                    <td>{{ cour.ageMinCours }} ans</td>
+                    <td>{{ cour.prixCours }} DT</td>
                     <td>
-                        <button class="btn btn-outline-secondary"><a href="{{ path('app_cours_crud_show', {'id': cour.id}) }}">Afficher</a></button>
-                        <button class="btn btn-outline-secondary"><a href="{{ path('app_cours_crud_edit', {'id': cour.id}) }}">Modifier</a></button>
+                        <a href="{{ path('app_cours_crud_show', {'id': cour.id}) }}">
+                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Afficher">
+                                <i class="zmdi zmdi-eye"></i>                               
+                            </button>
+                        </a>
+                        &nbsp;&nbsp;
+                        <a href="{{ path('app_cours_crud_edit', {'id': cour.id}) }}">
+                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier">
+                                <i class="zmdi zmdi-edit"></i>                          
+                            </button>
+                        </a>
                         {{ include('cours_crud/_delete_form.html.twig') }}
                     </td>
                 </tr>
                     {% else %}
                     <tr>
-                        <td colspan="4">Pas de Cours.</td>
+                        <td colspan="8">Pas de Cours.</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -41,6 +52,7 @@
             <br>
             <button class="btn btn-outline-secondary"><a href="{{ path('app_cours_crud_new') }}">Ajouter Cours</a></button>
         </div>
+    </div>
 </div>
                                 
 {% endblock %}

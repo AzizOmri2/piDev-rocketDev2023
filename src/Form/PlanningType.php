@@ -34,7 +34,6 @@ class PlanningType extends AbstractType
                 ],
                 'placeholder' => 'Veuillez choisir le jour.',
             ])
-            ->add('heurePlanning')
             ->add('heurePlanning', ChoiceType::class, [
                 'choices' => [
                     '06 AM' => '6',
