@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Filesystem\Filesystem;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Knp\Component\Pager\PaginatorInterface;
+
 
 
 #[Route('/activite/crud')]
@@ -24,12 +27,25 @@ class ActiviteCrudController extends AbstractController
     }
 
     #[Route('/viewActivite', name: 'app_activite_crud_index_front', methods: ['GET'])]
-    public function viewActivite(ActiviteRepository $activiteRepository): Response
+    public function viewActivite(
+        ActiviteRepository $activiteRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response
     {
+        $data=$activiteRepository->findAll();
+
+        $activites=$paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            6
+        );
+
         return $this->render('activite_crud/view.html.twig', [
-            'activites' => $activiteRepository->findAll(),
+            'activites' => $activites,
         ]);
     }
+
 
     #[Route('/new', name: 'app_activite_crud_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ActiviteRepository $activiteRepository): Response
