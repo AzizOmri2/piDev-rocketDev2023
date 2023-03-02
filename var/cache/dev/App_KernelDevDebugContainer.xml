@@ -6584,6 +6584,13 @@
         <argument key="competitionRepository" type="service_closure" id="App\Repository\CompetitionRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.d08L1g2" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="normalizer" type="service_closure" id="serializer"/>
+        <argument key="repo" type="service_closure" id="App\Repository\CompetitionRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.hCM54HI" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6597,12 +6604,25 @@
         <argument key="competition" type="service_closure" id=".errored..service_locator.tz_cB8j.App\Entity\Competition"/>
       </argument>
     </service>
+    <service id=".service_locator.wr9s5g4" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="normalizer" type="service_closure" id="serializer"/>
+      </argument>
+    </service>
     <service id=".service_locator.D9Tu8.t" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="competition" type="service_closure" id=".errored..service_locator.D9Tu8.t.App\Entity\Competition"/>
         <argument key="competitionRepository" type="service_closure" id="App\Repository\CompetitionRepository"/>
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.8xmzJtu" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="competitionRepository" type="service_closure" id="App\Repository\CompetitionRepository"/>
+        <argument key="normalizer" type="service_closure" id="serializer"/>
       </argument>
     </service>
     <service id=".service_locator.5KifnRw" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -6618,10 +6638,25 @@
         <argument key="ticketRepository" type="service_closure" id="App\Repository\TicketRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.35TPXPG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="normalizer" type="service_closure" id="serializer"/>
+        <argument key="ticketRepository" type="service_closure" id="App\Repository\TicketRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.7Txv_C4" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="ticket" type="service_closure" id=".errored..service_locator.7Txv_C4.App\Entity\Ticket"/>
+      </argument>
+    </service>
+    <service id=".service_locator.tn3KEc." class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="normalizer" type="service_closure" id="serializer"/>
+        <argument key="ticket" type="service_closure" id=".errored..service_locator.tn3KEc..App\Entity\Ticket"/>
+        <argument key="tr" type="service_closure" id="App\Repository\TicketRepository"/>
       </argument>
     </service>
     <service id=".service_locator.4VQ70NZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -6631,41 +6666,69 @@
         <argument key="ticketRepository" type="service_closure" id="App\Repository\TicketRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.5I6j2Jw" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.aovDCQ_" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="normalizer" type="service_closure" id="serializer"/>
+        <argument key="ticket" type="service_closure" id=".errored..service_locator.aovDCQ_.App\Entity\Ticket"/>
+        <argument key="ticketRepository" type="service_closure" id="App\Repository\TicketRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.Qqhq7MG" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\CompetitionController::FrontView" type="service_closure" id=".service_locator.hCM54HI"/>
         <argument key="App\Controller\CompetitionController::delete" type="service_closure" id=".service_locator.5KifnRw"/>
+        <argument key="App\Controller\CompetitionController::deleteJson" type="service_closure" id=".service_locator.wr9s5g4"/>
         <argument key="App\Controller\CompetitionController::edit" type="service_closure" id=".service_locator.5KifnRw"/>
+        <argument key="App\Controller\CompetitionController::editJson" type="service_closure" id=".service_locator.wr9s5g4"/>
+        <argument key="App\Controller\CompetitionController::getCompetitions" type="service_closure" id=".service_locator.d08L1g2"/>
         <argument key="App\Controller\CompetitionController::index" type="service_closure" id=".service_locator.4LxtSay"/>
         <argument key="App\Controller\CompetitionController::new" type="service_closure" id=".service_locator.4LxtSay"/>
+        <argument key="App\Controller\CompetitionController::newJson" type="service_closure" id=".service_locator.wr9s5g4"/>
         <argument key="App\Controller\CompetitionController::reserver" type="service_closure" id=".service_locator.D9Tu8.t"/>
         <argument key="App\Controller\CompetitionController::show" type="service_closure" id=".service_locator.tz_cB8j"/>
         <argument key="App\Controller\CompetitionController::showFront" type="service_closure" id=".service_locator.tz_cB8j"/>
+        <argument key="App\Controller\CompetitionController::showJson" type="service_closure" id=".service_locator.8xmzJtu"/>
+        <argument key="App\Controller\TicketController::AfficheTicketPDF" type="service_closure" id=".service_locator.qZFWjsO"/>
         <argument key="App\Controller\TicketController::delete" type="service_closure" id=".service_locator.4VQ70NZ"/>
         <argument key="App\Controller\TicketController::edit" type="service_closure" id=".service_locator.4VQ70NZ"/>
+        <argument key="App\Controller\TicketController::editJson" type="service_closure" id=".service_locator.aovDCQ_"/>
         <argument key="App\Controller\TicketController::index" type="service_closure" id=".service_locator.qZFWjsO"/>
+        <argument key="App\Controller\TicketController::indexJson" type="service_closure" id=".service_locator.35TPXPG"/>
         <argument key="App\Controller\TicketController::new" type="service_closure" id=".service_locator.qZFWjsO"/>
+        <argument key="App\Controller\TicketController::newJson" type="service_closure" id=".service_locator.wr9s5g4"/>
         <argument key="App\Controller\TicketController::show" type="service_closure" id=".service_locator.7Txv_C4"/>
         <argument key="App\Controller\TicketController::showFront" type="service_closure" id=".service_locator.qZFWjsO"/>
+        <argument key="App\Controller\TicketController::showJson" type="service_closure" id=".service_locator.tn3KEc."/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Controller\CompetitionController:FrontView" type="service_closure" id=".service_locator.hCM54HI"/>
         <argument key="App\Controller\CompetitionController:delete" type="service_closure" id=".service_locator.5KifnRw"/>
+        <argument key="App\Controller\CompetitionController:deleteJson" type="service_closure" id=".service_locator.wr9s5g4"/>
         <argument key="App\Controller\CompetitionController:edit" type="service_closure" id=".service_locator.5KifnRw"/>
+        <argument key="App\Controller\CompetitionController:editJson" type="service_closure" id=".service_locator.wr9s5g4"/>
+        <argument key="App\Controller\CompetitionController:getCompetitions" type="service_closure" id=".service_locator.d08L1g2"/>
         <argument key="App\Controller\CompetitionController:index" type="service_closure" id=".service_locator.4LxtSay"/>
         <argument key="App\Controller\CompetitionController:new" type="service_closure" id=".service_locator.4LxtSay"/>
+        <argument key="App\Controller\CompetitionController:newJson" type="service_closure" id=".service_locator.wr9s5g4"/>
         <argument key="App\Controller\CompetitionController:reserver" type="service_closure" id=".service_locator.D9Tu8.t"/>
         <argument key="App\Controller\CompetitionController:show" type="service_closure" id=".service_locator.tz_cB8j"/>
         <argument key="App\Controller\CompetitionController:showFront" type="service_closure" id=".service_locator.tz_cB8j"/>
+        <argument key="App\Controller\CompetitionController:showJson" type="service_closure" id=".service_locator.8xmzJtu"/>
+        <argument key="App\Controller\TicketController:AfficheTicketPDF" type="service_closure" id=".service_locator.qZFWjsO"/>
         <argument key="App\Controller\TicketController:delete" type="service_closure" id=".service_locator.4VQ70NZ"/>
         <argument key="App\Controller\TicketController:edit" type="service_closure" id=".service_locator.4VQ70NZ"/>
+        <argument key="App\Controller\TicketController:editJson" type="service_closure" id=".service_locator.aovDCQ_"/>
         <argument key="App\Controller\TicketController:index" type="service_closure" id=".service_locator.qZFWjsO"/>
+        <argument key="App\Controller\TicketController:indexJson" type="service_closure" id=".service_locator.35TPXPG"/>
         <argument key="App\Controller\TicketController:new" type="service_closure" id=".service_locator.qZFWjsO"/>
+        <argument key="App\Controller\TicketController:newJson" type="service_closure" id=".service_locator.wr9s5g4"/>
         <argument key="App\Controller\TicketController:show" type="service_closure" id=".service_locator.7Txv_C4"/>
         <argument key="App\Controller\TicketController:showFront" type="service_closure" id=".service_locator.qZFWjsO"/>
+        <argument key="App\Controller\TicketController:showJson" type="service_closure" id=".service_locator.tn3KEc."/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
       </argument>
@@ -7326,12 +7389,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.5I6j2Jw"/>
+      <argument type="service" id=".service_locator.Qqhq7MG"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.5I6j2Jw"/>
+      <argument type="service" id=".service_locator.Qqhq7MG"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -7355,7 +7418,9 @@
     <service id=".errored..service_locator.D9Tu8.t.App\Entity\Competition" class="App\Entity\Competition"/>
     <service id=".errored..service_locator.5KifnRw.App\Entity\Competition" class="App\Entity\Competition"/>
     <service id=".errored..service_locator.7Txv_C4.App\Entity\Ticket" class="App\Entity\Ticket"/>
+    <service id=".errored..service_locator.tn3KEc..App\Entity\Ticket" class="App\Entity\Ticket"/>
     <service id=".errored..service_locator.4VQ70NZ.App\Entity\Ticket" class="App\Entity\Ticket"/>
+    <service id=".errored..service_locator.aovDCQ_.App\Entity\Ticket" class="App\Entity\Ticket"/>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
       <argument type="collection"/>
@@ -8301,7 +8366,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.5I6j2Jw"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Qqhq7MG"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -8325,8 +8390,13 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
+    <service id=".service_locator.6MFh.2l" alias=".service_locator.d08L1g2"/>
     <service id=".service_locator.arxnTSO" alias=".service_locator.D9Tu8.t"/>
-    <service id=".service_locator.oAzpQJo" alias=".service_locator.5I6j2Jw"/>
+    <service id=".service_locator.GLxFB_E" alias=".service_locator.8xmzJtu"/>
+    <service id=".service_locator.1oSnrhD" alias=".service_locator.35TPXPG"/>
+    <service id=".service_locator.gAtJVT0" alias=".service_locator.tn3KEc."/>
+    <service id=".service_locator..F0EYmn" alias=".service_locator.aovDCQ_"/>
+    <service id=".service_locator.RxkbMm0" alias=".service_locator.Qqhq7MG"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.yDfoMlH" alias=".service_locator.16skqMu"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -8355,13 +8425,19 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.uo5c0SP" alias=".service_locator.xUrKPVU"/>
     <service id=".service_locator.Hg.7Jb0" alias=".service_locator.4LxtSay"/>
+    <service id=".service_locator.dBT1iTV" alias=".service_locator.d08L1g2"/>
     <service id=".service_locator.mcQQbBR" alias=".service_locator.hCM54HI"/>
     <service id=".service_locator.TXCGH0A" alias=".service_locator.tz_cB8j"/>
+    <service id=".service_locator.R192xRJ" alias=".service_locator.wr9s5g4"/>
     <service id=".service_locator.8ZrwVzp" alias=".service_locator.D9Tu8.t"/>
+    <service id=".service_locator.EBbuBvW" alias=".service_locator.8xmzJtu"/>
     <service id=".service_locator.VwvrueG" alias=".service_locator.5KifnRw"/>
     <service id=".service_locator.sI1mb8f" alias=".service_locator.qZFWjsO"/>
+    <service id=".service_locator.kkfsM73" alias=".service_locator.35TPXPG"/>
     <service id=".service_locator.MA7ERY3" alias=".service_locator.7Txv_C4"/>
+    <service id=".service_locator.6F0LYFE" alias=".service_locator.tn3KEc."/>
     <service id=".service_locator.3ycAJJY" alias=".service_locator.4VQ70NZ"/>
+    <service id=".service_locator.cJzGJuy" alias=".service_locator.aovDCQ_"/>
     <service id=".service_locator.A740LBW" alias=".service_locator.mx0UMmY"/>
     <service id=".service_locator.L0rFhJm" alias=".service_locator.GVyCdgr"/>
     <service id=".service_locator.pFwChgS" alias=".service_locator.UkE3SaZ"/>

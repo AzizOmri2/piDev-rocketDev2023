@@ -12,14 +12,17 @@ class Ticket
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("ticket")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"CHAMP VIDE !! Il faut déclarer une description de la ticket !!")]
+    #[Groups("ticket")]
     private ?string $descriptionTicket = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups("ticket")]
     private ?Competition $competition = null;
 
     public function getId(): ?int

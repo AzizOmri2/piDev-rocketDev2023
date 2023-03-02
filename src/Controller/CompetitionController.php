@@ -10,6 +10,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\SerializerInterface;
+use DateTime;
+
+
+
 
 #[Route('/competition')]
 class CompetitionController extends AbstractController
@@ -21,6 +31,16 @@ class CompetitionController extends AbstractController
         return $this->render('competition/index.html.twig', [
             'competitions' => $competitionRepository->findAll(),
         ]);
+    }
+
+    ////////////////////Json/////////////////////
+    #[Route('/CompetitionsJson', name: 'app_competition_json')]
+    public function getCompetitions(CompetitionRepository $repo, NormalizerInterface $normalizer)
+    { 
+            $competitions = $repo->findAll();
+            $competitionNormalises = $normalizer->normalize($competitions,'json', ['groups' => "competitions"]);
+            $json=json_encode($competitionNormalises);
+            return new Response($json);
     }
 
         // route pour front 
@@ -80,6 +100,29 @@ class CompetitionController extends AbstractController
         ]);
     }
 
+    ////////////////////////json////////////////////////
+    #[Route('/newJson', name: 'app_competition_newJson')]
+    public function newJson(Request $request, NormalizerInterface $normalizer): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $competition = new Competition();
+        $dateString=$request->get('dateCompetition');
+        $compDate=new DateTime($dateString);
+        $competition->setNomCompetition($request->get('nomCompetition'));
+        $competition->setFraisCompetition($request->get('fraisCompetition'));
+        $competition->setDateCompetition($compDate);
+        $competition->setNbrMaxInscrit($request->get('nbrMaxInscrit'));
+        $competition->setNbrParticipant($request->get('nbrParticipant'));
+        $competition->setEtatCompetition($request->get('etatCompetition'));
+
+        $em->persist($competition);
+        $em->flush();
+
+        $jsonContent = $normalizer->normalize($competition,'json',['groups'=>'competitions']);
+        return new Response(json_encode($jsonContent));
+    }
+    
+
     #[Route('/{id}/reserver', name: 'app_competition_reserver', methods: ['POST','GET'])]
     public function reserver(request $request,CompetitionRepository $competitionRepository, EntityManagerInterface $entityManager ,Competition $competition): Response
     { 
@@ -112,6 +155,17 @@ class CompetitionController extends AbstractController
         ]);
     }
 
+    ////////////////////////json////////////////////////
+    #[Route('/{id}/json', name: 'app_competition_showJson')]
+    public function showJson($id, NormalizerInterface $normalizer, CompetitionRepository $competitionRepository)
+    {
+        $competition = $competitionRepository->find($id);
+        $competitionNormalises = $normalizer->normalize($competition,'json', ['groups' => "competitions"]);
+        return new Response(json_encode($competitionNormalises));
+    }
+
+
+
     #[Route('/{id}/edit', name: 'app_competition_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Competition $competition, CompetitionRepository $competitionRepository): Response
     {
@@ -130,6 +184,35 @@ class CompetitionController extends AbstractController
         ]);
     }
 
+    ////////////////////////json////////////////////////
+    #[Route('/{id}/editJson', name: 'app_competition_editJson')]
+    public function editJson(Request $request,$id, NormalizerInterface $normalizer)
+    {
+        $em= $this->getDoctrine()->getManager();	
+        $competition = $em->getRepository(Competition::class)->find($id);
+        $nomCompetition = $request->get('nomCompetition');
+            if ($nomCompetition !== null) {
+                $competition->setNomCompetition($nomCompetition);
+            } else {
+                    throw new \Exception('Le nom de la compétition ne peut pas être vide.');
+            }
+        $etatCompetition= $request->get('etatCompetition');
+            if ($etatCompetition !== null) {
+                $competition->setEtatCompetition($etatCompetition);
+            } else {
+                    throw new \Exception('L\'état de la compétition ne peut pas être vide.');
+            }
+        $nbrMaxInscrit = $request->get('nbrMaxInscrit');
+            if ($nbrMaxInscrit !== null) {
+                $competition->setNbrMaxInscrit((int)$nbrMaxInscrit);
+                }
+        $em->flush();
+        $jsonContent=$normalizer->normalize($competition,'json', ['groups' => "competitions"]);
+        return new Response("competition modifiée avec succée" . json_encode($jsonContent));
+    
+        
+    }
+
     #[Route('/{id}', name: 'app_competition_delete', methods: ['POST'])]
     public function delete(Request $request, Competition $competition, CompetitionRepository $competitionRepository): Response
     {
@@ -139,6 +222,19 @@ class CompetitionController extends AbstractController
 
         return $this->redirectToRoute('app_competition_index', [], Response::HTTP_SEE_OTHER);
     }
+    
+    ////////////////////////json////////////////////////
+    #[Route('/{id}/DeleteJson', name: 'app_competition_deleteJson')]
+    public function deleteJson(Request $request,$id,NormalizerInterface $normalizer)
+    {
+        $em= $this->getDoctrine()->getManager();	
+        $competition = $em->getRepository(Competition::class)->find($id);
+        $em->remove($competition);
+        $em->flush();
+        $jsonContent=$normalizer->normalize($competition,'json', ['groups' => "competitions"]);
+        return new Response("competition supprimée avec succée" . json_encode($jsonContent));
+    }
+    
 
 }
 

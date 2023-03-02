@@ -106,7 +106,7 @@ class __TwigTemplate_6e3604f37f3d77c7e24feed239653d50 extends Template
                         <div class=\"row\">
                             <div class=\"col-md-12\">
                                 <div class=\"copyright\">
-                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href=\"https://colorlib.com\">Colorlib</a>.</p>
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved.</p>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +169,7 @@ class __TwigTemplate_6e3604f37f3d77c7e24feed239653d50 extends Template
                         <div class=\"row\">
                             <div class=\"col-md-12\">
                                 <div class=\"copyright\">
-                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href=\"https://colorlib.com\">Colorlib</a>.</p>
+                                    <p>Copyright © 2023 EnergyBox. All rights reserved.</p>
                                 </div>
                             </div>
                         </div>

@@ -16,39 +16,45 @@ class Competition
     #[ORM\Column]
     private ?int $id = null;
     #[ORM\Column]
+    #[Groups("competition")]
     #[Assert\NotBlank(message:"Il faut déclarer le nom de compétition à ajouter !!")]
     private ?string $nomCompetition = null;
    
 
     #[ORM\Column]
+    #[Groups("competition")]
     #[Assert\Positive(message:"Prix invalide !!")]
     private ?float $fraisCompetition = null;
 
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups("competition")]
     #[Assert\GreaterThanOrEqual(value: "today",message:"Date Invalide !!")]
     private ?\DateTimeInterface $dateCompetition = null;
 
     #[ORM\Column]
+    #[Groups("competition")]
         
        #[ Assert\Range(
                min : 0,
                max : 50,
                notInRangeMessage : "Veuillez entrer un nombre entre 0 et 50.",
                invalidMessage : "Veuillez entrer un nombre valide."
-          )]
-         
+          )] 
     private ?int $nbrMaxInscrit = null;
 
 
     #[ORM\Column(length: 255)]
+    #[Groups("competitions")]
     #[Assert\NotBlank(message:"L'Etat ne peut être que 'disponible' ou 'non disponible' !!")]
     private ?string $etatCompetition = null;
 
     #[ORM\OneToMany(mappedBy: 'competition', targetEntity: Ticket::class)]
+    #[Groups("competitions")]
     private Collection $tickets;
 
     #[ORM\Column(nullable: true)]
+    #[Groups("competitions")]
     private ?int $nbrParticipant = null;
 
  

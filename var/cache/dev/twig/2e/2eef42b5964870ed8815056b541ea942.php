@@ -141,7 +141,10 @@ class __TwigTemplate_821b7cd3317b11a3bfa5b3831ee1e024 extends Template
         echo "</p>
                                     </div>
                                 <div class=\"img-cap\">
-                                <a href=\"#\" class=\"btn\">Télécharger</a>
+                                <a \"";
+        // line 53
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_ticket_pdf", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 53, $this->source); })()), "id", [], "any", false, false, false, 53)]), "html", null, true);
+        echo "\" class=\"btn\">Télécharger</a>
                                 <a href=\"#\" class=\"btn\">Obtenir Le code QR de la ticket</a>
                             </div>
                                 </div>
@@ -173,7 +176,7 @@ class __TwigTemplate_821b7cd3317b11a3bfa5b3831ee1e024 extends Template
 
     public function getDebugInfo()
     {
-        return array (  140 => 50,  136 => 49,  124 => 40,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  146 => 53,  140 => 50,  136 => 49,  124 => 40,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -230,7 +233,7 @@ class __TwigTemplate_821b7cd3317b11a3bfa5b3831ee1e024 extends Template
                                         <b>Description de la ticket:</b> <p>{{ ticket.descriptionTicket }}</p>
                                     </div>
                                 <div class=\"img-cap\">
-                                <a href=\"#\" class=\"btn\">Télécharger</a>
+                                <a \"{{path('app_ticket_pdf',{'id': ticket.id}) }}\" class=\"btn\">Télécharger</a>
                                 <a href=\"#\" class=\"btn\">Obtenir Le code QR de la ticket</a>
                             </div>
                                 </div>
