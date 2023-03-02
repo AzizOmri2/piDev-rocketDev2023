@@ -35,8 +35,8 @@
             </div>
             
             <div align="center" class="card-footer">
-                <button class="btn btn-outline-secondary">{{ button_label|default('Répondre') }}</button>
-                <button class="btn btn-outline-secondary"><a href="{{ path('app_reponse_index') }}">Consulter Liste</a></button>
+                <button class="au-btn au-btn-icon au-btn--green au-btn--small">{{ button_label|default('Répondre') }}</button>
+                <button class="au-btn au-btn-icon au-btn--green au-btn--small"><a style="color:#fff;" href="{{ path('app_reponse_index') }}">Consulter Liste</a></button>
             </div>
         {{ form_end(form) }}
     </div>

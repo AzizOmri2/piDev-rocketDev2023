@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use DateTime;
 
 #[Route('/reponse')]
@@ -22,6 +25,39 @@ class ReponseController extends AbstractController
         return $this->render('reponse/index.html.twig', [
             'reponses' => $reponseRepository->findAll(),
         ]);
+    }
+
+    /* JSON Add */
+    #[Route('/newJSON', name: 'addJSONReponse')]
+    public function newJSON(Request $request, NormalizerInterface $Normalizer, EntityManagerInterface $em)
+    {
+        $em =$this->getDoctrine()->getManager();
+        $reponse = new Reponse();
+        $dateString=$request->get('dateReponse');
+        $reponseDate=new DateTime($dateString);
+        $reponse->setObjetReponse($request->get('objetReponse'));
+        $reponse->setDateReponse($reponseDate);
+        $reponse->setPieceJointe($request->get('pieceJointe'));
+        $reponse->setContenuReponse($request->get('contenuReponse'));
+
+        $em->persist($reponse);
+        $em->flush();
+
+        $jsonContent = $Normalizer->normalize($reponse,'json',['groups'=>'reponse']);
+
+        return new Response("Reponse ajouté avec succés".json_encode($jsonContent));
+    }
+
+    /* JSON View */
+    #[Route('/viewJSON', name: 'viewJSONReponse')]
+    public function viewJSON(SerializerInterface $serializer, ReponseRepository $repo)
+    {
+        $reponse = $repo->findAll();
+
+        $json = $serializer->serialize($reponse,'json',['groups'=>'reponse']);
+
+        dump($reponse);
+        die;
     }
 
     #[Route('/new/{id}', name: 'app_reponse_new', methods: ['GET', 'POST'])]

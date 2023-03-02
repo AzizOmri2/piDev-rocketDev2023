@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\CategoryReclamationRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,23 +14,28 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CategoryReclamationRepository::class)]
 class CategoryReclamation
 {
+    #[Groups("categoryreclamation")]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups("categoryreclamation")]
     #[Assert\NotBlank(message:"Veuillez saisir le nom de la categorie de reclamation.")]
     #[ORM\Column(length: 255)]
     private ?string $nomCategory = null;
 
+    #[Groups("categoryreclamation")]
     #[Assert\NotBlank(message:"Veuillez saisir la description de la categorie de reclamation.")]
     #[ORM\Column(length: 255)]
     private ?string $descriptionCategory = null;
 
+    #[Groups("categoryreclamation")]
     #[Assert\NotBlank(message:"Veuillez saisir la priorité de la categorie de reclamation.")]
     #[ORM\Column(length: 255)]
     private ?string $prioriteCategory = null;
 
+    #[Groups("categoryreclamation")]
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Reclamation::class)]
     private Collection $reclamations;
 

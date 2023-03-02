@@ -29,13 +29,20 @@
                     </button>
                     &nbsp;
                 </a>
-                <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                    <select class="js-select2" name="type">
-                        <option selected="selected">Export</option>
-                        <option value="option_pdf">En PDF</option>
-                        <option value="option_excel">En Excel</option>
+                <a href="{{ path('exportPDF') }}">
+                    <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                        Export en PDF
+                    </button>
+                    &nbsp;
+                </a>
+                
+                {# <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                    <select class="js-select2">
+                        <option selected="selected">Export</a></option>
+                        <option value="">En PDF</option>
+                        <option value="">En Excel</option>
                     </select>
-                <div class="dropDownSelect2"></div>
+                <div class="dropDownSelect2"></div> #}
             </div>
         </div>
     </div>

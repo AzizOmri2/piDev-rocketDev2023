@@ -11,33 +11,40 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
 class Cours
 {
+    #[Groups("cours")]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups("cours")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi le nom du Cours.")]
     #[ORM\Column(length: 255)]
     private ?string $nomCours = null;
 
+    #[Groups("cours")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi le nom Coach.")]
     #[ORM\Column(length: 255)]
     private ?string $nomCoach = null;
 
+    #[Groups("cours")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi l'age minimale de ce cours.")]
     #[Assert\Positive(message:"Veuillez saisir une valeur positive.")]
     #[ORM\Column]
     private ?int $ageMinCours = null;
 
+    #[Groups("cours")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi le prix.")]
     #[Assert\Positive(message:"Veuillez saisir une valeur positive.")]
     #[ORM\Column]
     private ?float $prixCours = null;
 
+    #[Groups("cours")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi la description du cours.")]
     #[ORM\Column(length: 255)]
     private ?string $descriptionCours = null;
 
+    #[Groups("cours")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi les activités de ce cours.")]
     #[ORM\ManyToMany(targetEntity: Activite::class, inversedBy: 'cours')]
     private Collection $activites;

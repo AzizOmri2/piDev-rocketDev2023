@@ -7,40 +7,50 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: ActiviteRepository::class)]
 class Activite
 {
+    #[Groups("activites")]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[Assert\NotBlank(message:"Veuillez saisir le nom de l'activité.")]
+    #[Groups("activites")]
     #[ORM\Column(length: 255)]
     private ?string $nomActivite = null;
 
+    #[Groups("activites")]
     #[Assert\NotBlank(message:"Veuillez saisir la durée valide en min.")]
     #[Assert\Positive(message:"Veuillez saisir une valeur positive.")]
     #[ORM\Column(length: 255)]
     private ?string $dureeActivite = null;
 
+    #[Groups("activites")]
     #[Assert\NotBlank(message:"Veuillez saisir la recommandation du tenue.")]
     #[ORM\Column(length: 255)]
     private ?string $tenueActivite = null;
 
+    #[Groups("activites")]
     #[Assert\NotBlank(message:"Veuillez saisir la difficulté de l'activité.")]
     #[ORM\Column(length: 255)]
     private ?string $difficulteActivite = null;
 
+    #[Groups("activites")]
     #[Assert\NotBlank(message:"Veuillez saisir l'image de l'activité.")]
     #[ORM\Column(length: 255)]
     private ?string $imageActivite = null;
 
+    #[Groups("activites")]
     #[Assert\NotBlank(message:"Veuillez saisir la description de l'activité.")]
     #[ORM\Column(length: 255)]
     private ?string $descriptionActivite = null;
 
+    #[Groups("activites")]
     #[Assert\NotBlank(message:"Veuillez saisir les activités de ce cours.")]
     #[ORM\ManyToMany(targetEntity: Cours::class, mappedBy: 'activites')]
     private Collection $cours;

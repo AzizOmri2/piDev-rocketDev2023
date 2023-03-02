@@ -12,24 +12,29 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: PlanningRepository::class)]
 class Planning
 {
+    #[Groups("planning")]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups("planning")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi la date.")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $datePlanning = null;
 
+    #[Groups("planning")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi le jour.")]
     #[ORM\Column(length: 255)]
     private ?string $jourPlanning = null;
 
+    #[Groups("planning")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi l'horaire.")]
     #[Assert\Positive(message:"Veuillez saisir l'horaire valide.")]
     #[ORM\Column]
     private ?int $heurePlanning = null;
 
+    #[Groups("planning")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi le cours dans ce planning.")]
     #[ORM\ManyToOne(inversedBy: 'plannings')]
     #[ORM\JoinColumn(nullable: false)]

@@ -10,14 +10,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Filesystem\Filesystem;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Knp\Component\Pager\PaginatorInterface;
+
 
 
 
 #[Route('/activite/crud')]
 class ActiviteCrudController extends AbstractController
 {
+    
     #[Route('/', name: 'app_activite_crud_index', methods: ['GET'])]
     public function index(Request $request, ActiviteRepository $activiteRepository): Response
     {
@@ -76,6 +82,8 @@ class ActiviteCrudController extends AbstractController
         ]);
     }
 
+    
+
     #[Route('/{id}', name: 'app_activite_crud_show', methods: ['GET'])]
     public function show(Activite $activite): Response
     {
@@ -129,4 +137,6 @@ class ActiviteCrudController extends AbstractController
 
         return $this->redirectToRoute('app_activite_crud_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 }

@@ -1,0 +1,31 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}EnergyBox | Activité{% endblock %}
+
+{% block body %}
+
+<table class="table table-borderless table-data3">
+    <thead>
+        <tr>
+            <td style="color: white;"><strong style="margin-left:30px">Nom</strong></td>
+            <td style="color: white;"><strong style="margin-left:27px">Durée</strong></td>
+            <td style="color: white;"><strong style="margin-left:25px">Difficulté</strong></td>
+            <td style="color: white;"><strong style="margin-left:40px">Tenue</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for activite in activites %}
+        <tr>
+            <td>{{ activite.nomActivite }}</td>
+            <td>{{ activite.dureeActivite }}</td>
+            <td>{{ activite.difficulteActivite }}</td>
+            <td>{{ activite.tenueActivite|striptags|slice(0, 50) }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="8">Pas d'activité.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

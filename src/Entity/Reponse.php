@@ -11,25 +11,31 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ReponseRepository::class)]
 class Reponse
 {
+    #[Groups("reponse")]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups("reponse")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi l objet.")]
     #[ORM\Column(length: 255)]
     private ?string $objetReponse = null;
 
+    #[Groups("reponse")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateReponse = null;
 
+    #[Groups("reponse")]
     #[ORM\Column(length: 255)]
     private ?string $pieceJointe = null;
 
+    #[Groups("reponse")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi le contenu de la reponse.")]
     #[ORM\Column(length: 255)]
     private ?string $contenuReponse = null;
 
+    #[Groups("reponse")]
     #[ORM\ManyToOne(inversedBy: 'reponses')]
     private ?Reclamation $reclamation = null;
 

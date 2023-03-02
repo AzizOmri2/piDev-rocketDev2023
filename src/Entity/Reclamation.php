@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\ReclamationRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -12,33 +15,41 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 class Reclamation
 {
+    #[Groups("reclamation")]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups("reclamation")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi votre nom.")]
     #[ORM\Column(length: 255)]
     private ?string $nomUserReclamation = null;
 
+    #[Groups("reclamation")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi votre email.")]
     #[ORM\Column(length: 255)]
     private ?string $emailUserReclamation = null;
     
+    #[Groups("reclamation")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi l'objet de reclamation.")]
     #[ORM\Column(length: 255)]
     private ?string $objetReclamation = null;
 
+    #[Groups("reclamation")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi le texte de reclamation.")]
     #[ORM\Column(length: 255)]
     private ?string $texteReclamation = null;
 
+    #[Groups("reclamation")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateReclamation = null;
 
+    #[Groups("reclamation")]
     #[ORM\ManyToOne(inversedBy: 'reclamations')]
     private ?CategoryReclamation $category = null;
 
+    #[Groups("reclamation")]
     #[ORM\OneToMany(mappedBy: 'reclamation', targetEntity: Reponse::class)]
     private Collection $reponses;
 

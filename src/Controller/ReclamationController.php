@@ -9,7 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use DateTime;
+
 
 #[Route('/reclamation')]
 class ReclamationController extends AbstractController
@@ -20,6 +24,38 @@ class ReclamationController extends AbstractController
         return $this->render('reclamation/index.html.twig', [
             'reclamations' => $reclamationRepository->findAll(),
         ]);
+    }
+    /* JSON Add */
+    #[Route('/newJSON', name: 'addJSONReclamation')]
+    public function newJSON(Request $request, NormalizerInterface $Normalizer, EntityManagerInterface $em)
+    {
+        $em =$this->getDoctrine()->getManager();
+        $reclamation = new Reclamation();
+        $dateString=$request->get('dateReclamation');
+        $reclamationDate=new DateTime($dateString);
+        $reclamation->setNomUserReclamation($request->get('nomUserReclamation'));
+        $reclamation->setEmailUserReclamation($request->get('emailUserReclamation'));
+        $reclamation->setObjetReclamation($request->get('objetReclamation'));
+        $reclamation->setTexteReclamation($request->get('texteReclamation'));
+        $reclamation->setDateReclamation($reclamationDate);
+
+        $em->persist($reclamation);
+        $em->flush();
+
+        $jsonContent = $Normalizer->normalize($reclamation,'json',['groups'=>'reclamation']);
+
+        return new Response("Reclamation ajouté avec succés".json_encode($jsonContent));
+    }
+    /* VIEW RECLAMATION JSON */
+    #[Route('/viewJSON', name: 'viewJSONReclamation')]
+    public function viewJSON(SerializerInterface $serializer, ReclamationRepository $reclamationRepository)
+    {
+        $reclamation = $reclamationRepository->findAll();
+
+        $json = $serializer->serialize($reclamation,'json',['groups'=>'reclamation']);
+
+        dump($reclamation);
+        die;
     }
 
     #[Route('/merci', name: 'app_reclamation_merci', methods: ['GET'])]
@@ -36,6 +72,10 @@ class ReclamationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $rr = $this->filterwords($reclamation->getTexteReclamation());
+
+            $reclamation->setTexteReclamation($rr);
+
             $reclamation->setDateReclamation(new DateTime());
             $reclamationRepository->save($reclamation, true);
 
@@ -82,5 +122,28 @@ class ReclamationController extends AbstractController
         }
 
         return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    public function filterwords($text)
+    {
+        $filterWords = array('fokaleya', 'bhim', 'msatek', 'fuck', 'slut', 'fucku');
+        $filterCount = count($filterWords);
+        $str = "";
+        $data = preg_split('/\s+/',  $text);
+        foreach($data as $s){
+            $g = false;
+            foreach ($filterWords as $lib) {
+                if($s == $lib){
+                    $t = "";
+                    for($i =0; $i<strlen($s); $i++) $t .= "*";
+                    $str .= $t . " ";
+                    $g = true;
+                    break;
+                }
+            }
+            if(!$g)
+            $str .= $s . " ";
+        }
+        return $str;
     }
 }

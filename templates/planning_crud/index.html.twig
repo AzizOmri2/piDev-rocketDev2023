@@ -81,6 +81,13 @@
             {% endfor %}
             </tbody>
         </table>
+        <div class="card-footer">
+            <br>
+            <div class="pagination">
+                {% do plannings.setPageRange(6) %}
+                {{knp_pagination_render(plannings, 'pagination.html.twig')}}
+            </div>
+        </div>
     </div>
 </div>
                                 
