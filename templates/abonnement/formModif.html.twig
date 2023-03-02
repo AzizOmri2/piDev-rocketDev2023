@@ -14,13 +14,33 @@
     <br>
     <div class="col-lg-6 col-md-6">
      <div class="form-box user-icon mb-30">
-     <h3 class="mb-30">
-    {{ form_label(form.codePromo,"code promo")}}</h3>
+     <h5 class="mb-30">
+    {{ form_label(form.dateAchat,"date achat")}}</h3>
    
-     {{ form_widget(form.codePromo,{'attr':{'class':'form-control'}})}}
-     {{form_errors(form.codePromo)}}
+     {{ form_widget(form.dateAchat,{'attr':{'class':'form-control'}})}}
+     {{form_errors(form.dateAchat)}}
     </div>
     </div>
+    <br>
+    <div class="col-lg-6 col-md-6">
+     <div class="form-box user-icon mb-30">
+     <h5 class="mb-30">
+    {{ form_label(form.dateFin,"date fin")}}</h3>
+   
+     {{ form_widget(form.dateFin,{'attr':{'class':'form-control'}})}}
+     {{form_errors(form.dateFin)}}
+    </div>
+    </div>
+   <div class="col-lg-6 col-md-6">
+     <div class="form-box user-icon mb-30">
+     <h5 class="mb-30">
+    {{ form_label(form.etatAbonnement,"etat abonnement")}}</h3>
+   
+     {{ form_widget(form.etatAbonnement,{'attr':{'class':'form-control'}})}}
+     {{form_errors(form.etatAbonnement)}}
+    </div>
+    </div>
+    <br>
     <br>
   <div class="col-lg-6 col-md-6">
      <div class="form-box user-icon mb-30">
@@ -39,5 +59,3 @@
      </div>{{ form_end(form) }}
 
  
-                       
-                       

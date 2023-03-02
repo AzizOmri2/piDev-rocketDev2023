@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Abonnement;
+use App\Entity\User;
 use App\Entity\Pack;
 use App\Repository\PackRepository;
 use App\Form\AbonnementType;
@@ -17,6 +18,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 use App\Entity\Promotion;
 use App\Form\PromotionType;
@@ -26,16 +29,85 @@ use App\Repository\PromotionRepository;
 class AbonnementController extends AbstractController
 {
     private $entityManager;
-
+   
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
+    #[Route('/j', name: 'list')]
+    public function getAbonnements(AbonnementRepository $repo, NormalizerInterface $normalizer){
+        $abonnements=$repo->findAll();
+        $abonnementNormalises= $normalizer->normalize($abonnements,'json',['groups' =>"abonnements"]);
+        $json = json_encode($abonnementNormalises);
+        return new Response($json);
+        
+    }
+    #[Route('/abonnement/{id}', name: 'abonnement')]
+    public function AbonnementId(AbonnementRepository $repo, NormalizerInterface $normalizer,$id){
+        $abonnements=$repo->find($id);
+        $abonnementNormalises= $normalizer->normalize($abonnements,'json',['groups' =>"abonnements"]);
+        $json = json_encode($abonnementNormalises);
+        return new Response($json);
+        
+    }
+    #[Route('/addAbonnementJson/new', name: 'addAbonnementJson')]
+    public function addAbonnementJson(Request $req, NormalizerInterface $normalizer){
+        $em = $this->getDoctrine()->getManager();
+        $abonnement = new Abonnement();
+        $abonnement->setDateAchat($req->get('dateAchat'));
+        $abonnement->setDateFin($req->get('dateFin'));
+        $abonnement->setPack($req->get('pack'));
+        $abonnement->setEtatAbonnement($req->get('etatAbonnement'));
+        $abonnement->setMontantAbonnement($req->get('montantAbonnement'));
+        //user
+        $abonnement->setUser($req->get('user'));
+        //fin user
+        $abonnement->setCodePromo($req->get('codePromo'));
+        $em->persist($abonnement);
+        $em->flush();
+        $abonnementNormalises= $normalizer->normalize($abonnement,'json',['groups' =>"abonnements"]);
+        $json = json_encode($abonnementNormalises);
+        return new Response($json);
+        
+    }
+    #[Route('/updateAbonnementJson/{id}', name: 'updateAbonnementJson')]
+    public function updateAbonnementJson($id,Request $req, NormalizerInterface $normalizer){
+        $em = $this->getDoctrine()->getManager();
+        $abonnement = $em->getRepository(Abonnement::class)->find($id);
+        $abonnement->setDateAchat($req->get('dateAchat'));
+        $abonnement->setDateFin($req->get('dateFin'));
+        $abonnement->setPack($req->get('pack'));
+        $abonnement->setEtatAbonnement($req->get('etatAbonnement'));
+        $abonnement->setMontantAbonnement($req->get('montantAbonnement'));
+        
+        $abonnement->setId($abonnement->getId());
+        $em->flush();
+        $abonnementNormalises= $normalizer->normalize($abonnement,'json',['groups' =>"abonnements"]);
+        $json = json_encode($abonnementNormalises);
+        return new Response($json);
+        
+    }
+    #[Route('/deleteAbonnementJson/{id}', name: 'deleteAbonnementJson')]
+    public function deleteAbonnementJson($id,Request $req, NormalizerInterface $normalizer){
+        $em = $this->getDoctrine()->getManager();
+        $abonnement = $em->getRepository(Abonnement::class)->find($id);
+       $em->remove($abonnement);
+        $em->flush();
+        $abonnementNormalises= $normalizer->normalize($abonnement,'json',['groups' =>"abonnements"]);
+        $json = json_encode($abonnementNormalises);
+        return new Response("Abonnement supprimé " . $json);
+        
+    }
+
+
+
+
     #[Route('/', name: 'app_abonnement_index', methods: ['GET'])]
     public function index(AbonnementRepository $abonnementRepository): Response
     {
         return $this->render('abonnement/index.html.twig', [
             'abonnements' => $abonnementRepository->findAll(),
+          
         ]);
     }
     #[Route('/c', name: 'app_abonnement_indexClient', methods: ['GET'])]
@@ -68,11 +140,13 @@ class AbonnementController extends AbstractController
 
         // Appliquez la réduction associée au code promotionnel ici
     }
-    
+  
+
     #[Route('/new', name: 'app_abonnement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AbonnementRepository $abonnementRepository,EntityManagerInterface $em): Response
-    
- {  $em = $this->getDoctrine()->getManager();
+
+ { 
+     $em = $this->getDoctrine()->getManager();
     $query = $em->createQuery('SELECT p FROM App\Entity\Promotion p');
     $promotions = $query->getResult();
     $currentDate = new \DateTime();
@@ -87,13 +161,27 @@ class AbonnementController extends AbstractController
     $form->handleRequest($request);
     
     if ($form->isSubmitted() && $form->isValid() ) {
+        //user 
         
+        $user = $abonnement->getUser();
+        $abonnementExistant = $this->getDoctrine()->getRepository(Abonnement::class)->findOneBy([
+            'user' => $user,
+        ]);
+        if ($abonnementExistant){
+        $etat= $abonnementExistant->getEtatAbonnement();}
+        if ($abonnementExistant && $etat =="actif") {
+            $response = new Response('<script>alert("l utilisateur a déjà un abonnement en cours. !");</script>');
+        return $response;
+        }
+        else {// end user tansech }
         $pack = $abonnement->getPack();
         $packduree = $pack->getDureePack();
         $packdisponibilite = $pack->getDisponibilitePack();
         $packplaces = $pack->getPlacesPack();
-
-        if ($packdisponibilite > $packplaces){
+       if( $packdisponibilite == $packplaces){  
+          $response = new Response('<script>alert("Désolé, les places sont épuisées !");</script>');
+         return $response;}
+        if($packdisponibilite > $packplaces){
             $packajout = $packplaces + 1;
             $pack->setPlacesPack($packajout);
             $montantpack = $pack->getMontantPack() ;
@@ -104,7 +192,7 @@ class AbonnementController extends AbstractController
         $formatFin= $dateFin->format('Y-m-d');
         $ff = strtotime($formattedDate);
         $dtt = strtotime($formatFin);
-        if ( $ff <= $dtt) { $abonnement->setEtatAbonnement(" actif"); }
+        if ( $ff <= $dtt) { $abonnement->setEtatAbonnement("actif"); }
         if ( $ff > $dtt) { $abonnement->setEtatAbonnement("non actif");}
     
         $codepromo= $abonnement->getCodePromo();
@@ -124,95 +212,25 @@ class AbonnementController extends AbstractController
         
         $abonnementRepository->save($abonnement, true);
         $em->persist($abonnement);
-        $em->flush();}
+        $em->flush();
+      
         return $this->redirectToRoute('app_abonnement_index', [], Response::HTTP_SEE_OTHER);
-        }
+        }}}
+        
   
-    return $this->renderForm('abonnement/new.html.twig', [
+        return $this->renderForm('abonnement/new.html.twig', [
         'abonnement' => $abonnement,
         'form' => $form,
     ]);
     }
     
-
-      
-    #[Route('/newExtra', name: 'app_abonnement_newExtra', methods: ['GET', 'POST'])]
-    public function newExtra(Request $request, AbonnementRepository $abonnementRepository,EntityManagerInterface $em): Response
-    {   $currentDate = new \DateTime();
-        $formattedDate = $currentDate->format('Y-m-d');
-        $abonnement = new Abonnement();
-        $form = $this->createForm(AbonnementExtraType::class, $abonnement);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() ) {
-            $pack = $abonnement->getPack();
-            $packduree = $pack->getDureePack();
-            $packdisponibilite = $pack->getDisponibilitePack();
-            $packplaces = $pack->getPlacesPack();
-            if ($packdisponibilite > $packplaces){
-
-                $packajout = $packplaces + 1;
-                $pack->setPlacesPack($packajout);
-               $da = $abonnement->getDateAchat();
-               $abonnement->setDateFin( $da );
-                $abonnement->setDateFin( $abonnement->getDateFin()->modify(sprintf('+%d month', 4 )));
-            $dateFin = $abonnement->getDateFin();
-            $formatFin= $dateFin->format('Y-m-d');
-            $ff = strtotime($formattedDate);
-            $dtt = strtotime($formatFin);
-            if ( $ff <= $dtt) { $abonnement->setEtatAbonnement(" actif"); }
-            if ( $ff > $dtt) { $abonnement->setEtatAbonnement("non actif");}
-            $abonnementRepository->save($abonnement, true);
-            $em->persist($abonnement);
-            $em->flush();}
-            return $this->redirectToRoute('app_abonnement_index', [], Response::HTTP_SEE_OTHER);
-        }
-        
-        return $this->renderForm('abonnement/newExtra.html.twig', [
-            'abonnement' => $abonnement,
-            'form' => $form,
-        ]);
-    }
-    #[Route('/newExtraClient', name: 'app_abonnement_newExtraClient', methods: ['GET', 'POST'])]
-    public function newExtraClient(Request $request, AbonnementRepository $abonnementRepository,EntityManagerInterface $em): Response
-    {   $currentDate = new \DateTime();
-        $cr = new \DateTime();
-        $formattedDate = $currentDate->format('Y-m-d');
-        $otherDate = new \DateTime('2016-01-01');
-        $abonnement = new Abonnement();
-        $dateFin = $abonnement->getDateFin();
-        $etatAbonnement = $abonnement->getEtatAbonnement();
-        $dateAchat = $abonnement->getDateAchat();
-
-        $form = $this->createForm(AbonnementExtraType::class, $abonnement);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() ) {
-            $da = $abonnement->getDateAchat();
-            $pack = $abonnement->getPack();
-            $packduree = $pack->getDureePack();
-            // NEKSA
-            $abonnement->setDateFin( $da->modify(sprintf('+%d month', $packduree )));
-            $dateFin = $abonnement->getDateFin();
-            $formatFin= $dateFin->format('Y-m-d');
-            $ff = strtotime($formattedDate);
-            $dtt = strtotime($formatFin);
-            if ( $ff <= $dtt) { $abonnement->setEtatAbonnement(" actif"); }
-            if ( $ff > $dtt) { $abonnement->setEtatAbonnement("non actif");}
-            $abonnementRepository->save($abonnement, true);
-            $em->persist($abonnement);
-            $em->flush();
-            return $this->redirectToRoute('app_abonnement_index', [], Response::HTTP_SEE_OTHER);
-        }
-        
-        return $this->renderForm('abonnement/newExtraClient.html.twig', [
-            'abonnement' => $abonnement,
-            'form' => $form,
-        ]);
-    }
+   
 
 
     #[Route('/newClient', name: 'app_abonnement_newClient', methods: ['GET', 'POST'])]
     public function newClient(Request $request, AbonnementRepository $abonnementRepository,EntityManagerInterface $em): Response
-    {  $em = $this->getDoctrine()->getManager();
+    {  
+        $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('SELECT p FROM App\Entity\Promotion p');
         $promotions = $query->getResult();
         $currentDate = new \DateTime();
@@ -227,13 +245,28 @@ class AbonnementController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid() ) {
+            //user 
             
+            $user = $abonnement->getUser();
+            $abonnementExistant = $this->getDoctrine()->getRepository(Abonnement::class)->findOneBy([
+                'user' => $user,
+            ]);
+            if ($abonnementExistant){
+            $etat= $abonnementExistant->getEtatAbonnement();}
+            if ($abonnementExistant && $etat =="actif") {
+                $response = new Response('<script>alert("Vous avez déjà un abonnement en cours. !");</script>');
+            return $response;
+            }
+            else {// end user tansech }
             $pack = $abonnement->getPack();
             $packduree = $pack->getDureePack();
             $packdisponibilite = $pack->getDisponibilitePack();
             $packplaces = $pack->getPlacesPack();
-    
-            if ($packdisponibilite > $packplaces){
+            if( $packdisponibilite == $packplaces){  
+            
+    $response = new Response('<script>alert("Désolé, les places sont épuisées !");</script>');
+    return $response;}
+            elseif ($packdisponibilite > $packplaces){
                 $packajout = $packplaces + 1;
                 $pack->setPlacesPack($packajout);
                 $montantpack = $pack->getMontantPack() ;
@@ -244,7 +277,7 @@ class AbonnementController extends AbstractController
             $formatFin= $dateFin->format('Y-m-d');
             $ff = strtotime($formattedDate);
             $dtt = strtotime($formatFin);
-            if ( $ff <= $dtt) { $abonnement->setEtatAbonnement(" actif"); }
+            if ( $ff <= $dtt) { $abonnement->setEtatAbonnement("actif"); }
             if ( $ff > $dtt) { $abonnement->setEtatAbonnement("non actif");}
         
             $codepromo= $abonnement->getCodePromo();
@@ -264,10 +297,10 @@ class AbonnementController extends AbstractController
             
             $abonnementRepository->save($abonnement, true);
             $em->persist($abonnement);
-            $em->flush();}
+            $em->flush();
+          
             return $this->redirectToRoute('app_abonnement_index', [], Response::HTTP_SEE_OTHER);
-            }
-      
+            }}}
         return $this->renderForm('abonnement/newClient.html.twig', [
             'abonnement' => $abonnement,
             'form' => $form,
@@ -276,11 +309,11 @@ class AbonnementController extends AbstractController
     #[Route('/{id}', name: 'app_abonnement_show', methods: ['GET'])]
     public function show(Abonnement $abonnement): Response
     {
-        return $this->render('pack/tryindex.html.twig', [
+        return $this->render('abonnement/show.html.twig', [
             'abonnement' => $abonnement,
         ]);
     }
-    #[Route('/c/{id}', name: 'app_abonnement_showClient', methods: ['GET'])]
+    #[Route('/showClient/{id}', name: 'app_abonnement_showClient', methods: ['GET'])]
     public function showClient(Abonnement $abonnement): Response
     {
         return $this->render('abonnement/showClient.html.twig', [
@@ -301,7 +334,7 @@ class AbonnementController extends AbstractController
             $formatFin= $dateFin->format('Y-m-d');
             $ff = strtotime($formattedDate);
             $dtt = strtotime($formatFin);
-            if ( $ff <= $dtt) { $abonnement->setEtatAbonnement(" actif"); }
+            if ( $ff <= $dtt) { $abonnement->setEtatAbonnement("actif"); }
             if ( $ff > $dtt) { $abonnement->setEtatAbonnement("non actif");}
           
             $abonnementRepository->save($abonnement, true);
@@ -347,9 +380,15 @@ class AbonnementController extends AbstractController
         $packdisponibilite = $pack->getDisponibilitePack();
         $packplaces = $pack->getPlacesPack();
        
+        if( $packdisponibilite == $packplaces){  
+            $response = new Response('<script>alert("Désolé, les places sont épuisées !");</script>');
+            return $response;}
         if ($packdisponibilite > $packplaces){
             $packajout = $packplaces + 1;
             $pack->setPlacesPack($packajout);
+            
+            $montantpack = $pack->getMontantPack() ;
+            $abonnement->setMontantAbonnement($montantpack);
         $abonnement->setDateFin( $cr->modify(sprintf('+%d month', $packduree )));
         #$p=$abonnement->getPack();
         #$pm = $p->getMontantPack();
@@ -359,18 +398,67 @@ class AbonnementController extends AbstractController
         $formatFin= $dateFin->format('Y-m-d');
         $ff = strtotime($formattedDate);
         $dtt = strtotime($formatFin);
-        if ( $ff <= $dtt) { $abonnement->setEtatAbonnement(" actif"); }
+        if ( $ff <= $dtt) { $abonnement->setEtatAbonnement("actif"); }
         if ( $ff > $dtt) { $abonnement->setEtatAbonnement("non actif");}
-        $montantabonnement = $pack->getMontantPack() ;
-        $abonnement->setMontantAbonnement($montantabonnement );
+
+        $codepromo= $abonnement->getCodePromo();
+
+        if ($codepromo!=null){
+        foreach ($promotions as $promotion){
+            if ($this->isValid($codepromo)) {
+               $p = $promotion->getReductionPromotion();
+               $m = $pack->getMontantPack() ;
+               $promotion1 = $pack->getMontantPack() * $p ;
+               $new = $m - $promotion1;
+              
+            }}}
+           
+        else{ $new = $pack->getMontantPack() ;}
+            $abonnement->setMontantAbonnement($new); 
+      
         $em->persist($abonnement);
         $em->flush();
-        return $this->redirectToRoute('app_pack_indexc', [], Response::HTTP_SEE_OTHER);
-        }
+        return $this->redirectToRoute('app_pack_tryindex', [], Response::HTTP_SEE_OTHER);}
+        
         return new JsonResponse([
             'success' => true,
             'message' => sprintf('Abonnement for pack "%s" added successfully.', $pack),
             'abonnement' => $abonnement,
         ]);
     }
+  //mailling 
+  public function execute(InputInterface $input, OutputInterface $output)
+  {
+      $em = $this->getDoctrine()->getManager();
+  
+      // Récupération des abonnements
+      $abonnements = $em->getRepository(Abonnement::class)->findAll();
+  
+      // Vérification de la date de fin de chaque abonnement
+      foreach ($abonnements as $abonnement) {
+          if ($abonnement->getEtatAbonnement=="non actif") {
+  
+              $user = $abonnement->getUser();
+  
+              // Envoi du mail
+              $message = (new \Swift_Message('Sujet du mail'))
+                  ->setFrom('adresse@expediteur.com')
+                  ->setTo($user->getEmail())
+                  ->setBody(
+                      $this->renderView(
+                          'emails/finAbonnement.html.twig',
+                          ['subscription' => $abonnement]
+                      ),
+                      'text/html'
+                  );
+  
+              $this->get('mailer')->send($message);
+  
+              $output->writeln('Subscription email sent!');
+          }
+          
+
+
+        }}
+
 }

@@ -1,50 +1,92 @@
- {% extends 'baseBack.html.twig' %} 
+{% extends 'baseBack.html.twig' %}
 
- {% block title %}EnergyBox | Abonnement {% endblock %} 
-
+{% block title %}EnergyBox | Abonnement{% endblock %}
 
 {% block body %}
+<style>
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+  }
+
+  .show-popup .popup {
+    display: block;
+  }
+
+  .popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: red;
+    padding: 20px;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+ 
+</style>
+
+
+
+  <!-- MAIN CONTENT-->
+  <div class="page-wrapper">
+    <!-- PAGE CONTAINER-->
+    <div class="page-container">
+      <div class="main-content">
+        <div class="section__content section__content--p30">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <!-- START WHITE BACKGROUND-->
+                <div class="map-data m-b-40">
+                  <h1>Créer un nouveau abonnement</h1>
+                  {{ include('abonnement/_form.html.twig') }}
    
-    <!-- MAIN CONTENT-->
-    <div class="page-wrapper">
-        <!-- PAGE CONTAINER-->
-        <div class="page-container">
-            <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- START WHITE BACKGROUND-->
-                                <div class="map-data m-b-40">
-                                        
-                                        
-                                        <h1>Créer un nouveau abonnement</h1>
-
-                                      {{ include('abonnement/_form.html.twig') }}
-                                      <br>
-<button type="button" class="btn btn-danger">
-
-                                         <a href="{{ path('app_abonnement_index') }}" style="color:white;">liste des abonnements</a>
-                                         </button>
-                                         <br> <br>
-                                    </div>
-                                </div>
-                                <!-- END WHITE BACKGROUND-->
-                            </div>
-                        </div>
-                        
-                        
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <br>
+                  <button type="button" class="btn btn-danger">
+                    <a href="{{ path('app_abonnement_index') }}" style="color:white;">liste des abonnements</a>
+                  </button>
+                  <br> <br>
                 </div>
+                <!-- END WHITE BACKGROUND-->
+              </div>
             </div>
-            <!-- END MAIN CONTENT-->
+          </div>
         </div>
-{% endblock %}
+      </div>
+      <!-- END MAIN CONTENT-->
+    </div>
+  </div>
+<div class="popup">
+  <div class="popup-content" style>
+    <span class="close">&times;</span>
+    <h2 >Titre de la pop-up</h2>
+    <p>Message de la pop-up</p>
+   
+  </div>
+</div>
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ type }}">
+            {{ message|raw }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+
+{% endblock %}  

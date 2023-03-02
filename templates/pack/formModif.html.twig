@@ -4,9 +4,9 @@
 <div class="col-lg-6 col-md-6">
      <div class="form-box user-icon mb-30">
      <h5 class="mb-30">
-    {{ form_label(form.TypePack,"Type pack")}}
-     {{ form_widget(form.TypePack,{'attr':{'class':'form-control'}})}}
-     {{form_errors(form.TypePack)}}
+    {{ form_label(form.typePack,"Type pack")}}
+     {{ form_widget(form.typePack,{'attr':{'class':'form-control'}})}}
+     {{form_errors(form.typePack)}}
     </div>
     </div>
    <div class="col-lg-6 col-md-6">
@@ -33,7 +33,16 @@
      {{form_errors(form.disponibilitePack)}}
     </div>
     </div>
-   <div class="col-lg-6 col-md-6">
+     <div class="col-lg-6 col-md-6">
+     <div class="form-box user-icon mb-30">
+     <h5 class="mb-30">
+    {{ form_label(form.placesPack,"Places réservées")}}
+     {{ form_widget(form.placesPack,{'attr':{'class':'form-control'}})}}
+     {{form_errors(form.placesPack)}}
+    </div>
+    </div>
+ 
+       <div class="col-lg-6 col-md-6">
      <div class="form-box user-icon mb-30">
      <h5 class="mb-30">
     {{ form_label(form.descriptionPack,"Description")}}
@@ -44,4 +53,5 @@
 <div class="col-lg-6 col-md-6">
         <div class="form-box user-icon mb-30">
       <button type="submit-info" class="btn btn-secondary">{{ button_label|default('Valider') }}</button>
-     </div>{{ form_end(form) }}
+     </div>
+     {{ form_end(form) }}

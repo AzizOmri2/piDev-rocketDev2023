@@ -1,0 +1,8 @@
+{% block body %}
+    <h2>Bonjour {{ user.username }},</h2>
+    <p>Votre abonnement arrive bientôt à expiration.</p>
+    <p>La date de fin de votre abonnement est le {{ date(user.subscription.endDate)|date("d/m/Y") }}.</p>
+    {% if user.abonnement.dateFin|date("Y-m-d") <= "now"|date("Y-m-d") %}
+        <p>Veuillez renouveler votre abonnement dès que possible pour continuer à profiter de nos services.</p>
+    {% endif %}
+{% endblock %}

@@ -2,26 +2,29 @@
 
 namespace App\Form;
 
-use App\Entity\Abonnement;
+use App\Entity\Pack;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AbonnementType extends AbstractType
+class PackModifType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pack')
-            ->add('codePromo')
-            ->add('user')
+            ->add('typePack')
+            ->add('montantPack')
+            ->add('DureePack')
+            ->add('descriptionPack')
+            ->add('placesPack')
+            ->add('disponibilitePack')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Abonnement::class,
+            'data_class' => Pack::class,
         ]);
     }
 }

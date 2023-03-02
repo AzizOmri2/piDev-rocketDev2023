@@ -9,10 +9,71 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[Route('/promotion')]
 class PromotionController extends AbstractController
 {
+    #[Route('/j', name: 'list')]
+    public function getPromotions(PromotionRepository $repo, NormalizerInterface $normalizer){
+        $promotions=$repo->findAll();
+        $promotionNormalises= $normalizer->normalize($promotions,'json',['groups' =>"promotions"]);
+        $json = json_encode($promotionNormalises);
+        return new Response($json);
+        
+    }
+    #[Route('/promotion/{id}', name: 'promotion')]
+    public function promotionId(PromotionRepository $repo, NormalizerInterface $normalizer,$id){
+        $promotion=$repo->find($id);
+        $promotionNormalises= $normalizer->normalize($promotion,'json',['groups' =>"promotions"]);
+        $json = json_encode($promotionNormalises);
+        return new Response($json);
+        
+    }
+    #[Route('/addPromotionJson/new', name: 'addPromotionJson')]
+    public function addPromotionJson(Request $req, NormalizerInterface $normalizer){
+        $em = $this->getDoctrine()->getManager();
+        $promotion = new Promotion();
+        $promotion->setCodePromotion($req->get('codePromotion'));
+        $promotion->setReductionPromotion($req->get('reductionPromotion'));
+        $promotion->setDateExpiration($req->get('dateExpiration'));
+    
+        $em->persist($promotion);
+        $em->flush();
+        $promotionNormalises= $normalizer->normalize($promotion,'json',['groups' =>"promotions"]);
+        $json = json_encode($promotionNormalises);
+        return new Response($json);
+        
+    }
+    #[Route('/updatePromotionJson/{id}', name: 'updatePromotionJson')]
+    public function updatePromotionJson($id,Request $req, NormalizerInterface $normalizer){
+        $em = $this->getDoctrine()->getManager();
+        $promotion = $em->getRepository(Promotion::class)->find($id);
+        $promotion->setCodePromotion($req->get('codePromotion'));
+        $promotion->setReductionPromotion($req->get('reductionPromotion'));
+        $promotion->setDateExpiration($req->get('dateExpiration'));
+        $promotion->setId($pack->getId());
+        $em->flush();
+        $promotionNormalises= $normalizer->normalize($promotion,'json',['groups' =>"promotions"]);
+        $json = json_encode($promotionNormalises);
+        return new Response($json);
+    }
+
+    #[Route('/deletePromotionJson/{id}', name: 'deletePromotionJson')]
+    public function deletePromotionJson($id,Request $req, NormalizerInterface $normalizer){
+        $em = $this->getDoctrine()->getManager();
+        $promotion = $em->getRepository(Promotion::class)->find($id);
+        $em->remove($promotion);
+        $em->flush();
+        $promotionNormalises= $normalizer->normalize($promotion,'json',['groups' =>"promotions"]);
+        $json = json_encode($promotionNormalises);
+        return new Response("promotion supprimé " . $json);
+        
+    }
+
+
     #[Route('/', name: 'app_promotion_index', methods: ['GET'])]
     public function index(PromotionRepository $promotionRepository): Response
     {

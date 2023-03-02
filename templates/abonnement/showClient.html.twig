@@ -2,7 +2,7 @@
 
 {% extends 'baseFront.html.twig' %}
 
-{% block title %}EnergyBox | Planning{% endblock %}
+{% block title %}EnergyBox | Abonnement{% endblock %}
 
 {% block tache %}
     <main>
@@ -14,7 +14,7 @@
                         <div class="col-xl-12">
                             <div class="hero-cap hero-cap2 pt-70 text-center">
 
-            <h2>Create new Abonnement</h2>
+            <h2> Abonnement </h2>
                             </div>
                         </div>
                     </div>
@@ -22,12 +22,25 @@
             </div>
         </div>
         <!-- Hero End -->
-        <!--? Blog Area Start-->
-        <section class="blog_area section-padding">
+        
+        <section class="about-area section-padding30">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mb-5 mb-lg-0">
-                        <h1>Abonnement</h1>
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-12">
+                        <!-- about-img -->
+                        <div class="about-img ">
+                            <img src="{{asset('frontOffice/img/gallery/gallery4.png')}}" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="about-caption">
+                            <!-- Section Tittle -->
+                            <div class="section-tittle section-tittle3 mb-35">
+                                <span>NOS SERVICES POUR VOUS</span>
+                                <h2>Votre Abonnement : </h2>
+                            </div>
+                             <div class="col-lg-8 mb-5 mb-lg-0">
+                      
 
     <table class="table">
         <tbody>
@@ -35,11 +48,12 @@
                 <th>Id</th>
                 <td>{{ abonnement.id }}</td>
             </tr>
+            <br>
             <tr>
                 <th>Type Abonnement</th>
                 <td>{{ abonnement.pack.typePack  }}</td>
             </tr>
-            
+             <br>
             <tr>
                 <th>Durée Abonnement</th>
                 <td>{{ abonnement.pack.dureePack }}</td>
@@ -58,14 +72,17 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_abonnement_index') }}">back to list</a>
-
-    {{ include('abonnement/_delete_form.html.twig') }}
+    <br><br><br>
+<div class="img-cap">
+    <a href="{{ path('app_pack_tryindex') }}"> <button class="btn">Retour au liste des packs</button></a></div>
 </div>
                     </div>
-                </div>                
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
+
     </main>
 {% endblock %}

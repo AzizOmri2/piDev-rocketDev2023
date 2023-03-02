@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -16,16 +20,46 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    #[Assert\NotBlank(message: 'Veuillez saisir votre email')]
+    #[Assert\Regex( pattern:"/@sport\.com$/", message:"L'adresse email doit appartenir au domaine sport.com")]
+    private ?string $email;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    /**  #[Assert\NotBlank(message: 'Veuillez saisir votre mot de passe')]
+     * #[Assert\Regex(pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{6,}$/', message: 'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial')]**/
     private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez saisir votre nom')]
+    #[Assert\Regex(pattern: '/^[a-zA-Z0-9]+$/', message: 'Le nom ne doit pas contenir d\'espace')]
+    private ?string $username = null;
+
+    #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez saisir votre numéro de téléphone')]
+    #[Assert\Regex(pattern: '/^[0-9]+$/', message: 'Le numéro de téléphone ne doit pas contenir d\'espace')]
+    #[Assert\Length(min: 8, max: 8, exactMessage: 'Le numéro de téléphone doit contenir 8 chiffres')]
+    private ?int $numTel;
+
+
+
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $DateN = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Abonnement::class)]
+    private Collection $Abonnements;
+
+    public function __construct()
+    {
+        $this->Abonnements = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -51,7 +85,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -59,7 +93,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->username;
     }
 
     /**
@@ -69,7 +103,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+
 
         return array_unique($roles);
     }
@@ -115,4 +149,78 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getNumTel(): ?int
+    {
+        return $this->numTel;
+    }
+
+    public function setNumTel(int $numTel): self
+    {
+        $this->numTel = $numTel;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->username;
+    }
+
+
+
+    public function getDateN(): ?\DateTimeInterface
+    {
+        return $this->DateN;
+    }
+
+    public function setDateN(?\DateTimeInterface $DateN): self
+    {
+        $this->DateN = $DateN;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Abonnement>
+     */
+    public function getAbonnements(): Collection
+    {
+        return $this->Abonnements;
+    }
+
+    public function addAbonnement(Abonnement $abonnement): self
+    {
+        if (!$this->Abonnements->contains($abonnement)) {
+            $this->Abonnements->add($abonnement);
+            $abonnement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAbonnement(Abonnement $abonnement): self
+    {
+        if ($this->Abonnements->removeElement($abonnement)) {
+            // set the owning side to null (unless already changed)
+            if ($abonnement->getUser() === $this) {
+                $abonnement->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
+
+
 }

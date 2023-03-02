@@ -33,7 +33,7 @@
 
     <!-- Main CSS-->
         <link href="{{ asset('./BackOffice/css/theme.css')}}" rel="stylesheet" media="all">
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     {% endblock %}
 
 </head>
@@ -239,14 +239,24 @@
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-list"></i>Packs</a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li>
-                                        <a href="{{path('app_pack_new')}}">Ajouter Pack</a>
-                                    </li>
+                                   
                                     <li>
                                         <a href="{{path('app_pack_index')}}">Afficher Packs</a>
                                     </li>
+                                     <li>
+                                        <a href="{{path('app_pack_new')}}">Ajouter Pack</a>
+                                    </li>
                                    <li>
                                         <a href="{{path('app_abonnement_index')}}">Afficher Abonnements</a>
+                                    </li>
+                                     <li>
+                                        <a href="{{path('app_abonnement_new')}}">Ajouter Abonnement</a>
+                                    </li>
+                                     <li>
+                                        <a href="{{path('app_promotion_index')}}">Afficher Promotions</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{path('app_promotion_new')}}">Ajouter Promotion</a>
                                     </li>
                                 </ul>
                         </li>

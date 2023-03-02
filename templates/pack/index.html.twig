@@ -3,6 +3,20 @@
 {% block title %}EnergyBox | Pack{% endblock %}
 
 {% block body %}
+<style>
+ .au-card {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 20px;
+        background-color: #fff;
+    }
+    
+    .chart-container {
+        width: 100%;
+        height: 100%;
+    }
+</style>
 <div class="page-wrapper">
         <!-- PAGE CONTAINER-->
         <div class="page-container">
@@ -13,78 +27,156 @@
                             <div class="col-md-12">
                                 <!-- START WHITE BACKGROUND-->
                                 <div class="map-data m-b-40">
-    <h1>Liste Des Packs</h1>
-<br>
-   <div class="table-responsive m-b-40">
-                                    <table class="table table-borderless table-data3">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Durée </th>
-                <th>Type</th>
-                <th>Montant </th>
-                <th>Disponibilité </th>
-                <th>Places réservées</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for pack in packs %}
-            <tr>
-                <td>{{ pack.id }}</td>
-                <td>{{ pack.dureePack }}</td>
-                <td>{{ pack.typePack }}</td>
-                <td>{{ pack.montantPack }}</td>
-                 <td>{{ pack.disponibilitePack}}</td>
-                <td>{{ pack.placesPack}}</td>
-                <td>
-  <a href="{{ path('app_pack_edit', {'id': pack.id}) }}">
-                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                         
-                                                        </button> </a>
-                   <br>
-                    <a href="{{ path('app_pack_show', {'id': pack.id}) }}">
-                 <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="afficher">
-                                                            <i class="zmdi zmdi-more"></i>
-                                                         
-                                                        </button>   </a>
-                     {{ include('pack/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div>
- <button class="au-btn au-btn-load" >
-                                
-                                  <a href="{{ path('app_pack_new') }}" style="color: white;">Ajouter un Pack</a>
-                                </button>
- 
- </div>
+                                    <h1>Liste Des Packs</h1>
+
+                                    <br>
+                                  <div class="table-responsive m-b-40">
+                                     <table class="table table-borderless table-data3">
+                                      <thead>
+                                        <tr>
+                                        <th>Type</th>
+                                        <th>Durée </th>
+                                        <th>Montant </th>
+                                        <th>Disponibilité </th>
+                                        <th>Places réservées</th>
+                                        <th>actions</th>
+                                        </tr>
+                                      </thead>
+                                       <tbody>
+                                         {% for pack in packs %}
+                                         <tr>
+                                         <td>{{ pack.typePack }}</td>
+                                         <td>{{ pack.dureePack }}</td>
+                                         <td>{{ pack.montantPack }}</td>
+                                         <td>{{ pack.disponibilitePack}}</td>
+                                         <td>{{ pack.placesPack}}</td>
+                                          <td>
+                                           <a href="{{ path('app_pack_edit', {'id': pack.id}) }}">
+                                           <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier">
+                                           <i class="zmdi zmdi-edit"></i>   </button> </a>   <br>
+                                           <a href="{{ path('app_pack_show', {'id': pack.id}) }}">
+                                          <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="afficher">
+                                          <i class="zmdi zmdi-more"></i>  </button>   </a>
+                                               {{ include('pack/_delete_form.html.twig') }}  </td>   </tr>
+                                           {% else %}
+                                            <tr>
+                                         <td colspan="5">no records found</td>
+                                              </tr>
+                                               {% endfor %}
+                                         </tbody>
+                                      </table>
+                                  </div>
+                                   <button class="au-btn au-btn-load" >
+                                        <a href="{{ path('app_pack_new') }}" style="color: white;">Ajouter un Pack</a>
+                                    </button>
+    
+                                </div>
+                           </div>
                                 <!-- END WHITE BACKGROUND-->
-                            </div>
+                     </div>
+                  </div>
+                    <div class="row">
+                        <div class="col-lg-9">
+                          <div class="au-card">
+                                <div class="au-card-inner">
+                                 <h3 class="title-2 m-b-40">Statistique des packs</h3>
+                                     <div class="chart-container" style="position: relative; height:50vh; width:100%;">
+                                         <canvas id="myChart" height="200" style="display: block; width: 400px; height: 200px;" width="400" class="chartjs-render-monitor"></canvas>
+                                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                         <script>
+                                           var ctx = document.getElementById('myChart').getContext('2d');
+                                           var myChart = new Chart(ctx, {     type: 'bar',
+                                            data: {
+                                            labels: [
+                                            {% for packStat in packsStats %}
+                                             "{{ packStat.pack.typePack }}",
+                                            {% endfor %}  ],
+                                            datasets: [{
+                                            label: 'Pourcentage de places',
+                                            data: [
+                                           {% for packStat in packsStats %}
+                                           {{ packStat.percentage }},
+                                           {% endfor %}    ],
+                                            backgroundColor: [
+                                           'rgba(255, 99, 132, 0.2)',
+                                           'rgba(54, 162, 235, 0.2)',
+                                           'rgba(255, 206, 86, 0.2)',
+                                           'rgba(75, 192, 192, 0.2)',
+                                           'rgba(153, 102, 255, 0.2)',
+                                           'rgba(255, 159, 64, 0.2)'    ],
+                                            borderColor: [
+                                           'rgba(255, 99, 132, 1)',
+                                           'rgba(54, 162, 235, 1)',
+                                           'rgba(255, 206, 86, 1)',
+                                           'rgba(75, 192, 192, 1)',
+                                           'rgba(153, 102, 255, 1)',
+                                           'rgba(255, 159, 64, 1)'   ],
+                                            borderWidth: 1    }]  },
+                                            options: {
+                                            scales: {
+                                            yAxes: [{
+                                            ticks: {
+                                            beginAtZero: true    }}]  }    }});
+                                           </script>     
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>
+                  
+                          <div class="col-lg-3">
+                             <div class="top-campaign">
+                                    <h3 class="title-3 m-b-30">top pack</h3>
+                                   <div class="table-responsive">
+                                        <table class="table table-top-campaign">
+                                            <tbody>
+                                             {% for stats in packsStats %}
+                                                <tr>
+                                                    <td>{{ stats.rank }}</td>
+                                                    <td>{{ stats.pack.typePack }}</td>
+                                                    <td>{{ stats.percentage }}%</td>
+                                                </tr>
+                                              
+           
+                                               {% endfor %}
+                                             
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                
+                         </div>
+                               
                         </div>
-                        
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                  </div>
+
+                  <!-- njareb -->
+                  <br><br>
+                  <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>{{total}}</h2>
+                                                <span>total des réservation</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                                            <canvas id="myChart" height="115" style="display: block; width: 120px; height: 115px;" width="120" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                  <!--end houny -->
+              </div>
+           
             </div>
-            <!-- END MAIN CONTENT-->
-        </div>
-
-    </div>
+       </div>   
+   </div>
+  
    
    
 {% endblock %}
