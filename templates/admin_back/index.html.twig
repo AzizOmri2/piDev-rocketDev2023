@@ -1,0 +1,35 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block body %}
+    <table class="table ">
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th>Username</th>
+            <th>NumTel</th>
+            <th>Date de naissance</th>
+            <th>Image</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if app.user %}
+            {% set img=app.user.image %}
+            <tr>
+                <td>{{ app.user.email }}</td>
+                <td>{{ app.user.username }}</td>
+                <td>{{ app.user.numTel }}</td>
+                <td>{{ app.user.dateN? app.user.dateN|date('Y-m-d') : '' }}</td>
+                <td><img class="rounded-circle" height="150" src="{{ asset(img) }}" height="100px;" width="100px;"></td>
+                <td>
+                    <a href=" {{ path('app_admin_edit', {'id': app.user.id}) }} ">edit</a>
+                    <!--l methode mta3 l edit leezm tetkhdem fi blasa okhra mch fl crud -->
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

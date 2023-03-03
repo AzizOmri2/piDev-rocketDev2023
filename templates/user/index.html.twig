@@ -1,0 +1,98 @@
+{% extends 'baseBack.html.twig' %}
+{% block title %}EnergyBox | Les utilisateurs {% endblock %}
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- START WHITE BACKGROUND-->
+                <div class="map-data m-b-40">
+                    <h1>
+                        <center>Les utilisateurs</center>
+                    </h1>
+                    <br>
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Username</th>
+                                <th>Image</th>
+                                <th>Email</th>
+                                <th>Roles</th>
+                                <th>NumTel</th>
+                                <th>Date Naissance</th>
+                                <th>Actions</th>
+                                
+
+                                <th>Debloquer</th>
+
+<th></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                {% set img=user.image %}
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td><img src="{{ asset(img) }}" height="200px;" width="100px;"></td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                                    <td>{{ user.numTel }}</td>
+                                    <td>{{ user.dateN ? user.dateN|date('Y-m-d') : '' }}</td>
+                                    <td>
+                                        <a href="{{ path('app_user_show', {'id': user.id}) }}"><i
+                                                    class="zmdi zmdi-eye" ></i></a>
+                                        {{ include('user/_delete_form.html.twig') }}
+                                        <a href="{{ path('app_user_block', {'id': user.id})}}"><i class="fas fa-ban" style="margin-top:-30px; margin-left:40px;"></i></a>
+                                        
+                                    </td>   
+                                    
+                                    
+                                 {# <td>{{ user.etat ? 'debloque' : 'bloque'}}</td>#}
+
+                                  {#  <td>{{ user.approved ? 'Yes' : 'No' }}</td>#}
+
+
+                                    <td>
+                                        {% if not user.approved %}
+                                            <a href="{{ path('app_user_unblock', {'id': user.id}) }}" class="btn btn-success">Debloquer</a>
+
+                                        {% endif %}        
+
+                                    </td>
+                                   
+                                      
+                                    {# <td> <button class="btn btn-dark">
+                                            <a href="{{ path('app_users_edit', {'id': user.id}) }}" style="color: white;">Modifier</a></button>
+                                    </td> #}
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {#  <!-- <button class="au-btn au-btn-load">
+                                        <a href="{{ path('app_pack_new') }}" style="color: white;">Ajouter un Pack</a>
+                                    </button>--> #}
+
+                </div>
+                <!-- END WHITE BACKGROUND-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright">
+                    <p>Copyright © 2023 Colorlib. All rights reserved. Template by <a
+                                href="https://colorlib.com">Colorlib</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

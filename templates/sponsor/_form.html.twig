@@ -1,0 +1,44 @@
+{% extends'baseBack.html.twig' %}
+{% block body %}
+    {{ form_start(form,{attr:{novalidate:'novalidate'} }) }}
+
+    <div class="single-element-widget mt-30">
+        <div class="default-select" id="default-select">
+            {{ form_label(form.nomSponsor,"Nom sponsor") }}
+            {{ form_widget(form.nomSponsor,{'attr':{'class':'form-control'}}) }}
+            {{ form_errors(form.nomSponsor) }}
+        </div>
+    </div>
+    <div class="single-element-widget mt-30">
+        <div class="default-select" id="default-select">
+            {{ form_label(form.donnation,"Donnation") }}
+            {{ form_widget(form.donnation,{'attr':{'class':'form-control'}}) }}
+            {{ form_errors(form.donnation) }}
+        </div>
+    </div>
+    <div class="form-group first">
+        {{ form_label(form.dateDebut,"Date Debut ") }}
+        {{ form_widget(form.dateDebut,{'attr':{'class':'form-control'}}) }}
+        {{ form_errors(form.dateDebut) }}
+    </div>
+    <div class="form-group first">
+    {{ form_label(form.DateFin,"Date Fin") }}
+        {{ form_widget(form.DateFin,{'attr':{'class':'form-control'}}) }}
+        {{ form_errors(form.DateFin) }}
+
+    </div>
+
+    <div class="form-group">
+    <div class="single-element-widget mt-30">
+    <div class="default-select" id="default-select">
+        {{ form_label(form.compitions,"competitions") }}
+        <br>
+        {{ form_widget(form.compitions, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    </div>
+    </div>
+
+    {{ form_widget(form) }}
+    <button class="btn btn-outline-success">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+{% endblock %}

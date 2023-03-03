@@ -1,0 +1,8 @@
+{% extends 'baseBack.html.twig' %}
+{% block body %}
+    <h1>Ajouter un Sponsor</h1>
+
+    {{ include('sponsor/_form.html.twig') }}
+
+    <a href="{{ path('app_sponsor_index') }}">retourner à la liste</a>
+{% endblock %}
