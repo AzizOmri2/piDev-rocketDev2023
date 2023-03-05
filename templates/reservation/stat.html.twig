@@ -1,0 +1,50 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block tache %}
+    <canvas id="myChart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var data = {
+            labels: [
+                {% for result in results %}
+                '{{ result.idplat }}',
+                {% endfor %}
+            ],
+            datasets: [{
+                label: 'Seance count by month',
+                data: [
+                    {% for result in results %}
+                    {{ result.count }},
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    {% for _ in results %}
+                    'rgba({{ random(0, 255) }}, {{ random(0, 255) }}, {{ random(0, 255) }}, 0.2)',
+                    {% endfor %}
+                ],
+                borderColor: [
+                    {% for _ in results %}
+                    'rgba({{ random(0, 255) }}, {{ random(0, 255) }}, {{ random(0, 255) }}, 1)',
+                    {% endfor %}
+                ],
+                borderWidth: 1
+            }]
+        };
+        var options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+    </script>
+{% endblock %}
