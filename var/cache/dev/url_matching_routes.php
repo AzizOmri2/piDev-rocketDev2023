@@ -13,11 +13,13 @@ return [
         '/competition' => [[['_route' => 'app_competition_index', '_controller' => 'App\\Controller\\CompetitionController::index'], null, ['GET' => 0], null, true, false, null]],
         '/competition/CompetitionsJson' => [[['_route' => 'app_competition_json', '_controller' => 'App\\Controller\\CompetitionController::getCompetitions'], null, null, null, false, false, null]],
         '/competition/viewFront' => [[['_route' => 'app_competition_showFront', '_controller' => 'App\\Controller\\CompetitionController::FrontView'], null, ['GET' => 0], null, false, false, null]],
+        '/competition/viewNonDispo' => [[['_route' => 'app_competition_nonDispo', '_controller' => 'App\\Controller\\CompetitionController::showNonDispo'], null, ['GET' => 0], null, false, false, null]],
         '/competition/new' => [[['_route' => 'app_competition_new', '_controller' => 'App\\Controller\\CompetitionController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/competition/newJson' => [[['_route' => 'app_competition_newJson', '_controller' => 'App\\Controller\\CompetitionController::newJson'], null, null, null, false, false, null]],
         '/addCours' => [[['_route' => 'addCours', '_controller' => 'App\\Controller\\CoursController::addCours'], null, null, null, false, false, null]],
         '/viewCours' => [[['_route' => 'viewCours', '_controller' => 'App\\Controller\\CoursController::viewCours'], null, null, null, false, false, null]],
         '/home' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
+        '/email' => [[['_route' => 'app_email', '_controller' => 'App\\Controller\\MailerController::sendEmail'], null, null, null, false, false, null]],
         '/addPlanning' => [[['_route' => 'addPlanning', '_controller' => 'App\\Controller\\PlanningController::index'], null, null, null, false, false, null]],
         '/viewPlanning' => [[['_route' => 'viewPlanning', '_controller' => 'App\\Controller\\PlanningController::viewPlanning'], null, null, null, false, false, null]],
         '/front' => [[['_route' => 'app_front', '_controller' => 'App\\Controller\\TestController::index'], null, null, null, false, false, null]],
@@ -58,24 +60,25 @@ return [
                                 .'|(*:233)'
                                 .'|Json(*:245)'
                             .')'
+                            .'|deleteJson(*:264)'
                         .')'
-                        .'|(*:255)'
+                        .'|(*:273)'
                     .')'
-                    .'|competition/([^/]++)/ticket/pdf(*:295)'
+                    .'|competition/([^/]++)/ticket/pdf(*:313)'
                 .')'
                 .'|/_(?'
-                    .'|error/(\\d+)(?:\\.([^/]++))?(*:335)'
-                    .'|wdt/([^/]++)(*:355)'
+                    .'|error/(\\d+)(?:\\.([^/]++))?(*:353)'
+                    .'|wdt/([^/]++)(*:373)'
                     .'|profiler/([^/]++)(?'
                         .'|/(?'
-                            .'|search/results(*:401)'
-                            .'|router(*:415)'
+                            .'|search/results(*:419)'
+                            .'|router(*:433)'
                             .'|exception(?'
-                                .'|(*:435)'
-                                .'|\\.css(*:448)'
+                                .'|(*:453)'
+                                .'|\\.css(*:466)'
                             .')'
                         .')'
-                        .'|(*:458)'
+                        .'|(*:476)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -96,15 +99,16 @@ return [
         218 => [[['_route' => 'app_ticket_showJson', '_controller' => 'App\\Controller\\TicketController::showJson'], ['id'], null, null, false, false, null]],
         233 => [[['_route' => 'app_ticket_edit', '_controller' => 'App\\Controller\\TicketController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         245 => [[['_route' => 'app_ticket_editJson', '_controller' => 'App\\Controller\\TicketController::editJson'], ['id'], null, null, false, false, null]],
-        255 => [[['_route' => 'app_ticket_delete', '_controller' => 'App\\Controller\\TicketController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        295 => [[['_route' => 'app_ticket_pdf', '_controller' => 'App\\Controller\\TicketController::AfficheTicketPDF'], ['id'], ['GET' => 0], null, false, false, null]],
-        335 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-        355 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-        401 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-        415 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-        435 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
-        448 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        458 => [
+        264 => [[['_route' => 'app_ticket_deleteJson', '_controller' => 'App\\Controller\\TicketController::deleteJson'], ['id'], null, null, false, false, null]],
+        273 => [[['_route' => 'app_ticket_delete', '_controller' => 'App\\Controller\\TicketController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        313 => [[['_route' => 'app_ticket_pdf', '_controller' => 'App\\Controller\\TicketController::AfficheTicketPDF'], ['id'], ['GET' => 0], null, false, false, null]],
+        353 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+        373 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+        419 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+        433 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+        453 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
+        466 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
+        476 => [
             [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

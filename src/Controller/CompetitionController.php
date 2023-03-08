@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Competition;
+use App\Entity\mailler;
+
 use App\Form\CompetitionType;
 use App\Repository\CompetitionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +19,6 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use DateTime;
-
 
 
 
@@ -43,12 +44,13 @@ class CompetitionController extends AbstractController
             return new Response($json);
     }
 
-        // route pour front 
+    ///////// Route pour front////////////////////////
     #[Route('/viewFront', name: 'app_competition_showFront', methods: ['GET'])]
     public function FrontView(CompetitionRepository $competitionRepository, EntityManagerInterface $entityManager): Response
     {
         $now= new \DateTime();
         $competitions=$competitionRepository->findAll();
+        // $competitions = $this->getDoctrine()->getRepository(Competition::class)->findBy(['etatCompetition' => "disponible"]);
         foreach($competitions as $competition)
         {
             if($competition->getDateCompetition()<$now)
@@ -65,10 +67,20 @@ class CompetitionController extends AbstractController
         $entityManager->flush();
 
         return $this->render('competition/viewFront.html.twig', [
-            'competitions' => $competitionRepository->findAll(),
+            'competitions' => $competitionRepository->findBy(['etatCompetition' => 'disponible']),
         ]);
 
     }
+
+    #[Route('/viewNonDispo', name: 'app_competition_nonDispo', methods: ['GET'])]
+    public function showNonDispo(CompetitionRepository $competitionRepository): Response
+    {
+        return $this->render('competition/viewFrontNonDispo.html.twig', [
+            'competitions' => $competitionRepository->findBy(['etatCompetition' => 'non disponible']),
+        ]);
+
+    }
+    // End route Front
 
     #[Route('/viewFront/{id}', name: 'app_competition_Front', methods: ['GET'])]
     public function showFront(Competition $competition): Response
@@ -77,9 +89,7 @@ class CompetitionController extends AbstractController
             'competition' => $competition,
         ]);
     }
-
     // End route Front
-    
 
     #[Route('/new', name: 'app_competition_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CompetitionRepository $competitionRepository): Response
@@ -124,11 +134,13 @@ class CompetitionController extends AbstractController
     
 
     #[Route('/{id}/reserver', name: 'app_competition_reserver', methods: ['POST','GET'])]
-    public function reserver(request $request,CompetitionRepository $competitionRepository, EntityManagerInterface $entityManager ,Competition $competition): Response
+    public function reserver(request $request,CompetitionRepository $competitionRepository, EntityManagerInterface $entityManager ,Competition $competition, MailerInterface $mailer, $id ): Response
     { 
-        $now= new \DateTime();  
-    
-        if(($competition->getNbrMaxInscrit() > 0)||($competition->getDateCompetition()>$now))
+        $now= new \DateTime(); 
+        if($competition->getNbrMaxInscrit()==0)
+        return $this->render('competition/notAvailable.html.twig');
+
+        if(($competition->getNbrMaxInscrit() > 0)&&($competition->getDateCompetition()>$now))
         {
             $competition->setEtatCompetition("disponible");
             $competition->setNbrMaxInscrit($competition->getNbrMaxInscrit()-1);
@@ -138,14 +150,51 @@ class CompetitionController extends AbstractController
         }
         else      
             $competition->setEtatCompetition("non disponible");
-        if (($competition->getEtatCompetition() == 'non disponible')||($competition->getNbrMaxInscrit() == 0)||($competition->getDateCompetition()<$now)) 
+        if (($competition->getEtatCompetition() == 'non disponible')||($competition->getDateCompetition()<$now)) 
         {
             return $this->render('competition/notAvailable.html.twig');
         }
         else
-        return $this->redirectToRoute('app_competition_Front', ['id' => $competition->getId()]);
+        {
+        // ...
+        $competitionUrl=sprintf('http://127.0.0.1:8000/ticket/competition/%d/ticket',$id);
+
+        $email = (new Email())
+        ->from('energyBox@gmail.com')
+        ->to('exemple@gmail.com')
+        //->cc('cc@example.com')
+        //->bcc('bcc@example.com')
+        //->replyTo('fabien@example.com')
+        //->priority(Email::PRIORITY_HIGH)
+        ->subject('Votre compétition a été reservé avec succés')
+        ->text("Hello!, ceci est un email de confirmation de votre réservation,
+        Pour consulter votre ticket, vous pouvez la trouver via ce lien: 'http://127.0.0.1:8000/ticket/competition/$id/ticket',  Merci de votre confiance ! à bientôt !")
+
+        ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
+
+        //return $this->render('app_email');
+
+         return $this->redirectToRoute('app_competition_Front', ['id' => $competition->getId()]);
+    
+        
+        }
+        // $competitionUrl = sprintf('http://127.0.0.1:8000/ticket/competition/%d/ticket', $competitionId);
+        // $email = (new TemplatedEmail())
+        //     ->from('energyBox@gmail.com')
+        //     ->to($recipientEmail)
+        //     ->subject('Votre compétition a été reservé avec succès')
+        //     ->htmlTemplate('emails/ticket.html.twig')
+        //     ->context([
+        //         'competitionUrl' => $competitionUrl,
+        //     ]);
+        // $mailer->send($email);
+        // // ...
+        // return $this->render('mailer/index.html.twig');
     }
 
+    
 
     #[Route('/{id}', name: 'app_competition_show', methods: ['GET'])]
     public function show(Competition $competition): Response

@@ -49,7 +49,7 @@ class Competition
     #[Assert\NotBlank(message:"L'Etat ne peut être que 'disponible' ou 'non disponible' !!")]
     private ?string $etatCompetition = null;
 
-    #[ORM\OneToMany(mappedBy: 'competition', targetEntity: Ticket::class)]
+    #[ORM\OneToMany(mappedBy: 'competition', targetEntity: Ticket::class, cascade : ["remove"])]
     #[Groups("competitions")]
     private Collection $tickets;
 

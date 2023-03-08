@@ -60,7 +60,11 @@
                                             <ul id="navigation">
                                                 <li><a href="{{path('app_front')}}">Home</a></li>
                                                 <li><a href="">About</a></li>
-                                                <li><a href="{{path('app_competition_showFront')}}">competitions</a></li> 
+                                                <li><a href="{{path('app_competition_showFront')}}">competitions</a>
+                                                   <ul class="submenu">
+                                                        <li><a href="{{path('app_competition_nonDispo')}}">Compétitions non disponible</a></li>
+                                                    </ul>
+                                                 </li>
                                            <li><a>Salle</a>
                                                     <ul class="submenu">
                                                         <li><a href="/planning/crud/viewPlanning">Planning</a></li>
