@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use App\Entity\Ticket;
 use App\Form\Ticket1Type;
 use App\Form\TicketType;
@@ -18,15 +19,16 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
-use Endroid\QrCode\Color\Color;
-use Endroid\QrCode\Encoding\Encoding;
-use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
-use Endroid\QrCode\Label\Alignment\LabelAlignmentCenter;
-use Endroid\QrCode\Label\Margin\Margin;
-use Endroid\QrCode\Builder\Builder;
-use Endroid\QrCode\Writer\PngWriter;
+// use Endroid\QrCode\Color\Color;
+// use Endroid\QrCode\Encoding\Encoding;
+// use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
+// use Endroid\QrCode\Label\Alignment\LabelAlignmentCenter;
+// use Endroid\QrCode\Label\Margin\Margin;
+// use Endroid\QrCode\Builder\Builder;
+// use Endroid\QrCode\Writer\PngWriter;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile; 
+
 
 
 
@@ -177,46 +179,44 @@ class TicketController extends AbstractController
     }
     //////////////////////end jsonDELETE/////////////////////////
 
+   
 
     /////////////////PDF/////////////competition/{id}/ticket/pdf
     #[Route('/competition/{id}/ticket/pdf', name: 'app_ticket_pdf', methods: ['GET'])]     
     public function AfficheTicketPDF(TicketRepository $ticketRepository, $id)
     {
-        // Configure Dompdf according to your needs
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
+    $pdfoptions = new Options();
+    $pdfoptions->set('defaultFont', 'Arial');
+    $pdfoptions->setIsRemoteEnabled(true);
     
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-    
-        // Retrieve the Ticket object from the database based on $id
-        $ticket = $ticketRepository->find($id);
-    
-        // Check if the ticket exists
-        if (!$ticket) {
-            throw $this->createNotFoundException('The ticket does not exist');
-        }
-    
-        // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('ticket/myPDFticket.html.twig',
-            ['ticket'=>$ticket]);
-    
-        // Load HTML to Dompdf
-        $dompdf->loadHtml($html);
-    
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
-    
-        // Render the HTML as PDF
-        $dompdf->render();
-    
-        // Output the generated PDF to Browser (force download)
-        $dompdf->stream("ticket.pdf", [
-            "Attachment" => false
-        ]);
-        return new Response("The PDF file has been succesfully generated !");
+
+    $dompdf = new Dompdf($pdfoptions);
+
+    $ticket = $ticketRepository->find($id);
+
+    // Check if the ticket exists
+    if (!$ticket) {
+        throw $this->createNotFoundException('The ticket does not exist');
     }
-    
+
+    $html = $this->renderView('ticket/myPDFticket.html.twig', [
+        'ticket' => $ticket
+    ]);
+
+    $html = '<div>' . $html . '</div>';
+
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+
+    $pdfOutput = $dompdf->output();
+
+    return new Response($pdfOutput, Response::HTTP_OK, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="ticketPDF.pdf"'
+    ]);
+}
+
  }
 
 

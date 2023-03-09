@@ -19,7 +19,6 @@ return [
         '/addCours' => [[['_route' => 'addCours', '_controller' => 'App\\Controller\\CoursController::addCours'], null, null, null, false, false, null]],
         '/viewCours' => [[['_route' => 'viewCours', '_controller' => 'App\\Controller\\CoursController::viewCours'], null, null, null, false, false, null]],
         '/home' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
-        '/email' => [[['_route' => 'app_email', '_controller' => 'App\\Controller\\MailerController::sendEmail'], null, null, null, false, false, null]],
         '/addPlanning' => [[['_route' => 'addPlanning', '_controller' => 'App\\Controller\\PlanningController::index'], null, null, null, false, false, null]],
         '/viewPlanning' => [[['_route' => 'viewPlanning', '_controller' => 'App\\Controller\\PlanningController::viewPlanning'], null, null, null, false, false, null]],
         '/front' => [[['_route' => 'app_front', '_controller' => 'App\\Controller\\TestController::index'], null, null, null, false, false, null]],

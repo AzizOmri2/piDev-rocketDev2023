@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Competition;
 use App\Entity\mailler;
-
 use App\Form\CompetitionType;
 use App\Repository\CompetitionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +17,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+
 use DateTime;
 
 
@@ -46,11 +49,12 @@ class CompetitionController extends AbstractController
 
     ///////// Route pour front////////////////////////
     #[Route('/viewFront', name: 'app_competition_showFront', methods: ['GET'])]
-    public function FrontView(CompetitionRepository $competitionRepository, EntityManagerInterface $entityManager): Response
+    public function FrontView(CompetitionRepository $competitionRepository, EntityManagerInterface $entityManager, PaginatorInterface $Paginator, request $request): Response
     {
         $now= new \DateTime();
         $competitions=$competitionRepository->findAll();
-        // $competitions = $this->getDoctrine()->getRepository(Competition::class)->findBy(['etatCompetition' => "disponible"]);
+
+         $competitions = $this->getDoctrine()->getRepository(Competition::class)->findBy(['etatCompetition' => "disponible"]);
         foreach($competitions as $competition)
         {
             if($competition->getDateCompetition()<$now)
@@ -65,18 +69,35 @@ class CompetitionController extends AbstractController
 
         $entityManager->persist($competition);
         $entityManager->flush();
+        $competitions = $this->getDoctrine()->getRepository(Competition::class)->findBy(['etatCompetition' => "disponible"]);
+        $competitions = $Paginator->paginate(
+            $competitions,
+            $request->query->getInt(key:'page',default: 1),
+            limit: 3
+        );
 
         return $this->render('competition/viewFront.html.twig', [
-            'competitions' => $competitionRepository->findBy(['etatCompetition' => 'disponible']),
-        ]);
+            'pagination'=>$competitions,
+             $competitionRepository->findBy(['etatCompetition' => 'disponible',
+        ]), 'competitions' =>$competitions,
+    ]);
 
     }
 
     #[Route('/viewNonDispo', name: 'app_competition_nonDispo', methods: ['GET'])]
-    public function showNonDispo(CompetitionRepository $competitionRepository): Response
+    public function showNonDispo(CompetitionRepository $competitionRepository, PaginatorInterface $Paginator, request $request): Response
     {
+        $competitions = $this->getDoctrine()->getRepository(Competition::class)->findBy(['etatCompetition' => "non disponible"]);
+        $competitions = $Paginator->paginate(
+            $competitions,
+            $request->query->getInt(key: 'page', default: 1),
+           limit:3
+        );
         return $this->render('competition/viewFrontNonDispo.html.twig', [
-            'competitions' => $competitionRepository->findBy(['etatCompetition' => 'non disponible']),
+            'pagination'=>$competitions,
+            $competitionRepository->findBy(['etatCompetition' => 'non disponible',
+            ]),'competitions' =>$competitions,
+          
         ]);
 
     }
@@ -180,18 +201,6 @@ class CompetitionController extends AbstractController
     
         
         }
-        // $competitionUrl = sprintf('http://127.0.0.1:8000/ticket/competition/%d/ticket', $competitionId);
-        // $email = (new TemplatedEmail())
-        //     ->from('energyBox@gmail.com')
-        //     ->to($recipientEmail)
-        //     ->subject('Votre compétition a été reservé avec succès')
-        //     ->htmlTemplate('emails/ticket.html.twig')
-        //     ->context([
-        //         'competitionUrl' => $competitionUrl,
-        //     ]);
-        // $mailer->send($email);
-        // // ...
-        // return $this->render('mailer/index.html.twig');
     }
 
     

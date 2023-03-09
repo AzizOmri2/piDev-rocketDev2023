@@ -22,7 +22,6 @@ return [
     'addCours' => [[], ['_controller' => 'App\\Controller\\CoursController::addCours'], [], [['text', '/addCours']], [], [], []],
     'viewCours' => [[], ['_controller' => 'App\\Controller\\CoursController::viewCours'], [], [['text', '/viewCours']], [], [], []],
     'app_home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/home']], [], [], []],
-    'app_email' => [[], ['_controller' => 'App\\Controller\\MailerController::sendEmail'], [], [['text', '/email']], [], [], []],
     'addPlanning' => [[], ['_controller' => 'App\\Controller\\PlanningController::index'], [], [['text', '/addPlanning']], [], [], []],
     'viewPlanning' => [[], ['_controller' => 'App\\Controller\\PlanningController::viewPlanning'], [], [['text', '/viewPlanning']], [], [], []],
     'app_front' => [[], ['_controller' => 'App\\Controller\\TestController::index'], [], [['text', '/front']], [], [], []],
