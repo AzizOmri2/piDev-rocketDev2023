@@ -44,12 +44,11 @@ class Cours
     #[ORM\Column(length: 255)]
     private ?string $descriptionCours = null;
 
-    #[Groups("cours")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi les activités de ce cours.")]
     #[ORM\ManyToMany(targetEntity: Activite::class, inversedBy: 'cours')]
     private Collection $activites;
 
-    #[ORM\OneToMany(mappedBy: 'cours', targetEntity: Planning::class)]
+    #[ORM\OneToMany(mappedBy: 'cours', targetEntity: Planning::class, cascade:["persist","remove"])]
     private Collection $plannings;
 
     

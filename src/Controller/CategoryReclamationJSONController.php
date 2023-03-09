@@ -14,16 +14,22 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CategoryReclamationJSONController extends AbstractController
 {
-    /* JSON View Back */
-    #[Route('/categoryreclamation/viewJSON', name: 'viewJSONCategoryReclamation')]
-    public function viewJSON(SerializerInterface $serializer, CategoryReclamationRepository $categoryreclamationRepository)
+    /* JSON Edit */
+    #[Route('/categoryreclamation/editJSON/{id}', name: 'editJSONCategoryReclamation')]
+    public function editJSON($id,Request $request, CategoryReclamation $categoryreclamation, NormalizerInterface $Normalizer)
     {
-        $categoryreclamation = $categoryreclamationRepository->findAll();
+        $em=$this->getDoctrine()->getManager();
 
-        $json = $serializer->serialize($categoryreclamation,'json',['groups'=>'categoryreclamation']);
+        $categoryreclamation=$em->getRepository(CategoryReclamation::class)->find($id);
+        $categoryreclamation->setNomCategory($request->get('nomCategory'));
+        $categoryreclamation->setDescriptionCategory($request->get('descriptionCategory'));
+        $categoryreclamation->setPrioriteCategory($request->get('prioriteCategory'));
 
-        dump($categoryreclamation);
-        die;
+        $em->flush();
+
+        $jsonContent = $Normalizer->normalize($categoryreclamation,'json',['groups'=>'categoryreclamation']);
+
+        return new Response("CategoryReclamation est mise à jour".json_encode($jsonContent));
     }
 
     /* JSON Show */
@@ -48,6 +54,19 @@ class CategoryReclamationJSONController extends AbstractController
         return new Response("CategoryReclamation supprimée avec succés".json_encode($jsonContent));
     }
 
+    /* JSON View Back */
+    #[Route('/categoryreclamation/viewJSON', name: 'viewJSONCategoryReclamation')]
+    public function viewJSON(NormalizerInterface $Normalizer, CategoryReclamationRepository $categoryreclamationRepository)
+    {
+        $categoryreclamation = $categoryreclamationRepository->findAll();
+
+        $categoryReclamationNormalises = $Normalizer->normalize($categoryreclamation,'json',['groups'=>'categoryreclamation']);
+
+        $json = json_encode($categoryReclamationNormalises);
+        
+        return new Response($json);
+    }
+
     /* JSON Add */
     #[Route('/categoryreclamation/newJSON', name: 'addJSONCategoryReclamation')]
     public function newJSON(Request $request, NormalizerInterface $Normalizer, EntityManagerInterface $em)
@@ -66,21 +85,4 @@ class CategoryReclamationJSONController extends AbstractController
         return new Response("CategoryReclamation ajouté avec succés".json_encode($jsonContent));
     }
     
-    /* JSON Edit */
-    #[Route('/categoryreclamation/editJSON/{id}', name: 'editJSONCategoryReclamation')]
-    public function editJSON($id,Request $request, CategoryReclamation $categoryreclamation, NormalizerInterface $Normalizer)
-    {
-        $em=$this->getDoctrine()->getManager();
-
-        $categoryreclamation=$em->getRepository(CategoryReclamation::class)->find($id);
-        $categoryreclamation->setNomCategory($request->get('nomCategory'));
-        $categoryreclamation->setDescriptionCategory($request->get('descriptionCategory'));
-        $categoryreclamation->setPrioriteCategory($request->get('prioriteCategory'));
-
-        $em->flush();
-
-        $jsonContent = $Normalizer->normalize($categoryreclamation,'json',['groups'=>'categoryreclamation']);
-
-        return new Response("CategoryReclamation est mise à jour".json_encode($jsonContent));
-    }
 }

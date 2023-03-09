@@ -50,7 +50,6 @@ class Activite
     #[ORM\Column(length: 255)]
     private ?string $descriptionActivite = null;
 
-    #[Groups("activites")]
     #[Assert\NotBlank(message:"Veuillez saisir les activités de ce cours.")]
     #[ORM\ManyToMany(targetEntity: Cours::class, mappedBy: 'activites')]
     private Collection $cours;

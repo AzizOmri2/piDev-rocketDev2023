@@ -31,13 +31,12 @@
                     </button>
                     &nbsp;
                 </a>
-                <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                    <select class="js-select2" name="type">
-                        <option selected="selected">Export</option>
-                        <option value="option_pdf">En PDF</option>
-                        <option value="option_excel">En Excel</option>
-                    </select>
-                <div class="dropDownSelect2"></div>
+                <a href="{{ path('app_calendar') }}">
+                    <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                        Planning Calendrier
+                    </button>
+                    &nbsp;
+                </a>
             </div>
         </div>
     </div>
@@ -84,7 +83,7 @@
         <div class="card-footer">
             <br>
             <div class="pagination">
-                {% do plannings.setPageRange(6) %}
+                {% do plannings.setPageRange(10) %}
                 {{knp_pagination_render(plannings, 'pagination.html.twig')}}
             </div>
         </div>

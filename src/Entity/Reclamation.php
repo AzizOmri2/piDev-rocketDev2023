@@ -50,7 +50,7 @@ class Reclamation
     private ?CategoryReclamation $category = null;
 
     #[Groups("reclamation")]
-    #[ORM\OneToMany(mappedBy: 'reclamation', targetEntity: Reponse::class)]
+    #[ORM\OneToMany(mappedBy: 'reclamation', targetEntity: Reponse::class, cascade:["remove"])]
     private Collection $reponses;
 
     public function __construct()

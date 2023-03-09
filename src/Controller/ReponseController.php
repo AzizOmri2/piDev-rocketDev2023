@@ -50,14 +50,16 @@ class ReponseController extends AbstractController
 
     /* JSON View */
     #[Route('/viewJSON', name: 'viewJSONReponse')]
-    public function viewJSON(SerializerInterface $serializer, ReponseRepository $repo)
+    public function viewJSON(NormalizerInterface $Normalizer, ReponseRepository $repo)
     {
         $reponse = $repo->findAll();
 
-        $json = $serializer->serialize($reponse,'json',['groups'=>'reponse']);
+        $reponseNormalises = $Normalizer->normalize($reponse,'json',['groups'=>'reponse']);
 
-        dump($reponse);
-        die;
+        $json = json_encode($reponseNormalises);
+        
+        return new Response($json);
+        
     }
 
     #[Route('/new/{id}', name: 'app_reponse_new', methods: ['GET', 'POST'])]

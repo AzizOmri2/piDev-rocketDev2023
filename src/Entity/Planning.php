@@ -34,10 +34,9 @@ class Planning
     #[ORM\Column]
     private ?int $heurePlanning = null;
 
-    #[Groups("planning")]
     #[Assert\NotBlank(message:"Vous n'avez pas saisi le cours dans ce planning.")]
     #[ORM\ManyToOne(inversedBy: 'plannings')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Cours $cours = null;
 
     public function __construct()

@@ -39,6 +39,12 @@ class ActiviteRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchActivity($data){
+        $em = $this->getEntityManager();
+        $qry=$em->createQuery('SELECT a from App\Entity\Activite a where a.nomActivite like :data OR a.dureeActivite like :data OR a.difficulteActivite like :data')->setParameter('data','%'.$data.'%');
+        return $qry->getResult();
+    }
+
 //    /**
 //     * @return Activite[] Returns an array of Activite objects
 //     */

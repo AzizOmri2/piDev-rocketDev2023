@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert; 
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\AbonnementRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,37 +14,53 @@ class Abonnement
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("abonnements")]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $dureeAbonnement = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups("abonnements")]
+    # #[Assert\NotBlank(  message: "Le champ est vide !",  )] 
     private ?\DateTimeInterface $dateAchat = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups("abonnements")]
+    # #[Assert\NotBlank(   message: "Le champ est vide !",  )]
+    #[Assert\GreaterThanOrEqual(propertyPath:"dateAchat" ,
+     message :"La date de fin doit être supérieure à la date de début!")]
     private ?\DateTimeInterface $dateFin = null;
-
     #[ORM\Column(length: 255)]
-    private ?string $etatAbonnement = null;
+    #[Groups("abonnements")]
+    # #[Assert\NotBlank(message: "Le champ est vide !", )]
+    #[Assert\Regex(pattern: '/[a-zA-Z]/')]
+    private ?string $etatAbonnement = "";
 
     #[ORM\ManyToOne(inversedBy: 'abonnements')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank( message: "Le champ est vide !" )]
+    #[Groups("abonnements")]
     private ?Pack $pack = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups("abonnements")]
+    private ?string $CodePromo = "";
+
+    #[ORM\Column]
+    #[Assert\Positve]
+    #[Groups("abonnements")]
+    private ?float $MontantAbonnement = 0;
+
+    #[ORM\ManyToOne(inversedBy: 'Abonnements')]
+    #[Assert\NotBlank(   message: "il faut choir un utilisateur!"  )]
+    #[Groups("abonnements")]
+    private ?User $user = null;
+   
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function getDureeAbonnement(): ?string
+    public function setId(int $id): self
     {
-        return $this->dureeAbonnement;
-    }
-
-    public function setDureeAbonnement(string $dureeAbonnement): self
-    {
-        $this->dureeAbonnement = $dureeAbonnement;
+        $this->id = $id;
 
         return $this;
     }
@@ -91,6 +109,45 @@ class Abonnement
     public function setPack(?Pack $pack): self
     {
         $this->pack = $pack;
+
+        return $this;
+    }
+    public function __toString(){
+        return(String) $this->getPack();
+    }
+
+    public function getCodePromo(): ?string
+    {
+        return $this->CodePromo;
+    }
+
+    public function setCodePromo(?string $CodePromo): self
+    {
+        $this->CodePromo = $CodePromo;
+
+        return $this;
+    }
+
+    public function getMontantAbonnement(): ?float
+    {
+        return $this->MontantAbonnement;
+    }
+
+    public function setMontantAbonnement(float $MontantAbonnement): self
+    {
+        $this->MontantAbonnement = $MontantAbonnement;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

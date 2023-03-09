@@ -48,14 +48,16 @@ class ReclamationController extends AbstractController
     }
     /* VIEW RECLAMATION JSON */
     #[Route('/viewJSON', name: 'viewJSONReclamation')]
-    public function viewJSON(SerializerInterface $serializer, ReclamationRepository $reclamationRepository)
+    public function viewJSON(NormalizerInterface $Normalizer, ReclamationRepository $reclamationRepository)
     {
         $reclamation = $reclamationRepository->findAll();
 
-        $json = $serializer->serialize($reclamation,'json',['groups'=>'reclamation']);
+        $reclamationNormalises = $Normalizer->normalize($reclamation,'json',['groups'=>'reclamation']);
 
-        dump($reclamation);
-        die;
+        $json = json_encode($reclamationNormalises);
+        
+        return new Response($json);
+
     }
 
     #[Route('/merci', name: 'app_reclamation_merci', methods: ['GET'])]

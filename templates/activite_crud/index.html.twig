@@ -29,24 +29,12 @@
                     </button>
                     &nbsp;
                 </a>
-                <a href="{{ path('exportPDF') }}">
-                    <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                        Export en PDF
-                    </button>
-                    &nbsp;
-                </a>
-                
-                {# <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                    <select class="js-select2">
-                        <option selected="selected">Export</a></option>
-                        <option value="">En PDF</option>
-                        <option value="">En Excel</option>
-                    </select>
-                <div class="dropDownSelect2"></div> #}
             </div>
         </div>
     </div>
-
+        
+    <input type="text" class="form-control" id="searchInput" placeholder="Rechercher Activité&hellip;">
+    <br>
         <table class="table table-borderless table-data3">
             <thead>
                 <tr>
@@ -65,6 +53,13 @@
                     <td>{{ activite.difficulteActivite }}</td>
                     <td>{{ activite.tenueActivite|striptags|slice(0, 50) }}</td>
                     <td>
+                        <a href="{{ path('app_activite_pdf', {'id': activite.id}) }}">
+                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Export">
+                                <i class="zmdi zmdi-collection-pdf"></i>                               
+                            </button>
+                            &nbsp;
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="{{ path('app_activite_crud_show', {'id': activite.id}) }}">
                             <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Afficher">
                                 <i class="zmdi zmdi-eye"></i>                               
@@ -85,8 +80,38 @@
                     </tr>
                 {% endfor %}
             </tbody>
+            
         </table>
+        <div class="card-footer">
+            <br>
+            <div class="pagination">
+                {% do activites.setPageRange(10) %}
+                {{knp_pagination_render(activites, 'pagination.html.twig')}}
+            </div>
+        </div>
     </div>
 </div>
 
+
+<script>
+    function filterTable() {
+        const filter = document.getElementById('searchInput').value.toUpperCase();
+        const rows = document.querySelectorAll('table tr');
+        for (let i = 1; i < rows.length; i++) {
+            const cols = rows[i].querySelectorAll('td');
+            let visible = false;
+            for (let j = 0; j < cols.length; j++) {
+                const cell = cols[j];
+                if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                    visible = true;
+                    break;
+                }
+            }
+            rows[i].style.display = visible ? '' : 'none';
+        }
+    }
+    document.getElementById('searchInput').addEventListener('keyup', filterTable);
+</script>
+
+    
 {% endblock %}

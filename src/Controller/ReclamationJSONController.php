@@ -17,8 +17,25 @@ use DateTime;
 
 class ReclamationJSONController extends AbstractController
 {
-    /* JSON View Back */
-    /* ReclamationController.php */
+    /* JSON Edit */
+    #[Route('/reclamation/editJSON/{id}', name: 'editJSONReclamation')]
+    public function editJSON($id,Request $request, Reclamation $reclamation, NormalizerInterface $Normalizer)
+    {
+        $em=$this->getDoctrine()->getManager();
+
+        $reclamation=$em->getRepository(Reclamation::class)->find($id);
+        $reclamation->setNomUserReclamation($request->get('nomUserReclamation'));
+        $reclamation->setEmailUserReclamation($request->get('emailUserReclamation'));
+        $reclamation->setObjetReclamation($request->get('objetReclamation'));
+        $reclamation->setTexteReclamation($request->get('texteReclamation'));
+        $reclamation->setDateReclamation($request->get('dateReclamation'));
+
+        $em->flush();
+
+        $jsonContent = $Normalizer->normalize($reclamation,'json',['groups'=>'reclamation']);
+
+        return new Response("Reclamation est mise à jour".json_encode($jsonContent));
+    }
 
     /* JSON Show */
     #[Route('/reclamation/showJSON/{id}', name: 'showJSONReclamation')]
@@ -41,25 +58,8 @@ class ReclamationJSONController extends AbstractController
 
         return new Response("Reclamation supprimée avec succés".json_encode($jsonContent));
     }
+    /* JSON View Back */
+    /* ReclamationController.php */
 
     
-    /* JSON Edit */
-    #[Route('/reclamation/editJSON/{id}', name: 'editJSONReclamation')]
-    public function editJSON($id,Request $request, Reclamation $reclamation, NormalizerInterface $Normalizer)
-    {
-        $em=$this->getDoctrine()->getManager();
-
-        $reclamation=$em->getRepository(Reclamation::class)->find($id);
-        $reclamation->setNomUserReclamation($request->get('nomUserReclamation'));
-        $reclamation->setEmailUserReclamation($request->get('emailUserReclamation'));
-        $reclamation->setObjetReclamation($request->get('objetReclamation'));
-        $reclamation->setTexteReclamation($request->get('texteReclamation'));
-        $reclamation->setDateReclamation($request->get('dateReclamation'));
-
-        $em->flush();
-
-        $jsonContent = $Normalizer->normalize($reclamation,'json',['groups'=>'reclamation']);
-
-        return new Response("Reclamation est mise à jour".json_encode($jsonContent));
-    }
 }

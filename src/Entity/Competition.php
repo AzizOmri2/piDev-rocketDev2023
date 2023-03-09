@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompetitionRepository::class)]
 class Competition
@@ -15,24 +16,50 @@ class Competition
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+    
+    #[ORM\Column]
+    #[Groups("competition")]
+    #[Assert\NotBlank(message:"Il faut déclarer le nom de compétition à ajouter !!")]
+    private ?string $nomCompetition = null;
+   
 
     #[ORM\Column]
-    private ?int $nomCompetition = null;
-
-    #[ORM\Column]
+    #[Groups("competition")]
+    #[Assert\Positive(message:"Prix invalide !!")]
     private ?float $fraisCompetition = null;
 
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups("competition")]
+    #[Assert\GreaterThanOrEqual(value: "today",message:"Date Invalide !!")]
     private ?\DateTimeInterface $dateCompetition = null;
 
     #[ORM\Column]
+    #[Groups("competition")]
+        
+       #[ Assert\Range(
+               min : 0,
+               max : 50,
+               notInRangeMessage : "Veuillez entrer un nombre entre 0 et 50.",
+               invalidMessage : "Veuillez entrer un nombre valide."
+          )] 
     private ?int $nbrMaxInscrit = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Groups("competitions")]
+    #[Assert\NotBlank(message:"L'Etat ne peut être que 'disponible' ou 'non disponible' !!")]
     private ?string $etatCompetition = null;
 
-    #[ORM\OneToMany(mappedBy: 'competition', targetEntity: Ticket::class)]
+    #[ORM\OneToMany(mappedBy: 'competition', targetEntity: Ticket::class, cascade : ["remove"])]
+    #[Groups("competitions")]
     private Collection $tickets;
+
+    #[ORM\Column(nullable: true)]
+    #[Groups("competitions")]
+    private ?int $nbrParticipant = null;
+
+ 
 
     public function __construct()
     {
@@ -44,12 +71,12 @@ class Competition
         return $this->id;
     }
 
-    public function getNomCompetition(): ?int
+    public function getNomCompetition(): ?string
     {
         return $this->nomCompetition;
     }
 
-    public function setNomCompetition(int $nomCompetition): self
+    public function setNomCompetition(string $nomCompetition): self
     {
         $this->nomCompetition = $nomCompetition;
 
@@ -104,6 +131,11 @@ class Competition
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->nomCompetition;
+    }
+
     /**
      * @return Collection<int, Ticket>
      */
@@ -130,6 +162,18 @@ class Competition
                 $ticket->setCompetition(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNbrParticipant(): ?int
+    {
+        return $this->nbrParticipant;
+    }
+
+    public function setNbrParticipant(?int $nbrParticipant): self
+    {
+        $this->nbrParticipant = $nbrParticipant;
 
         return $this;
     }

@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+
 
 
 #[Route('/cours/crud')]
@@ -19,10 +21,21 @@ class CoursCrudController extends AbstractController
 {
     // BackOffice
     #[Route('/', name: 'app_cours_crud_index', methods: ['GET'])]
-    public function index(CoursRepository $coursRepository): Response
+    public function index(
+        Request $request, 
+        CoursRepository $coursRepository,
+        PaginatorInterface $paginator): Response
     {
+        $data=$coursRepository->findAll();
+
+        $cours=$paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            10
+        );
+
         return $this->render('cours_crud/index.html.twig', [
-            'cours' => $coursRepository->findAll(),
+            'cours' => $cours,
         ]);
     }
 

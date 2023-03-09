@@ -18,18 +18,24 @@ use DateTime;
 
 class PlanningJSONController extends AbstractController
 {
-    /* JSON View Back */
-    #[Route('/planning/viewJSON', name: 'viewJSONPlanning')]
-    public function viewJSON(PlanningRepository $planningRepository, NormalizerInterface $normalizer)
+    /* JSON Edit */
+    #[Route('/planning/editJSON/{id}', name: 'editJSONPlanning')]
+    public function editJSON($id,Request $request, Planning $planning, NormalizerInterface $Normalizer)
     {
-        $planning = $planningRepository->findAll();
+        $em=$this->getDoctrine()->getManager();
 
-        $planningNormalises = $normalizer->normalize($planning,'json',['groups'=>'planning']);
+        $planning=$em->getRepository(Planning::class)->find($id);
+        $planning->setDatePlanning($request->get('datePlanning'));
+        $planning->setJourPlanning($request->get('jourPlanning'));
+        $planning->setHeurePlanning($request->get('heurePlanning'));
 
-        $json = json_encode($planningNormalises);
-        
-        return new Response($json);
+        $em->flush();
+
+        $jsonContent = $Normalizer->normalize($planning,'json',['groups'=>'planning']);
+
+        return new Response("Planning est mise à jour".json_encode($jsonContent));
     }
+
     /* JSON Show */
     #[Route('/planning/showJSON/{id}', name: 'showJSONPlanning')]
     public function showJSON($id,PlanningRepository $repo,NormalizerInterface $normalizer)
@@ -52,6 +58,19 @@ class PlanningJSONController extends AbstractController
         return new Response("Planning supprimée avec succés".json_encode($jsonContent));
     }
 
+    /* JSON View Back */
+    #[Route('/planning/viewJSON', name: 'viewJSONPlanning')]
+    public function viewJSON(PlanningRepository $planningRepository, NormalizerInterface $normalizer)
+    {
+        $planning = $planningRepository->findAll();
+
+        $planningNormalises = $normalizer->normalize($planning,'json',['groups'=>'planning']);
+
+        $json = json_encode($planningNormalises);
+        
+        return new Response($json);
+    }
+
     /* JSON Add */
     #[Route('/planning/newJSON', name: 'addJSONPlanning')]
     public function newJSON(Request $request, NormalizerInterface $Normalizer, EntityManagerInterface $em)
@@ -71,21 +90,28 @@ class PlanningJSONController extends AbstractController
 
         return new Response("Planning ajouté avec succés".json_encode($jsonContent));
     }
-    /* JSON Edit */
-    #[Route('/planning/editJSON/{id}', name: 'editJSONPlanning')]
-    public function editJSON($id,Request $request, Planning $planning, NormalizerInterface $Normalizer)
+
+    #[Route('/calendrier', name: 'app_calendar')]
+    public function CalendarView(PlanningRepository $repo): Response
     {
-        $em=$this->getDoctrine()->getManager();
+        $events = $repo->findAll();
 
-        $planning=$em->getRepository(Planning::class)->find($id);
-        $planning->setDatePlanning($request->get('datePlanning'));
-        $planning->setJourPlanning($request->get('jourPlanning'));
-        $planning->setHeurePlanning($request->get('heurePlanning'));
+        $rdvs = [];
 
-        $em->flush();
+        foreach($events as $event){
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'start' => $event->getDatePlanning()->format('Y-m-d'),
+                'title' => $event->getCours()->getNomCours(),
+                'nomCoach' => $event->getCours()->getNomCoach(),
+                'backgroundColor' => "#2C3E50",
+                'borderColor' => "#2C3E50",
+                'textColor' => "#ffffff",
+            ];
+        }
 
-        $jsonContent = $Normalizer->normalize($planning,'json',['groups'=>'planning']);
+        $data = json_encode($rdvs);
 
-        return new Response("Planning est mise à jour".json_encode($jsonContent));
+        return $this->render('planning_crud/calendrier.html.twig', compact('data'));
     }
 }

@@ -19,16 +19,26 @@ use Knp\Component\Pager\PaginatorInterface;
 
 
 
-
 #[Route('/activite/crud')]
 class ActiviteCrudController extends AbstractController
 {
     
     #[Route('/', name: 'app_activite_crud_index', methods: ['GET'])]
-    public function index(Request $request, ActiviteRepository $activiteRepository): Response
+    public function index(
+        Request $request, 
+        ActiviteRepository $activiteRepository,
+        PaginatorInterface $paginator): Response
     {
+        $data=$activiteRepository->findAll();
+
+        $activites=$paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            10
+        );
+
         return $this->render('activite_crud/index.html.twig', [
-            'activites' => $activiteRepository->findAll(),
+            'activites' => $activites,
         ]);
     }
 
@@ -137,6 +147,8 @@ class ActiviteCrudController extends AbstractController
 
         return $this->redirectToRoute('app_activite_crud_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 
     
 }
