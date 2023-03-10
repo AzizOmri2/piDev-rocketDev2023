@@ -1,96 +1,131 @@
- {% extends 'baseBack.html.twig' %}  
+{% extends 'baseBack.html.twig' %}
 
- {% block title %}EnergyBox | Abonnement {% endblock %} 
+{% block title %}EnergyBox | Abonnement
+{% endblock %}
 
 {% block body %}
-<!-- MAIN CONTENT-->
-    <div class="page-wrapper">
-        <!-- PAGE CONTAINER-->
-        <div class="page-container">
-            <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- START WHITE BACKGROUND-->
-                                <div class="map-data m-b-40">
-    <h1>Liste Des Abonnements</h1><br>
-    
-<div class="table-responsive m-b-40">
-                                    <table class="table table-borderless table-data3">
-                                         <thead>
-                                            <tr>
-                                          
-                <th>Type Abonnement</th>
-                <th>Montant</th>
-                  <th>Durée Abonnement</th>
-                <th>Date Achat</th>
-                <th>Date Fin</th>
-                <th>Etat Abonnement</th>
-                <th>Utilisateur</th>
-                <th>actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for abonnement in abonnements %}
-                                            
-            <tr>
-                
-                <td>{{ abonnement.pack.typePack  }}</td>
-                <td>{{ abonnement.montantAbonnement }}</td>
-                <td>{{ abonnement.pack.dureePack  }}</td>
-                <td>{{ abonnement.dateAchat ? abonnement.dateAchat|date('Y-m-d') : '' }}</td>
-                <td>{{ abonnement.dateFin ? abonnement.dateFin|date('Y-m-d') : '' }}</td>
-                <td>{{ abonnement.etatAbonnement }}</td>
-                <td>{{ abonnement.user }}</td>
-                 <td>
- <a href="{{ path('app_abonnement_edit', {'id': abonnement.id}) }}">
-                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                          
-                                                        </button> </a>
-                   <br> <a href="{{ path('app_abonnement_show', {'id': abonnement.id}) }}">
-                 <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="afficher">
-                                                            <i class="zmdi zmdi-more"></i>
-                                                           
-                                                        </button> </a>
-                     {{ include('abonnement/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-             {% endfor %}
-          
-                      </tbody>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <button class="au-btn au-btn-load" >
-                                
-                                  <a href="{{ path('app_abonnement_new') }}" style="color: white;">Ajouter un Abonnement</a>
-                                </button>
-  
-     </div>
+	<style>
+		.low-quantity {
+			color: red;
+		}
+	</style>
+	<!-- MAIN CONTENT-->
+	<div
+		class="page-wrapper">
+		<!-- PAGE CONTAINER-->
+		<div class="page-container">
+			<div class="main-content">
+				<div class="section__content section__content--p30">
+					<div class="container-fluid">
+						<div class="row">
+							<div
+								class="col-md-12">
+								<!-- START WHITE BACKGROUND-->
+								<div class="map-data m-b-40">
+									<h1>Liste Des Abonnements</h1><br>
+									<button class="au-btn au-btn-icon au-btn--green au-btn--small" style="margin-left:640px;">
+										<a href="{{ path('app_email') }}" style="color: white;" > <i class="zmdi zmdi-plus"></i>Rappeler les abonnées
+										</a>
+									</button>
+                                    <br><br>
+									<input type="text" class="form-control" id="searchInput" placeholder="Search&hellip;">
+                                   <script>
+        function filterTable() {
+            const filter = document.getElementById('searchInput').value.toUpperCase();
+            const rows = document.querySelectorAll('table tr');
+            for (let i = 1; i < rows.length; i++) {
+                const cols = rows[i].querySelectorAll('td');
+                let visible = false;
+                for (let j = 0; j < cols.length; j++) {
+                    const cell = cols[j];
+                    if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                        visible = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = visible ? '' : 'none';
+            }
+        }
+        document.getElementById('searchInput').addEventListener('keyup', filterTable);
+    </script>
+									<div class="table-responsive m-b-40">
+										<table class="table table-borderless table-data3">
+											<thead>
+												<tr>
 
-                                <!-- END WHITE BACKGROUND-->
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2023 Colorlib. All rights reserved.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END MAIN CONTENT-->
-        </div>
+													<th>Type Abonnement</th>
+													<th>Montant</th>
+													<th>Durée Abonnement</th>
+													<th>Date Achat</th>
+													<th>Date Fin</th>
+													<th>Etat Abonnement</th>
+													<th>Utilisateur</th>
+													<th>actions</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for abonnement in abonnements %}
 
-    </div>
-{% endblock %}
+													<tr {% if abonnement.etatAbonnement =="non actif" %} style:"color:red;" {% endif %}>
+														<td>{{ abonnement.pack.typePack  }}</td>
+														<td>{{ abonnement.montantAbonnement }}</td>
+														<td>{{ abonnement.pack.dureePack  }}</td>
+														<td>{{ abonnement.dateAchat ? abonnement.dateAchat|date('Y-m-d') : '' }}</td>
+														<td>{{ abonnement.dateFin ? abonnement.dateFin|date('Y-m-d') : '' }}</td>
+														<td>{{ abonnement.etatAbonnement }}</td>
+														<td>{{ abonnement.user }}</td>
+														<td>
+															<a href="{{ path('app_abonnement_edit', {'id': abonnement.id}) }}">
+																<button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier">
+																	<i class="zmdi zmdi-edit"></i>
+
+																</button>
+															</a>
+															<br>
+															<a href="{{ path('app_abonnement_show', {'id': abonnement.id}) }}">
+																<button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="afficher">
+																	<i class="zmdi zmdi-more"></i>
+
+																</button>
+															</a>
+															{{ include('abonnement/_delete_form.html.twig') }}
+														</td>
+													</tr>
+												{% else %}
+													<tr>
+														<td colspan="6">no records found</td>
+													</tr>
+												{% endfor %}
+
+											</tbody>
+										</tbody>
+									</table>
+								</div>
+								<button class="au-btn au-btn-load">
+
+									<a href="{{ path('app_abonnement_new') }}" style="color: white;">Ajouter un Abonnement</a>
+
+								</button>
+
+
+							</div>
+
+							<!-- END WHITE BACKGROUND-->
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="copyright">
+								<p>Copyright © 2023 Colorlib. All rights reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END MAIN CONTENT-->
+	</div>
+
+</div>{% endblock %}

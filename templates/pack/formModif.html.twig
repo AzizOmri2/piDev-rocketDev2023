@@ -1,57 +1,64 @@
-
 {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
 
 <div class="col-lg-6 col-md-6">
-     <div class="form-box user-icon mb-30">
-     <h5 class="mb-30">
-    {{ form_label(form.typePack,"Type pack")}}
-     {{ form_widget(form.typePack,{'attr':{'class':'form-control'}})}}
-     {{form_errors(form.typePack)}}
-    </div>
-    </div>
-   <div class="col-lg-6 col-md-6">
-     <div class="form-box user-icon mb-30">
-     <h5 class="mb-30">
-    {{ form_label(form.montantPack,"Montant pack")}}
-     {{ form_widget(form.montantPack,{'attr':{'class':'form-control'}})}}
-     {{form_errors(form.montantPack)}}
-    </div>
-    </div>
-   <div class="col-lg-6 col-md-6">
-     <div class="form-box user-icon mb-30">
-     <h5 class="mb-30">
-    {{ form_label(form.DureePack,"Durée")}}
-     {{ form_widget(form.DureePack,{'attr':{'class':'form-control'}})}}
-     {{form_errors(form.DureePack)}}
-    </div>
-    </div>
-  <div class="col-lg-6 col-md-6">
-     <div class="form-box user-icon mb-30">
-     <h5 class="mb-30">
-    {{ form_label(form.disponibilitePack,"Disponibilité")}}
-     {{ form_widget(form.disponibilitePack,{'attr':{'class':'form-control'}})}}
-     {{form_errors(form.disponibilitePack)}}
-    </div>
-    </div>
-     <div class="col-lg-6 col-md-6">
-     <div class="form-box user-icon mb-30">
-     <h5 class="mb-30">
-    {{ form_label(form.placesPack,"Places réservées")}}
-     {{ form_widget(form.placesPack,{'attr':{'class':'form-control'}})}}
-     {{form_errors(form.placesPack)}}
-    </div>
-    </div>
- 
-       <div class="col-lg-6 col-md-6">
-     <div class="form-box user-icon mb-30">
-     <h5 class="mb-30">
-    {{ form_label(form.descriptionPack,"Description")}}
-     {{ form_widget(form.descriptionPack,{'attr':{'class':'form-control'}})}}
-     {{form_errors(form.descriptionPack)}}
-    </div>
-    </div>
+	<div class="form-box user-icon mb-30">
+		<h5 class="mb-30">
+			{{ form_label(form.typePack,"Type pack")}}
+			{{ form_widget(form.typePack,{'attr':{'class':'form-control'}})}}
+			{{form_errors(form.typePack)}}
+		</h5>
+	</div>
+</div>
 <div class="col-lg-6 col-md-6">
-        <div class="form-box user-icon mb-30">
-      <button type="submit-info" class="btn btn-secondary">{{ button_label|default('Valider') }}</button>
-     </div>
-     {{ form_end(form) }}
+	<div class="form-box user-icon mb-30">
+		<h5 class="mb-30">
+			{{ form_label(form.montantPack,"Montant pack")}}
+			{{ form_widget(form.montantPack,{'attr':{'class':'form-control'}})}}
+			{{form_errors(form.montantPack)}}
+		</h5>
+	</div>
+</div>
+<div class="col-lg-6 col-md-6">
+	<div class="form-box user-icon mb-30">
+		<h5 class="mb-30">
+			{{ form_label(form.DureePack,"Durée")}}
+			{{ form_widget(form.DureePack,{'attr':{'class':'form-control'}})}}
+			{{form_errors(form.DureePack)}}
+		</h5>
+	</div>
+</div>
+<div class="col-lg-6 col-md-6">
+	<div class="form-box user-icon mb-30">
+		<h5 class="mb-30">
+			{{ form_label(form.disponibilitePack,"Disponibilité")}}
+			{{ form_widget(form.disponibilitePack,{'attr':{'class':'form-control'}})}}
+			{{form_errors(form.disponibilitePack)}}
+		</h5>
+	</div>
+</div>
+<div class="col-lg-6 col-md-6">
+	<div class="form-box user-icon mb-30">
+		<h5 class="mb-30">
+			{{ form_label(form.placesPack,"Places réservées")}}
+			{{ form_widget(form.placesPack,{'attr':{'class':'form-control'}})}}
+			{{form_errors(form.placesPack)}}
+		</h5>
+	</div>
+</div>
+
+<div class="col-lg-6 col-md-6">
+	<div class="form-box user-icon mb-30">
+		<h5 class="mb-30">
+			{{ form_label(form.descriptionPack,"Description")}}
+			{{ form_widget(form.descriptionPack,{'attr':{'class':'form-control'}})}}
+			{{form_errors(form.descriptionPack)}}
+		</h5>
+	</div>
+</div>
+
+<div class="col-lg-6 col-md-6">
+	<div class="form-box user-icon mb-30">
+		<button type="submit-info" class="btn btn-secondary">{{ button_label|default('Valider') }}</button>
+	</div>
+	{{ form_end(form) }}
+</div>

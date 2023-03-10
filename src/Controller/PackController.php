@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Pack;
+use App\Entity\Abonnement;
+use App\Repository\AbonnementRepository;
 use App\Form\PackType;
 use App\Form\PackModifType;
 use App\Repository\PackRepository;
@@ -21,18 +23,13 @@ use Winwheel\Winwheel;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
+use Knp\Component\Pager\PaginatorInterface;
 //require_once './Winwheel.js';
 
 #[Route('/pack')]
 class PackController extends AbstractController
 { private $myWheel;
-    #[Route('/pp', name: 'list')]
-    public function getPacks(PackRepository $repo, NormalizerInterface $normalizer){
-        $packs=$repo->findAll();
-        $packNormalises= $normalizer->normalize($packs,'json',['groups' =>"packs"]);
-        $json = json_encode($packNormalises);
-        return new Response($json);  
-    }
+   
 
     #[Route('/pack/{id}', name: 'pack')]
     public function packId(PackRepository $repo, NormalizerInterface $normalizer,$id){
@@ -41,6 +38,13 @@ class PackController extends AbstractController
         $json = json_encode($packNormalises);
         return new Response($json);
     }
+    #[Route('/listp', name: 'listp')]
+    public function getPacks(PackRepository $repo, NormalizerInterface $normalizer){
+        $packs=$repo->findAll();
+        $packNormalises= $normalizer->normalize($packs,'json',['groups' =>"packs"]);
+        $json = json_encode($packNormalises);
+        return new Response($json);  
+    }
    
     #[Route('/addPackJson/new', name: 'addPackJson')]
     public function addPackJson(Request $req, NormalizerInterface $normalizer){
@@ -48,7 +52,7 @@ class PackController extends AbstractController
         $pack = new Pack();
         $pack->setTypePack($req->get('typePack'));
         $pack->setMontantPack($req->get('montantPack'));
-        $pack->setDureePack($req->get('DureePack'));
+        $pack->setDureePack(1);
         $pack->setDescriptionPack($req->get('descriptionPack'));
         $pack->setPlacesPack($req->get('placesPack'));
         $pack->setDisponibilitePack($req->get('disponibilitePack'));
@@ -90,15 +94,37 @@ class PackController extends AbstractController
 
 
     #[Route('/', name: 'app_pack_index', methods: ['GET'])]
-    public function index(PackRepository $packRepository ): Response
-    {  
+    public function index(PackRepository $packRepository ,AbonnementRepository $abonnementRepository , PaginatorInterface $paginator, Request $request,): Response
+    {   $data =$packRepository->findAll() ;
+        $packs=$paginator->paginate(
+            $data, 
+            $request->query->getInt('page',1),
+            3
+        );
         $packs = $packRepository->findBy([], ['placesPack' => 'DESC']);
 
         $totalPlaces = 0;
         foreach ($packs as $pack) {
             $totalPlaces += $pack->getPlacesPack();
         }
-    
+        $totalPacks = 0;
+        foreach ($packs as $pack) {
+            $totalPacks += 1;
+        }
+        $totalDisponibilites = 0;
+        foreach ($packs as $pack) {
+            $totalDisponibilites += $pack->getDisponibilitePack();
+        }
+        $abonnements = $abonnementRepository->findAll();
+        $totalUtilisateur = 0;
+        foreach ($abonnements as $a) {
+            $totalUtilisateur += 1;
+        }
+        $cash = 0;
+        foreach ($abonnements as $a) {
+            $cash += $a->getMontantAbonnement();
+        }
+
         $packsStats = [];
         $rank = 1;
         foreach ($packs as $pack) {
@@ -117,56 +143,32 @@ class PackController extends AbstractController
             'packsStats' => $packsStats,
             'packs' => $packRepository->findAll(),
             'total' => $totalPlaces,
+            'totald' => $totalDisponibilites,
+            'totalpack' => $totalPacks,
+            'c'=>$cash,
         ]);
     }
     
     #[Route('/tryindex', name: 'app_pack_tryindex', methods: ['GET'])]
-    public function indexClient(PackRepository $packRepository , PromotionRepository $promotionRepository): Response
+    public function indexClient(
+        PackRepository $packRepository , 
+        PromotionRepository $promotionRepository,
+        Request $request,
+        PaginatorInterface $paginator): Response
     { 
-        $participants = [
-            'Participant 1',
-            'Participant 2',
-            'Participant 3',
-            'Participant 4',
-            'Participant 5',
-        ];
-      
-    
-        // Initialiser la roue de tirage au sort avec les participants
-        //$this->myWheel = new Winwheel([
-          //  'numSegments' => count($participants),
-            //'segments' => array_map(function($participant) { 
-              //  return [
-                //    'fillStyle'=>'white', 
-                  //  'text'=>$participant
-                ///];
-            //}, $participants)
-        //]);
-    
+    $data =$packRepository->findAll() ;
+    $packs=$paginator->paginate(
+        $data, 
+        $request->query->getInt('page',1),
+        3
+    );
         return $this->render('pack/tryindex.html.twig', [
-            'packs' => $packRepository->findAll(),
+            'packs' =>$packs ,
             'promotions' => $promotionRepository->findAll(),
-            'participants' => $participants
+       
         ]);
     }
-    #[Route('/spin', name: 'spin', methods: ['GET'])]
-    function spin() {
-        // Récupérer un nombre aléatoire entre 1 et le nombre de segments de la roue
-        $randomNumber = rand(1, myWheel.numSegments);
-        
-        // Tourner la roue jusqu'au segment aléatoire
-        myWheel.animation.spins(8);
-        myWheel.stopAnimation(false);
-        myWheel.rotationAngle(0);
-        myWheel.draw();
-        myWheel.startAnimation();
-      
-        // Attendre la fin de l'animation de la roue, puis afficher le gagnant
-        setTimeout(function() {
-          alert("Le gagnant est : " + myWheel.segments[randomNumber-1].text);
-        }, 6000);
-      }
-
+ 
     #[Route('/new', name: 'app_pack_new', methods: ['GET', 'POST'])]
     public function new(Request $request, PackRepository $packRepository): Response
     {
@@ -221,24 +223,43 @@ class PackController extends AbstractController
 
         return $this->redirectToRoute('app_pack_index', [], Response::HTTP_SEE_OTHER);
     }
-    #[Route('/action', name: 'app_pack_indexAction', methods: ['GET'])]
-    public function myAction(EntityManagerInterface $entityManager, PackRepository $packRepository )
+    
+   
+    #[Route('/rechercheAjax', name: 'rechercheAjax')]
+    public function searchAjax(Request $request, PackRepository $repo)
     {
-        //$myData = $entityManager->getRepository(Pack::class)->findAll();
-         $myData = $packRepository->findAll();
-        $myValues = [];
-        foreach ($myData as $data) {
-            $myValues[] = $data->getValue();
+        // Récupérez le paramètre de recherche depuis la requête
+        $query = $request->query->get('q');
+    
+        // Récupérez le pack correspondant depuis la base de données
+        $pack = $repo->findOneBy(['typePack' => $query]);
+    
+        // Vérifiez si le pack a été trouvé
+        if (!$pack) {
+            // Si aucun pack correspondant n'a été trouvé, renvoyez une erreur 404
+            throw $this->createNotFoundException('Aucun pack correspondant n\'a été trouvé.');
         }
     
-        $mean = array_sum($myValues) / count($myValues);
-    
-        return $this->render('pack/index.html.twig', [
-            'mean' => $mean,
-            'packs' => $packRepository->findAll(),
+        // Générez la réponse au format JSON avec les données du pack
+        $response = new JsonResponse([
+            'id' => $pack->getId(),
+            'typePack' => $pack->getTypePack(),
+            'description' => $pack->getDescription(),
+            // Ajoutez ici les autres données que vous souhaitez renvoyer
         ]);
+    
+        return $response;
     }
+    
 }
+    
+    
+    
+    
+    
+    
+
+    
 
 
 

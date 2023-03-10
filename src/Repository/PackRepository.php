@@ -38,7 +38,15 @@ class PackRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    public function findPackByTypePack($nom, $page = 1, $limit = 10)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.typepack LIKE :nom')
+            ->setParameter('nom', '%' . $nom . '%')
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
+        return $qb->getQuery()->getResult();
+    }
 //    /**
 //     * @return Pack[] Returns an array of Pack objects
 //     */

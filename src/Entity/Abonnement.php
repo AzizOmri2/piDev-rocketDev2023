@@ -25,18 +25,14 @@ class Abonnement
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Groups("abonnements")]
     # #[Assert\NotBlank(   message: "Le champ est vide !",  )]
-    #[Assert\GreaterThanOrEqual(propertyPath:"dateAchat" ,
-     message :"La date de fin doit être supérieure à la date de début!")]
     private ?\DateTimeInterface $dateFin = null;
     #[ORM\Column(length: 255)]
     #[Groups("abonnements")]
     # #[Assert\NotBlank(message: "Le champ est vide !", )]
-    #[Assert\Regex(pattern: '/[a-zA-Z]/')]
     private ?string $etatAbonnement = "";
 
     #[ORM\ManyToOne(inversedBy: 'abonnements')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotBlank( message: "Le champ est vide !" )]
     #[Groups("abonnements")]
     private ?Pack $pack = null;
 
@@ -45,12 +41,10 @@ class Abonnement
     private ?string $CodePromo = "";
 
     #[ORM\Column]
-    #[Assert\Positve]
     #[Groups("abonnements")]
     private ?float $MontantAbonnement = 0;
 
     #[ORM\ManyToOne(inversedBy: 'Abonnements')]
-    #[Assert\NotBlank(   message: "il faut choir un utilisateur!"  )]
     #[Groups("abonnements")]
     private ?User $user = null;
    

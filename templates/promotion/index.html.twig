@@ -16,7 +16,26 @@
                                 <div class="map-data m-b-40">
     <h1>Promotions</h1><br>
     
-<div class="table-responsive m-b-40">
+<div class="table-responsive m-b-40"><input type="text" class="form-control" id="searchInput" placeholder="Search&hellip;">
+                                   <script>
+        function filterTable() {
+            const filter = document.getElementById('searchInput').value.toUpperCase();
+            const rows = document.querySelectorAll('table tr');
+            for (let i = 1; i < rows.length; i++) {
+                const cols = rows[i].querySelectorAll('td');
+                let visible = false;
+                for (let j = 0; j < cols.length; j++) {
+                    const cell = cols[j];
+                    if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                        visible = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = visible ? '' : 'none';
+            }
+        }
+        document.getElementById('searchInput').addEventListener('keyup', filterTable);
+    </script>
                                     <table class="table table-borderless table-data3">
         <thead>
             <tr>
