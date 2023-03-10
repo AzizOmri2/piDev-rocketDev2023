@@ -6,6 +6,7 @@ use App\Repository\FournisseurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FournisseurRepository::class)]
@@ -14,6 +15,8 @@ class Fournisseur
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("fournisseurs")]
+
     private ?int $id = null;
 
     #[ORM\Column]
@@ -26,11 +29,13 @@ class Fournisseur
         maxMessage: "Le nom du fournisseur doit contenir au plus {{ limit }} caractères",
 
     )]
+    #[Groups("fournisseurs")]
+
     private ?string $nomFournisseur = null;
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    #[Assert\NotNullValidator]
+    #[Assert\NotNull]
     #[Assert\Length(
         exactly:8,
         exactMessage: "Le numero doit etre {{ limit }} nombres",
@@ -38,6 +43,8 @@ class Fournisseur
     #[Assert\Regex(
         pattern: '/^[0-9]+$/i',
         message:"Invalid phone number") ]
+    #[Groups("fournisseurs")]
+
     private ?int $contactFournisseur = null;
 
     #[ORM\Column(length: 255)]
@@ -46,15 +53,20 @@ class Fournisseur
     #[Assert\Email(
         message: 'The email {{ value }} is not a valid email.',
     )]
+    #[Groups("fournisseurs")]
+
     private ?string $emailFournisseur = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\NotNull]
+    #[Groups("fournisseurs")]
 
     private ?string $adresseFournisseur = null;
 
     #[ORM\OneToMany(mappedBy: 'fournisseur', targetEntity: Charge::class)]
+    #[Groups("fournisseurs")]
+
     private Collection $charges;
 
     public function __construct()
@@ -65,6 +77,12 @@ class Fournisseur
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getNomFournisseur(): ?string

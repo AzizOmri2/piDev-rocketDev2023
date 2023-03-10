@@ -6,10 +6,14 @@ use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use stdClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/comment')]
 class CommentController extends AbstractController
@@ -31,6 +35,9 @@ class CommentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $rr = $this->filterwords($comment->getDescription());
+
+            $comment->setDescription($rr);
             $comment->setDateCom(new \DateTime('now'));
             $commentRepository->save($comment, true);
 
@@ -58,6 +65,9 @@ class CommentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $rr = $this->filterwords($comment->getDescription());
+
+            $comment->setDescription($rr);
             $commentRepository->save($comment, true);
 
             return $this->redirectToRoute('app_post_show', ['id'=>$comment->getPost()->getId()]);;        }
@@ -80,4 +90,27 @@ class CommentController extends AbstractController
         $id =$comment->getPost()->getId();
 
         return $this->redirectToRoute('app_post_show', ['id'=>$id]);;    }
+
+public function filterwords($text)
+{
+    $filterWords = array('fokaleya', 'bhim', 'msatek', 'fuck', 'slut', 'fucku');
+    $filterCount = count($filterWords);
+    $str = "";
+    $data = preg_split('/\s+/', $text);
+    foreach ($data as $s) {
+        $g = false;
+        foreach ($filterWords as $lib) {
+            if ($s == $lib) {
+                $t = "";
+                for ($i = 0; $i < strlen($s); $i++) $t .= "*";
+                $str .= $t . " ";
+                $g = true;
+                break;
+            }
+        }
+        if (!$g)
+            $str .= $s . " ";
+    }
+    return $str;
+}
 }

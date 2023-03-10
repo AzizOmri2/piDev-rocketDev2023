@@ -12,12 +12,8 @@
                                             <i class="fa-solid fa-file-invoice"></i>Gestion Des Charges</h3>
                                         <div class="filters m-b-45">
                                             <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
-                                                <select class="js-select2" name="property">
-                                                    <option selected="selected">Filtrer</option>
-                                                    <option value="">Date arrivage</option>
-                                                    <option value="">Id charge</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
+                                                <a class="btn btn-secondary" style="color: white" href="{{ path('app_charge_tri_d') }}">Les plus rècentes</a>
+                                              
                                             </div>
                                             <br>
                                             <br>
@@ -26,16 +22,37 @@
                                             
                                            <div class="input-group">
                                                {#//recherche #}
-                                             <div class="container-fluid" style="display:flex;justify-content:flex-end;align-items:flex-end;">
-                                                     <div class="header-wrap">
-                                                          <form class="form-header" action="" method="POST">
-                                                            <input class="au-input au-input--xl" type="text" name="search" placeholder="Chercher charge">
-                                                             <button class="au-btn--submit" type="submit">
-                                                         <i class="zmdi zmdi-search"></i>
-                                                             </button>
-                                                </form>
-                                                </div>
-                                                         </div>
+                                               <div class="container-fluid" style="display:flex;justify-content:flex-end;align-items:flex-end;">
+                                                   <div class="header-wrap">
+                                                       <form class="form-header" action="" method="GET">
+                                                           <input type="text" class="au-input au-input--xl" id="searchInput" placeholder="Search&hellip;">
+                                                           <button class="au-btn--submit" type="submit">
+                                                               <i class="zmdi zmdi-search"></i>
+                                                           </button>
+                                                       </form>
+                                                   </div>
+                                               </div>
+
+
+                                               <script>
+                                                   function filterTable() {
+                                                       const filter = document.getElementById('searchInput').value.toUpperCase();
+                                                       const rows = document.querySelectorAll('table tr');
+                                                       for (let i = 1; i < rows.length; i++) {
+                                                           const cols = rows[i].querySelectorAll('td');
+                                                           let visible = false;
+                                                           for (let j = 0; j < cols.length; j++) {
+                                                               const cell = cols[j];
+                                                               if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                                                                   visible = true;
+                                                                   break;
+                                                               }
+                                                           }
+                                                           rows[i].style.display = visible ? '' : 'none';
+                                                       }
+                                                   }
+                                                   document.getElementById('searchInput').addEventListener('keyup', filterTable);
+                                               </script>
                                                     
                                                  </div>
 
@@ -78,6 +95,7 @@
                                             </table>
                                         </div>
                                     </div>
+
                                         <div align="center" class="card-footer">
 
                                             <a type="reset" class="btn btn-danger btn-sm" href="{{ path('app_charge_new') }}">Create new</a>

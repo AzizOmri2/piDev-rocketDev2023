@@ -6,6 +6,7 @@ use App\Repository\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,6 +16,7 @@ class Post
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("posts")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -23,25 +25,35 @@ class Post
         min: 5,
         max: 15,minMessage: "le titre su post doit contenir au moin {{ limit }} caractères",maxMessage: "le titre su post doit contenir au plus {{ limit }} caractères",
     )]
+    #[Groups("posts")]
     private ?string $title = null;
 
     #[ORM\Column(length: 500)]
     #[Assert\NotBlank]
     #[Assert\Length(
         min: 10,
-        max: 150,minMessage: "le titre su post doit contenir au moin {{ limit }} caractères",maxMessage: "le titre su post doit contenir au plus {{ limit }} caractères",
+        max: 150,
+        minMessage: "le titre su post doit contenir au moin {{ limit }} caractères",
+        maxMessage: "le titre su post doit contenir au plus {{ limit }} caractères",
     )]
+    #[Groups("posts")]
     private ?string $details = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Groups("posts")]
     private ?string $image = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups("posts")]
     private ?\DateTimeInterface $datePost = null;
 
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class)]
+    //#[Groups("posts")]
     private Collection $comments;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $rate = null;
 
     public function __construct()
     {
@@ -52,7 +64,12 @@ class Post
     {
         return $this->id;
     }
+    public function setId(int $id): self
+    {
+        $this->id = $id;
 
+        return $this;
+    }
     public function getTitle(): ?string
     {
         return $this->title;
@@ -133,5 +150,17 @@ class Post
     public function __toString(): string
     {
 return $this->getTitle();
+    }
+
+    public function getRate(): ?int
+    {
+        return $this->rate;
+    }
+
+    public function setRate(?int $rate): self
+    {
+        $this->rate = $rate;
+
+        return $this;
     }
 }

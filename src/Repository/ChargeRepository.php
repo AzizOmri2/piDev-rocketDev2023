@@ -38,6 +38,10 @@ class ChargeRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function getChargeByDateDesc(){
+        $qb = $this->createQueryBuilder('x')->orderBy('x.id', 'DESC'); // x : aliace , reference direct 3al table student
+        return $qb->getQuery()->getResult();
+    }
 
 //    /**
 //     * @return Charge[] Returns an array of Charge objects

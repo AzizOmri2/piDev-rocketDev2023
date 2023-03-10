@@ -38,6 +38,11 @@ class MaterielRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function getStudentOrdredByName(){
+        $qb = $this->createQueryBuilder('x')->orderBy('x.nomMateriel', 'DESC'); // x : aliace , reference direct 3al table student
+        return $qb->getQuery()->getResult();
+    }
+
 
 //    /**
 //     * @return Materiel[] Returns an array of Materiel objects

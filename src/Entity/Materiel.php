@@ -6,6 +6,7 @@ use App\Repository\MaterielRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 //importation de Validator class
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,6 +16,7 @@ class Materiel
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("materiels")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -26,7 +28,7 @@ class Materiel
         maxMessage: "Le nom du matériel doit contenir au plus {{ limit }} caractères",
 
     )]
-
+    #[Groups("materiels")]
     private ?string $nomMateriel = null;
 
     #[ORM\Column(length: 255)]
@@ -34,19 +36,22 @@ class Materiel
     #[Assert\Length(
         exactly:8,
         exactMessage: "Le nom du matériel doit contenir exactement {{ limit }} caractères",
-
     )]
+    #[Groups("materiels")]
     private ?string $referenceMateriel = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
 //    #[Assert\DateTime]
+    #[Groups("materiels")]
     private ?\DateTimeInterface $dateMaintenanceMateriel = null;
 
     #[ORM\Column(nullable: true)]
-    #[Assert\Positive]
+    #[Assert\PositiveOrZero]
+    #[Groups("materiels")]
     private ?int $quantiteMateriel = null;
 
     #[ORM\OneToMany(mappedBy: 'materiel', targetEntity: Charge::class)]
+    #[Groups("materiels")]
     private Collection $charges;
 
     public function __construct()
@@ -99,7 +104,12 @@ class Materiel
     {
         return $this->quantiteMateriel;
     }
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
 
+        return $this;
+    }
     public function setQuantiteMateriel(?int $quantiteMateriel): self
     {
         $this->quantiteMateriel = $quantiteMateriel;

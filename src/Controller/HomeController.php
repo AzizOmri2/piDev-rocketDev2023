@@ -16,6 +16,6 @@ class HomeController extends AbstractController
     #[Route('/front', name: 'app_front')]
     public function indexx(): Response
     {
-        return $this->render('Front.html.twig');
+        return $this->render('baseFront.html.twig');
     }
 }
