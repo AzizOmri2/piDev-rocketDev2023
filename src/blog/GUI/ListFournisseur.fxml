@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1100.0" stylesheets="@navsidebar.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blog.GUI.ListFournisseurController">
+   <children>
+      <Pane layoutY="6.0" prefHeight="204.0" prefWidth="1100.0" style="-fx-background-color: #720000; -fx-background-radius: 0 0 20 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
+      <ImageView fitHeight="214.0" fitWidth="230.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="516.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="891.0" AnchorPane.topAnchor="-30.0">
+         <image>
+            <Image url="@../Image/LogoGymWhite.png" />
+         </image>
+         <effect>
+            <Bloom threshold="0.94">
+               <input>
+                  <DropShadow height="52.1" radius="37.21" spread="0.38" width="98.74" />
+               </input>
+            </Bloom>
+         </effect>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="15.0">
+         <image>
+            <Image url="@../Image/icons8-user-64.png" />
+         </image>
+      </ImageView>
+      <Label prefHeight="23.0" prefWidth="117.0" text="Admin Name" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0">
+         <font>
+            <Font name="Calibri Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="homeButton" layoutX="1027.0" layoutY="718.0" mnemonicParsing="false" onAction="#puser" prefHeight="39.0" prefWidth="47.0" styleClass="buttoButtonMenu" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" styleClass="buttoButtonMenu">
+               <image>
+                  <Image url="@../Image/icons8-home-page-48.png" />
+               </image>
+               <effect>
+                  <Glow level="0.81" />
+               </effect>
+            </ImageView>
+         </graphic>
+      </Button>
+      <AnchorPane layoutX="273.0" layoutY="108.0" prefHeight="555.0" prefWidth="800.0" style="-fx-background-color: white; -fx-background-radius: 10;" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="100.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="23.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="417.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="746.0">
+               <image>
+                  <Image url="@../Image/icons8-zoom-64.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="searchfield" layoutX="54.0" layoutY="104.0" prefHeight="38.0" prefWidth="322.0" promptText="Search" AnchorPane.bottomAnchor="413.0" AnchorPane.leftAnchor="54.0" />
+            <Label layoutX="227.0" layoutY="26.0" prefHeight="58.0" prefWidth="376.0" text="Liste Des Fournisseurs" textFill="#720000" underline="true" AnchorPane.topAnchor="26.0">
+               <font>
+                  <Font name="Calibri Bold Italic" size="40.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableF" layoutX="23.0" layoutY="193.0" onMouseClicked="#handleTableRowSelection" prefHeight="385.0" prefWidth="755.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="22.0">
+               <columns>
+                  <TableColumn fx:id="idF" prefWidth="150.0" text="ID" />
+                  <TableColumn fx:id="nomF" prefWidth="150.0" text="Nom" />
+                  <TableColumn fx:id="contactF" prefWidth="150.0" text="Contact" />
+                  <TableColumn fx:id="emailF" prefWidth="150.0" text="Email" />
+                  <TableColumn fx:id="adresseF" prefWidth="150.0" text="Adresse" />
+               </columns>
+            </TableView>
+            <Button fx:id="versAjoutF" layoutX="719.0" layoutY="98.0" mnemonicParsing="false" onAction="#versAjouterF" prefHeight="39.0" prefWidth="48.0" styleClass="buttoButtonMenu" AnchorPane.bottomAnchor="408.0" AnchorPane.rightAnchor="22.0">
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="buttoButtonMenu">
+                     <image>
+                        <Image url="@../Image/icons8-add-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="retourListF2" mnemonicParsing="false" onAction="#retourGestion" styleClass="buttoButtonMenu" stylesheets="@navsidebar.css" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/icons8-left-67.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>
